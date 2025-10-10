@@ -8,6 +8,7 @@ const leads = [
       city: "Jakarta",
       country: "Indonesia",
     },
+    labels: ["friend", "school"],
   },
   {
     id: 2,
@@ -18,6 +19,7 @@ const leads = [
       city: "Bandung",
       country: "Indonesia",
     },
+    labels: ["family"],
   },
 ];
 
