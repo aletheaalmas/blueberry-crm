@@ -5,8 +5,138 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Blueberry CRM</title>
   </head>
+
   <body>
-    <h1>Blueberry CRM</h1>
+    <!-- sidebar -->
+    <section id="sidebar">
+      <a
+        ><img
+          src="assets/blueberry-crm-logo.svg"
+          alt="logo"
+          width="80"
+          height="89"
+      /></a>
+      <h1>Blueberry CRM</h1>
+
+      <button>Settings</button>
+
+      <nav id="navbar-container">
+        <ul>
+          <li><a href="#">Leads</a></li>
+          <li><a href="#">Deals</a></li>
+          <li><a href="#">Contact</a></li>
+          <li><a href="#">Trash</a></li>
+        </ul>
+      </nav>
+    </section>
+
+    <main>
+      <header>
+        <h1>Leads</h1>
+        <button id="create-lead-btn">Create</button>
+      </header>
+
+      <section id="create-lead-form">
+        <h2>Create Lead</h2>
+        <form>
+          <!-- personal information -->
+          <fieldset>
+            <legend><b>Personal Information</b></legend>
+
+            <label for="salutation">Salutation</label>
+            <select>
+              <option value="">Salutation</option>
+              <option value="mr">Mr.</option>
+              <option value="ms">Ms.</option>
+              <option value="mrs">Mrs.</option>
+              <option value="dr">Dr.</option>
+            </select>
+
+            <label for="first-name">First Name:</label>
+            <input type="text" placeholder="First Name" required />
+
+            <label for="last-name">Last Name:</label>
+            <input type="text" placeholder="First Name" required />
+
+            <label for="email">Email:</label>
+            <input
+              type="text"
+              placeholder="Email"
+              required
+              autocomplete="email"
+            />
+
+            <label for="lead-phone">Mobile No:</label>
+            <input type="tel" placeholder="Mobile No" />
+
+            <label for="gender">Gender</label>
+            <select>
+              <option value="">Gender</option>
+              <option value="male">Male</option>
+              <option value="ms">Female</option>
+            </select>
+          </fieldset>
+          <!-- organization information -->
+          <fieldset>
+            <legend><b>Organization Information</b></legend>
+
+            <label for="organization">Organization</label>
+            <input type="text" placeholder="Organization" />
+
+            <label for="website">Website</label>
+            <input type="url" placeholder="Website" />
+
+            <label for="employeeCount">No. of Employees</label>
+            <select>
+              <option value="1-10">1-10</option>
+              <option value="11-50">11-50</option>
+              <option value="51-200">51-200</option>
+              <option value="201-500">201-500</option>
+              <option value="501-1000">501-1000</option>
+              <option value="1000+">1000+</option>
+            </select>
+
+            <label for="annualRevenue">Annual Revenue</label>
+            <input type="text" value="$ 0.00" />
+
+            <label for="industry">Industry</label>
+            <select>
+              <option value="">Industry</option>
+              <option value="technology">Technology</option>
+              <option value="healthcare">Healthcare</option>
+              <option value="finance">Finance</option>
+              <option value="education">Education</option>
+              <option value="manufacturing">Manufacturing</option>
+              <option value="retail">Retail</option>
+              <option value="retail">Other</option>
+            </select>
+          </fieldset>
+          <!-- lead &assignment -->
+          <fieldset>
+            <legend><b>Lead Details</b></legend>
+
+            <label for="lead-status">Status</label>
+            <select required>
+              <option value="">Select Status</option>
+              <option value="new">New</option>
+              <option value="contacted">Contacted</option>
+              <option value="qualified">Qualified</option>
+              <option value="lost">Lost</option>
+            </select>
+            <label for="lead-owner">Lead Owner</label>
+            <select>
+              <option value="">Administrator</option>
+              <option value="administrator">Administrator</option>
+              <option value="user1">User 1</option>
+              <option value="user2">User 2</option>
+            </select>
+          </fieldset>
+
+          <button type="submit">Create</button>
+          <button type="button" id="cancel-btn">Cancel</button>
+        </form>
+      </section>
+    </main>
 
     <script src="/index.js"></script>
   </body>
