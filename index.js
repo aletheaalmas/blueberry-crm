@@ -104,20 +104,23 @@ const leads = [
 ];
 
 console.log("Initial Leads Data:");
-for (let i = 0; i < leads.length; i++) {
+
+for (let index = 0; index < leads.length; index++) {
+  const lead = leads[index];
+
   console.log(`
-    ID: ${leads[i].id}
-    Lead ID: ${leads[i].leadId}
-    Name: ${leads[i].salutation} ${leads[i].firstName} ${leads[i].lastName}
-    Email: ${leads[i].email ? leads[i].email : "N/A"}
-    Phone: ${leads[i].phone ? leads[i].phone : "N/A"}
-    Gender: ${leads[i].gender}
-    Organization: ${leads[i].organization ? leads[i].organization : "N/A"}
-    Website: ${leads[i].website ? leads[i].website : "N/A"}
-    Annual Revenue: ${leads[i].annualRevenue ? leads[i].annualRevenue : "N/A"}
-    Industry: ${leads[i].industry ? leads[i].industry : "N/A"}
-    Status: ${leads[i].status}
-    Assigned To: ${leads[i].assignedTo}
+    ID: ${lead.id}
+    Code: ${lead.code}
+    Status: ${lead.status}
+    Name: ${lead.salutation} ${lead.firstName} ${lead.lastName}
+    Email: ${lead.email ?? "N/A"}
+    Phone: ${lead.phone ?? "N/A"}
+    Gender: ${lead.gender}
+    Organization: ${lead.organization ?? "N/A"}
+    Website URL: ${lead.websiteUrl ?? "N/A"}
+    Annual Revenue (USD): ${lead.annualRevenueInUSD ?? "N/A"}
+    Industry: ${lead.industry ?? "N/A"}
+    Assigned To: ${lead.assignedTo ?? "N/A"}
     `);
 }
 
