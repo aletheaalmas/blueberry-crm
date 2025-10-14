@@ -14,7 +14,7 @@ const leads = [
     annualRevenue: "$ 1,000,000.00",
     industry: "Retail",
     status: "New",
-    assignedTo: "Unassigned",
+    assignedTo: null,
   },
   {
     id: 2,
@@ -31,7 +31,7 @@ const leads = [
     annualRevenue: "$ 0.00",
     industry: "Manufacturing",
     status: "Contacted",
-    assignedTo: "User 1",
+    assignedTo: null,
   },
   {
     id: 3,
@@ -39,7 +39,7 @@ const leads = [
     salutation: "Mr.",
     firstName: "Wei",
     lastName: "Zhang",
-    email: "zhangwei@competitor.com",
+    email: null,
     phone: "123-456-7892",
     gender: "Male",
     organization: "Tianlong Corp",
@@ -91,15 +91,15 @@ const leads = [
     firstName: "Yan",
     lastName: "Chen",
     email: "chenyan@newventure.com",
-    phone: "123-456-7895",
+    phone: null,
     gender: "Female",
     organization: "New Venture Tech",
     website: "www.newventuretech.com",
     noOfEmployees: "1-10",
     annualRevenue: "$ 500,000.00",
-    industry: "Technology",
+    industry: null,
     status: "New",
-    assignedTo: "Unassigned",
+    assignedTo: null,
   },
 ];
 
@@ -109,10 +109,57 @@ for (let i = 0; i < leads.length; i++) {
     ID: ${leads[i].id}
     Lead ID: ${leads[i].leadId}
     Name: ${leads[i].salutation} ${leads[i].firstName} ${leads[i].lastName}
-    Email: ${leads[i].email}
-    Phone: ${leads[i].phone}
+    Email: ${leads[i].email ? leads[i].email : "N/A"}
+    Phone: ${leads[i].phone ? leads[i].phone : "N/A"}
     Gender: ${leads[i].gender}
-    Organization: ${leads[i].organization}
-    Website: ${leads[i].website ? leads[i].website : "not provided"}
+    Organization: ${leads[i].organization ? leads[i].organization : "N/A"}
+    Website: ${leads[i].website ? leads[i].website : "N/A"}
+    Annual Revenue: ${leads[i].annualRevenue ? leads[i].annualRevenue : "N/A"}
+    Industry: ${leads[i].industry ? leads[i].industry : "N/A"}
+    Status: ${leads[i].status}
+    Assigned To: ${leads[i].assignedTo}
     `);
+}
+
+
+// Example:table format
+console.table(leads);
+
+// Example: Gender greeting
+for (let i=0; i < leads.length; i++) {
+  if (leads[i].gender == "Female") {
+    console.log("Hi Ms. " + leads[i].firstName + " " + leads[i].lastName + " we have a special offer for you!");
+  }
+}
+
+// Example: Item sold and its price calculation
+const soldItem = "Full Package 1";
+console.log("Sold Item:", soldItem);
+
+let totalPrice = 0;
+const prices = [100, 200, 300];  
+for (let i = 0; i < prices.length; i++) {
+  totalPrice += prices[i];
+}
+
+console.log("Total Price:", totalPrice);
+
+
+const currency = "USD";
+console.log("Currency:", currency);
+
+// Example: Items sold and their prices
+const soldItems = ["Service Package 1", "Service Package 2", "Service Package 3"];
+console.log("Sold Items:", soldItems);
+
+let package1Price =100;
+let package2Price =200;
+let package3Price =300;
+let totalPackagePrice = package1Price + package2Price + package3Price;
+console.log("Total Package Price:", totalPackagePrice);
+
+if (totalPackagePrice > 500) {
+  console.log("The total price for", soldItems, "is", totalPackagePrice, "so it's eligible for a discount.");
+} else {
+  console.log("total price for", soldItems, "is", totalPackagePrice, "so it's not eligible for a discount.");
 }
