@@ -103,25 +103,47 @@ const leads = [
   },
 ];
 
-console.log("Initial Leads Data:");
+// ✅Show Leads
+function showAllLeads() {
+  console.log(`Currently we have ${leads.length} leads. Here is the details:`);
+  for (let index = 0; index < leads.length; index++) {
+    let lead = leads[index];
 
-for (let index = 0; index < leads.length; index++) {
-  const lead = leads[index];
+    console.log(` 
+    Code                  : ${lead.code}
+    Status                : ${lead.status}
+    Name                  : ${lead.salutation} ${lead.lastName} ${lead.firstName} 
+    Email                 : ${lead.email ?? "N/A"}
+    Phone                 : ${lead.phone ?? "N/A"}
+    Gender                : ${lead.gender}
+    Organization          : ${lead.organization ?? "N/A"}
+    Website URL           : ${lead.websiteUrl ?? "N/A"} 
+    Annual Revenue (USD)  : $ ${lead.annualRevenueInUSD ?? "N/A"}
+    Industry              : ${lead.industry ?? "N/A"}  
+    Assigned To           : ${lead.assignedTo ?? "N/A"}
 
-  console.log(`
-    ID: ${lead.id}
-    Code: ${lead.code}
-    Status: ${lead.status}
-    Name: ${lead.salutation} ${lead.firstName} ${lead.lastName}
-    Email: ${lead.email ?? "N/A"}
-    Phone: ${lead.phone ?? "N/A"}
-    Gender: ${lead.gender}
-    Organization: ${lead.organization ?? "N/A"}
-    Website URL: ${lead.websiteUrl ?? "N/A"}
-    Annual Revenue (USD): US$ ${lead.annualRevenueInUSD ?? "N/A"}
-    Industry: ${lead.industry ?? "N/A"}
-    Assigned To: ${lead.assignedTo ?? "N/A"}
-
-    `);
+  `);
+  }
 }
+// showAllLeads();
+
+
+// ✅Show Leads By Status
+
+function showLeadsByStatus(status) {
+  let filteredLeads = leads.filter((lead) => lead.status === status);
+  console.log(
+    `Currently we have ${filteredLeads.length} leads with status '${status}'. Here is the details:`
+  );
+  filteredLeads.forEach((lead) => {
+    console.log(`
+📌 ${lead.status}
+🪪 ${lead.salutation} ${lead.lastName} ${lead.firstName} 
+🏢 ${lead.organization ?? "N/A"}
+📱 ${lead.phone ?? "N/A"}
+✉️ ${lead.email ?? "N/A"}
+  `);
+  });
+}
+// showLeadsByStatus("New");
 
