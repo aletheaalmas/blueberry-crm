@@ -1,92 +1,92 @@
 const leads = [
   {
     id: 1,
-    leadId: "CRM-LEAD-2025-001",
+    code: "CRM-LEAD-2025-001",
     salutation: "Mr.",
     firstName: "Haoming",
     lastName: "Shen",
     email: "shenhaoming@jinda.com",
-    phone: "123-456-7890",
+    phone: "+86-123-456-7890",
     gender: "Male",
     organization: "Jinda",
-    website: null,
+    websiteUrl: "https://jinda.com",
     noOfEmployees: "51-200",
-    annualRevenue: "$ 1,000,000.00",
+    annualRevenueInUSD: 1000000,
     industry: "Retail",
     status: "New",
     assignedTo: null,
   },
   {
     id: 2,
-    leadId: "CRM-LEAD-2025-002",
+    code: "CRM-LEAD-2025-002",
     salutation: "Ms.",
     firstName: "Yan",
     lastName: "Xu",
     email: "xuyan@yanyifang.com",
-    phone: "666-666-666",
+    phone: "+86-666-666-666",
     gender: "Female",
     organization: "Yanyifang",
-    website: null,
+    websiteUrl: null,
     noOfEmployees: "11-50",
-    annualRevenue: "$ 0.00",
+    annualRevenueInUSD: 0,
     industry: "Manufacturing",
     status: "Contacted",
     assignedTo: null,
   },
   {
     id: 3,
-    leadId: "CRM-LEAD-2025-003",
+    code: "CRM-LEAD-2025-003",
     salutation: "Mr.",
     firstName: "Wei",
     lastName: "Zhang",
     email: null,
-    phone: "123-456-7892",
+    phone: "+86-123-456-7892",
     gender: "Male",
     organization: "Tianlong Corp",
-    website: "www.tianlongcorp.com",
+    websiteUrl: "https://www.tianlongcorp.com",
     noOfEmployees: "201-500",
-    annualRevenue: "$ 5,000,000.00",
+    annualRevenueInUSD: 5000000,
     industry: "Technology",
     status: "Qualified",
     assignedTo: "User 2",
   },
   {
     id: 4,
-    leadId: "CRM-LEAD-2025-004",
+    code: "CRM-LEAD-2025-004",
     salutation: "Mrs.",
     firstName: "Meili",
     lastName: "Wang",
     email: "wangmeili@capitalgroup.com",
-    phone: "123-456-7893",
+    phone: "+86-123-456-7893",
     gender: "Female",
     organization: "Capital Investment Group",
-    website: "www.capitalgroup.com",
+    websiteUrl: "https://www.capitalgroup.com",
     noOfEmployees: "501-1000",
-    annualRevenue: "$ 15,000,000.00",
+    annualRevenueInUSD: 15000000,
     industry: "Finance",
     status: "Nurture",
-    assignedTo: "Unassigned",
+    assignedTo: null,
   },
   {
     id: 5,
-    leadId: "CRM-LEAD-2025-005",
+    code: "CRM-LEAD-2025-005",
     salutation: "Mr.",
     firstName: "Jian",
     lastName: "Li",
     email: "lijian@supplier.com",
-    phone: "123-456-7894",
+    phone: "+86-123-456-7894",
     gender: "Male",
     organization: "Precision Parts Co.",
-    website: "www.precisionparts.com",
+    websiteUrl: "https://www.precisionparts.com",
     noOfEmployees: "11-50",
-    annualRevenue: "$ 1,200,000.00",
+    annualRevenueInUSD: 1200000,
     industry: "Manufacturing",
     status: "Contacted",
-    assignedTo: "USer 2",
+    assignedTo: "User 2",
   },
   {
     id: 6,
-    leadId: "CRM-LEAD-2025-006",
+    code: "CRM-LEAD-2025-006",
     salutation: "Ms.",
     firstName: "Yan",
     lastName: "Chen",
@@ -94,9 +94,9 @@ const leads = [
     phone: null,
     gender: "Female",
     organization: "New Venture Tech",
-    website: "www.newventuretech.com",
+    websiteUrl: "https://www.newventuretech.com",
     noOfEmployees: "1-10",
-    annualRevenue: "$ 500,000.00",
+    annualRevenueInUSD: 500000,
     industry: null,
     status: "New",
     assignedTo: null,
@@ -104,26 +104,30 @@ const leads = [
 ];
 
 console.log("Initial Leads Data:");
-for (let i = 0; i < leads.length; i++) {
+
+for (let index = 0; index < leads.length; index++) {
+  const lead = leads[index];
+
   console.log(`
-    ID: ${leads[i].id}
-    Lead ID: ${leads[i].leadId}
-    Name: ${leads[i].salutation} ${leads[i].firstName} ${leads[i].lastName}
-    Email: ${leads[i].email ? leads[i].email : "N/A"}
-    Phone: ${leads[i].phone ? leads[i].phone : "N/A"}
-    Gender: ${leads[i].gender}
-    Organization: ${leads[i].organization ? leads[i].organization : "N/A"}
-    Website: ${leads[i].website ? leads[i].website : "N/A"}
-    Annual Revenue: ${leads[i].annualRevenue ? leads[i].annualRevenue : "N/A"}
-    Industry: ${leads[i].industry ? leads[i].industry : "N/A"}
-    Status: ${leads[i].status}
-    Assigned To: ${leads[i].assignedTo}
+    ID: ${lead.id}
+    Code: ${lead.code}
+    Status: ${lead.status}
+    Name: ${lead.salutation} ${lead.firstName} ${lead.lastName}
+    Email: ${lead.email ?? "N/A"}
+    Phone: ${lead.phone ?? "N/A"}
+    Gender: ${lead.gender}
+    Organization: ${lead.organization ?? "N/A"}
+    Website URL: ${lead.websiteUrl ?? "N/A"}
+    Annual Revenue (USD): US$ ${lead.annualRevenueInUSD ?? "N/A"}
+    Industry: ${lead.industry ?? "N/A"}
+    Assigned To: ${lead.assignedTo ?? "N/A"}
     `);
 }
 
 
 // Example:table format
 console.table(leads);
+<<<<<<< HEAD
 
 // Example: Gender greeting
 for (let i=0; i < leads.length; i++) {
@@ -163,3 +167,5 @@ if (totalPackagePrice > 500) {
 } else {
   console.log("total price for", soldItems, "is", totalPackagePrice, "so it's not eligible for a discount.");
 }
+=======
+>>>>>>> 3aac21bfe45b37cb8733141e6466bddc79c1f7b1
