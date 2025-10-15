@@ -1,5 +1,5 @@
 console.log("Experiment 2025-10-15");
-// variable scope with let
+
 let leads = [
   {
     id: 1,
@@ -120,9 +120,9 @@ let user = [
 function showMessage(name) {
   console.log(`Hello ${name} welcome to Blueberry CRM!`);
 }
-showMessage("Alethea");
+// showMessage("Alethea");
 
-// Display All Leads
+// ✅Show Leads
 function showAllLeads() {
   console.log(`Currently we have ${leads.length} leads. Here is the details:`);
   for (let index = 0; index < leads.length; index++) {
@@ -138,8 +138,9 @@ function showAllLeads() {
   }
 }
 // showAllLeads();
+// --------------------------------------------------
 
-// Display Leads By Status
+// ✅Display Leads By Status
 
 function showLeadsByStatus(status) {
   let filteredLeads = leads.filter((lead) => lead.status === status);
@@ -156,14 +157,42 @@ function showLeadsByStatus(status) {
   `);
   });
 }
-// showLeadsByStatus("New");
+// showLeadsByStatus("Contacted");
+// --------------------------------------------------
 
-function searchLeads() {}
-function calculateAge() {}
+// ❌Search Leads
+function searchLeads(query) {
+  return leads.filter(
+    (lead) =>
+      lead.firstName.toLowerCase().includes(query.toLowerCase()) ||
+      lead.lastName.toLowerCase().includes(query.toLowerCase()) ||
+      (lead.email && lead.email.toLowerCase().includes(query.toLowerCase())) ||
+      (lead.phone && lead.phone.includes(query))
+  );
+}
+
+const query = "Haoming";
+const filteredLeads = searchLeads(query);
+
+console.log(`Search Results: Found ${filteredLeads.length} leads for '${query}':`);
+
+if (filteredLeads.length === 0) {
+  console.log("❌ No leads found matching your search criteria.");
+} else {
+  filteredLeads.forEach(lead => {
+    console.log(`- ${lead.salutation} ${lead.firstName} ${lead.lastName} (${lead.email || "No email"})`);
+  });
+}
+
+
+
+// --------------------------------------------------
+
 function addLead() {}
 function alertFirstNameMissing() {}
 function alertEmailMissing() {}
 function alertEmailNotValid() {}
+function calculateAge() {}
 
 function updateLead() {}
 function moveLeadToTrash() {}
