@@ -121,51 +121,7 @@ for (let index = 0; index < leads.length; index++) {
     Annual Revenue (USD): US$ ${lead.annualRevenueInUSD ?? "N/A"}
     Industry: ${lead.industry ?? "N/A"}
     Assigned To: ${lead.assignedTo ?? "N/A"}
+
     `);
 }
 
-
-// Example:table format
-console.table(leads);
-<<<<<<< HEAD
-
-// Example: Gender greeting
-for (let i=0; i < leads.length; i++) {
-  if (leads[i].gender == "Female") {
-    console.log("Hi Ms. " + leads[i].firstName + " " + leads[i].lastName + " we have a special offer for you!");
-  }
-}
-
-// Example: Item sold and its price calculation
-const soldItem = "Full Package 1";
-console.log("Sold Item:", soldItem);
-
-let totalPrice = 0;
-const prices = [100, 200, 300];  
-for (let i = 0; i < prices.length; i++) {
-  totalPrice += prices[i];
-}
-
-console.log("Total Price:", totalPrice);
-
-
-const currency = "USD";
-console.log("Currency:", currency);
-
-// Example: Items sold and their prices
-const soldItems = ["Service Package 1", "Service Package 2", "Service Package 3"];
-console.log("Sold Items:", soldItems);
-
-let package1Price =100;
-let package2Price =200;
-let package3Price =300;
-let totalPackagePrice = package1Price + package2Price + package3Price;
-console.log("Total Package Price:", totalPackagePrice);
-
-if (totalPackagePrice > 500) {
-  console.log("The total price for", soldItems, "is", totalPackagePrice, "so it's eligible for a discount.");
-} else {
-  console.log("total price for", soldItems, "is", totalPackagePrice, "so it's not eligible for a discount.");
-}
-=======
->>>>>>> 3aac21bfe45b37cb8733141e6466bddc79c1f7b1
