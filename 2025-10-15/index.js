@@ -106,14 +106,8 @@ let leads = [
 ];
 
 let user = [
-  {
-    id: 1,
-    name: "User 1",
-  },
-  {
-    id: 2,
-    name: "User 2",
-  },
+  { id: 1, name: "User 1" },
+  { id: 2, name: "User 2" },
   { id: 3, name: "User 3" },
 ];
 
@@ -144,7 +138,7 @@ function showLeadsByStatus(status) {
     `Currently we have ${filteredLeads.length} leads with status '${status}'. Here is the details:`
   );
   filteredLeads.forEach((lead) => {
-    console.log(`
+    console.log(`${lead.code}
 📌 ${lead.status}
 🪪 ${lead.salutation} ${lead.lastName} ${lead.firstName} 
 🏢 ${lead.organization}
@@ -158,13 +152,23 @@ function showLeadsByStatus(status) {
 function searchLeads() {}
 
 function createLead() {}
-function alertFirstNameMissing() {}
-function alertEmailMissing() {}
-function alertEmailNotValid() {}
-function calculateAge() {}
+
 function updateLead() {}
+
+// ---
+
+function alertFirstNameMissing() {}
+
+function alertEmailMissing() {}
+
+function alertEmailNotValid() {}
+
+function calculateAge() {}
+
 function moveLeadToTrash() {}
+
 function assignLeadToUser() {}
+
 function unassignLead() {}
 
 // experiment spread operator
@@ -190,8 +194,8 @@ let updatedLeads = [
 ];
 // console.log(updatedLeads);
 let codes = leads.map((lead) => lead.code);
-let updatedLeadsCode = [...codes, "CRM-LEAD-2025-007", "CRM-LEAD-2025-008"];
-// console.log(updatedLeadsCode);
+let updatedLeadsCodes = [...codes, "CRM-LEAD-2025-007", "CRM-LEAD-2025-008"];
+// console.log(updatedLeadsCodes);
 
 // experiment rest parameter
 
