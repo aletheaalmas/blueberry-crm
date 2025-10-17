@@ -1,4 +1,4 @@
-const leads = [
+const dataLeads = [
   {
     id: 1,
     code: "CRM-LEAD-2025-001",
@@ -8,13 +8,14 @@ const leads = [
     email: "shenhaoming@jinda.com",
     phone: "+86-123-456-7890",
     gender: "Male",
-    organization: "Jinda",
+    organization: "Jinda Group",
     websiteUrl: "https://jinda.com",
     noOfEmployees: "51-200",
     annualRevenueInUSD: 1000000,
     industry: "Retail",
     status: "New",
     assignedTo: null,
+    contactedAt: null,
   },
   {
     id: 2,
@@ -31,7 +32,8 @@ const leads = [
     annualRevenueInUSD: 0,
     industry: "Manufacturing",
     status: "Contacted",
-    assignedTo: null,
+    assignedTo: "User 1",
+    contactedAt: new Date("2025-02-02"),
   },
   {
     id: 3,
@@ -49,6 +51,7 @@ const leads = [
     industry: "Technology",
     status: "Qualified",
     assignedTo: "User 2",
+    contactedAt: new Date("2025-03-03"),
   },
   {
     id: 4,
@@ -64,8 +67,9 @@ const leads = [
     noOfEmployees: "501-1000",
     annualRevenueInUSD: 15000000,
     industry: "Finance",
-    status: "Nurture",
+    status: "Nurtured",
     assignedTo: null,
+    contactedAt: new Date("2025-04-04"),
   },
   {
     id: 5,
@@ -83,13 +87,14 @@ const leads = [
     industry: "Manufacturing",
     status: "Contacted",
     assignedTo: "User 2",
+    contactedAt: new Date("2025-05-05"),
   },
   {
     id: 6,
     code: "CRM-LEAD-2025-006",
     salutation: "Ms.",
     firstName: "Yan",
-    lastName: "Chen",
+    lastName: "Zhang",
     email: "chenyan@newventure.com",
     phone: null,
     gender: "Female",
@@ -100,50 +105,118 @@ const leads = [
     industry: null,
     status: "New",
     assignedTo: null,
+    contactedAt: null,
   },
 ];
 
-// ✅Show Leads
-function showAllLeads() {
+function showAllLeads(leads) {
   console.log(`Currently we have ${leads.length} leads. Here is the details:`);
-  for (let index = 0; index < leads.length; index++) {
-    let lead = leads[index];
 
-    console.log(` 
-    Code                  : ${lead.code}
-    Status                : ${lead.status}
-    Name                  : ${lead.salutation} ${lead.lastName} ${lead.firstName} 
-    Email                 : ${lead.email ?? "N/A"}
-    Phone                 : ${lead.phone ?? "N/A"}
-    Gender                : ${lead.gender}
-    Organization          : ${lead.organization ?? "N/A"}
-    Website URL           : ${lead.websiteUrl ?? "N/A"} 
-    Annual Revenue (USD)  : $ ${lead.annualRevenueInUSD ?? "N/A"}
-    Industry              : ${lead.industry ?? "N/A"}  
-    Assigned To           : ${lead.assignedTo ?? "N/A"}
-
-  `);
-  }
+  leads.forEach((lead) => showLead(lead));
 }
-// showAllLeads();
 
-
-// ✅Show Leads By Status
-
-function showLeadsByStatus(status) {
+function showLeadsByStatus(leads, status) {
   let filteredLeads = leads.filter((lead) => lead.status === status);
+
   console.log(
     `Currently we have ${filteredLeads.length} leads with status '${status}'. Here is the details:`
   );
-  filteredLeads.forEach((lead) => {
-    console.log(`
-📌 ${lead.status}
-🪪 ${lead.salutation} ${lead.lastName} ${lead.firstName} 
-🏢 ${lead.organization ?? "N/A"}
-📱 ${lead.phone ?? "N/A"}
-✉️ ${lead.email ?? "N/A"}
-  `);
-  });
-}
-// showLeadsByStatus("New");
 
+  filteredLeads.forEach((lead) => showLead(lead));
+}
+
+function showLead(lead) {
+  console.log(` 
+    Code            : ${lead.code}
+    Status          : ${lead.status}
+    Name            : ${lead.salutation} ${lead.lastName} ${lead.firstName} 
+    Email           : ${lead.email ?? "N/A"}
+    Phone           : ${lead.phone ?? "N/A"}
+    Gender          : ${lead.gender}
+    Organization    : ${lead.organization ?? "N/A"}
+    Website URL     : ${lead.websiteUrl ?? "N/A"} 
+    ARR (USD)       : ${formatNumberInUSD(lead.annualRevenueInUSD) ?? "N/A"}
+    Industry        : ${lead.industry ?? "N/A"}  
+    Assigned To     : ${lead.assignedTo ?? "N/A"}
+
+`);
+}
+
+function formatNumberInUSD(number) {
+  const formattedNumber = new Intl.NumberFormat("en-US", {
+    style: "currency",
+    currency: "USD",
+  }).format(number);
+
+  return formattedNumber;
+}
+
+function searchLeads(leads, query) {
+  const q = query.toLowerCase();
+
+  const searchedLeads = leads.filter((lead) => {
+    if (lead.firstName.toLowerCase().includes(q)) return lead;
+    if (lead.lastName.toLowerCase().includes(q)) return lead;
+    if (lead.organization.toLowerCase().includes(q)) return lead;
+  });
+
+  return searchedLeads;
+}
+
+function createLead(leads, leadBody) {
+  // TODO: use spread to add more lead
+  // TODO: automatically set the id & code, not manual
+  // TODO: input fields:
+  // salutation
+  // firstName
+  // lastName
+  // email
+  // phone
+  // gender
+  // organization
+  // websiteUrl
+  // noOfEmployees
+  // annualRevenueInUSD,
+  // industry
+}
+
+function updateLead(leads, id, leadBody) {
+  // TODO: use map to update only the specified id
+  // TODO: update fields:
+  // salutation
+  // firstName
+  // lastName
+  // email
+  // phone
+  // gender
+  // organization
+  // websiteUrl
+  // noOfEmployees
+  // annualRevenueInUSD,
+  // industry
+}
+
+function alertFirstNameMissing() {}
+
+function alertEmailMissing() {}
+
+function alertEmailNotValid() {}
+
+function calculateAge() {}
+
+function moveLeadToTrash() {}
+
+function assignLeadToUser() {}
+
+function unassignLead() {}
+
+function changeStatus(leads, id, newStatus) {} // "Contacted" / "Nurtured" / "Canceled"
+
+// ------------------------------------------------------
+
+showAllLeads(dataLeads);
+
+// showLeadsByStatus(dataLeads, "New");
+
+// const searchResults = searchLeads(dataLeads, "group");
+// showAllLeads(searchResults);
