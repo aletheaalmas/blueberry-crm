@@ -165,11 +165,35 @@ function searchLeads(leads, query) {
 
 function createLead(leads, leadBody) {
   // TODO: use spread to add more lead
-  // TODO: automatically set the id, not manual
+  // TODO: automatically set the id & code, not manual
+  // TODO: input fields:
+  // salutation
+  // firstName
+  // lastName
+  // email
+  // phone
+  // gender
+  // organization
+  // websiteUrl
+  // noOfEmployees
+  // annualRevenueInUSD,
+  // industry
 }
 
 function updateLead(leads, id, leadBody) {
   // TODO: use map to update only the specified id
+  // TODO: update fields:
+  // salutation
+  // firstName
+  // lastName
+  // email
+  // phone
+  // gender
+  // organization
+  // websiteUrl
+  // noOfEmployees
+  // annualRevenueInUSD,
+  // industry
 }
 
 function alertFirstNameMissing() {}
