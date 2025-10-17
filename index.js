@@ -15,6 +15,7 @@ const dataLeads = [
     industry: "Retail",
     status: "New",
     assignedTo: null,
+    contactedAt: null,
   },
   {
     id: 2,
@@ -31,7 +32,8 @@ const dataLeads = [
     annualRevenueInUSD: 0,
     industry: "Manufacturing",
     status: "Contacted",
-    assignedTo: null,
+    assignedTo: "User 1",
+    contactedAt: new Date("2025-02-02"),
   },
   {
     id: 3,
@@ -49,6 +51,7 @@ const dataLeads = [
     industry: "Technology",
     status: "Qualified",
     assignedTo: "User 2",
+    contactedAt: new Date("2025-03-03"),
   },
   {
     id: 4,
@@ -66,6 +69,7 @@ const dataLeads = [
     industry: "Finance",
     status: "Nurture",
     assignedTo: null,
+    contactedAt: new Date("2025-04-04"),
   },
   {
     id: 5,
@@ -83,6 +87,7 @@ const dataLeads = [
     industry: "Manufacturing",
     status: "Contacted",
     assignedTo: "User 2",
+    contactedAt: new Date("2025-05-05"),
   },
   {
     id: 6,
@@ -100,6 +105,7 @@ const dataLeads = [
     industry: null,
     status: "New",
     assignedTo: null,
+    contactedAt: null,
   },
 ];
 
