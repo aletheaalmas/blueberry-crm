@@ -120,9 +120,8 @@ let user = [
 function showMessage(name) {
   console.log(`Hello ${name} welcome to Blueberry CRM!`);
 }
-// showMessage("Alethea");
+//showMessage("Alethea");
 
-// ✅Show Leads
 function showAllLeads() {
   console.log(`Currently we have ${leads.length} leads. Here is the details:`);
   for (let index = 0; index < leads.length; index++) {
@@ -137,10 +136,7 @@ function showAllLeads() {
   `);
   }
 }
-// showAllLeads();
-// --------------------------------------------------
-
-// ✅Display Leads By Status
+//showAllLeads();
 
 function showLeadsByStatus(status) {
   let filteredLeads = leads.filter((lead) => lead.status === status);
@@ -158,44 +154,63 @@ function showLeadsByStatus(status) {
   });
 }
 // showLeadsByStatus("Contacted");
-// --------------------------------------------------
 
-// ❌Search Leads
-function searchLeads(query) {
-  return leads.filter(
-    (lead) =>
-      lead.firstName.toLowerCase().includes(query.toLowerCase()) ||
-      lead.lastName.toLowerCase().includes(query.toLowerCase()) ||
-      (lead.email && lead.email.toLowerCase().includes(query.toLowerCase())) ||
-      (lead.phone && lead.phone.includes(query))
-  );
-}
+function searchLeads() {}
 
-const query = "Haoming";
-const filteredLeads = searchLeads(query);
-
-console.log(`Search Results: Found ${filteredLeads.length} leads for '${query}':`);
-
-if (filteredLeads.length === 0) {
-  console.log("❌ No leads found matching your search criteria.");
-} else {
-  filteredLeads.forEach(lead => {
-    console.log(`- ${lead.salutation} ${lead.firstName} ${lead.lastName} (${lead.email || "No email"})`);
-  });
-}
-
-
-
-// --------------------------------------------------
-
-function addLead() {}
+function createLead() {}
 function alertFirstNameMissing() {}
 function alertEmailMissing() {}
 function alertEmailNotValid() {}
 function calculateAge() {}
-
 function updateLead() {}
 function moveLeadToTrash() {}
-
 function assignLeadToUser() {}
 function unassignLead() {}
+
+// experiment spread operator
+let updatedLeads = [
+  ...leads,
+  {
+    id: 7,
+    code: "CRM-LEAD-2025-007",
+    salutation: "Mr.",
+    firstName: "Hua",
+    lastName: "Ni",
+    email: "shenhaoming@jinda.com",
+    phone: "+86-123-456-7890",
+    gender: "Male",
+    organization: "Jinda",
+    websiteUrl: "https://jinda.com",
+    noOfEmployees: "51-200",
+    annualRevenueInUSD: 1000000,
+    industry: "Retail",
+    status: "New",
+    assignedTo: null,
+  },
+];
+// console.log(updatedLeads);
+let codes = leads.map(lead => lead.code);
+let updatedLeadsCode = [...codes, "CRM-LEAD-2025-007", "CRM-LEAD-2025-008"];
+// console.log(updatedLeadsCode);
+
+
+
+// experiment rest parameter
+
+let {
+  salutation,
+  lastName,
+  firstName,
+  email,
+  phone,
+  gender,
+  ...leadsOrganizationDetails
+} = leads;
+// console.log(leadsOrganizationDetails);
+
+
+
+const leadCode = "CRM-LEAD-2025-007";
+console.log(leadCode.substring(14,17));
+// expected output: 007
+
