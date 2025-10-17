@@ -120,7 +120,7 @@ let user = [
 function showMessage(name) {
   console.log(`Hello ${name} welcome to Blueberry CRM!`);
 }
-//showMessage("Alethea");
+showMessage("Alethea");
 
 function showAllLeads() {
   console.log(`Currently we have ${leads.length} leads. Here is the details:`);
@@ -136,7 +136,7 @@ function showAllLeads() {
   `);
   }
 }
-//showAllLeads();
+// showAllLeads();
 
 function showLeadsByStatus(status) {
   let filteredLeads = leads.filter((lead) => lead.status === status);
@@ -153,7 +153,7 @@ function showLeadsByStatus(status) {
   `);
   });
 }
-// showLeadsByStatus("Contacted");
+// showLeadsByStatus("New");
 
 function searchLeads() {}
 
@@ -189,11 +189,9 @@ let updatedLeads = [
   },
 ];
 // console.log(updatedLeads);
-let codes = leads.map(lead => lead.code);
+let codes = leads.map((lead) => lead.code);
 let updatedLeadsCode = [...codes, "CRM-LEAD-2025-007", "CRM-LEAD-2025-008"];
 // console.log(updatedLeadsCode);
-
-
 
 // experiment rest parameter
 
@@ -205,12 +203,9 @@ let {
   phone,
   gender,
   ...leadsOrganizationDetails
-} = leads;
-// console.log(leadsOrganizationDetails);
-
-
+} = leads[0];
+console.log(leadsOrganizationDetails);
 
 const leadCode = "CRM-LEAD-2025-007";
-console.log(leadCode.substring(14,17));
+console.log(leadCode.substring(14, 17));
 // expected output: 007
-
