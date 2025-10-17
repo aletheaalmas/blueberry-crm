@@ -157,9 +157,14 @@ function searchLeads(leads, query) {
   return searchedLeads;
 }
 
-function createLead() {}
+function createLead(leads, leadBody) {
+  // TODO: use spread to add more lead
+  // TODO: automatically set the id, not manual
+}
 
-function updateLead() {}
+function updateLead(leads, id, leadBody) {
+  // TODO: use map to update only the specified id
+}
 
 function alertFirstNameMissing() {}
 
