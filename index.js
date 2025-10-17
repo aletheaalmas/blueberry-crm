@@ -89,7 +89,7 @@ const leads = [
     code: "CRM-LEAD-2025-006",
     salutation: "Ms.",
     firstName: "Yan",
-    lastName: "Chen",
+    lastName: "Zhang",
     email: "chenyan@newventure.com",
     phone: null,
     gender: "Female",
@@ -145,7 +145,20 @@ function formatNumberInUSD(number) {
   return formattedNumber;
 }
 
-function searchLeads() {}
+function searchLeads(query) {
+  const q = query.toLowerCase();
+
+  const searchedLeads = leads.filter((lead) => {
+    if (lead.firstName.toLowerCase().includes(q)) {
+      return lead;
+    }
+    if (lead.lastName.toLowerCase().includes(q)) {
+      return lead;
+    }
+  });
+
+  return searchedLeads;
+}
 
 function createLead() {}
 
@@ -167,5 +180,8 @@ function unassignLead() {}
 
 // ------------------------------------------------------
 
-showAllLeads();
+// showAllLeads();
 // showLeadsByStatus("New");
+
+const results = searchLeads("ei");
+console.log(results);
