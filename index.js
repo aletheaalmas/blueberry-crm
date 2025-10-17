@@ -67,7 +67,7 @@ const dataLeads = [
     noOfEmployees: "501-1000",
     annualRevenueInUSD: 15000000,
     industry: "Finance",
-    status: "Nurture",
+    status: "Nurtured",
     assignedTo: null,
     contactedAt: new Date("2025-04-04"),
   },
@@ -209,6 +209,8 @@ function moveLeadToTrash() {}
 function assignLeadToUser() {}
 
 function unassignLead() {}
+
+function changeStatus(leads, id, newStatus) {} // "Contacted" / "Nurtured" / "Canceled"
 
 // ------------------------------------------------------
 
