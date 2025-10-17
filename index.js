@@ -1,4 +1,4 @@
-const leads = [
+const dataLeads = [
   {
     id: 1,
     code: "CRM-LEAD-2025-001",
@@ -8,7 +8,7 @@ const leads = [
     email: "shenhaoming@jinda.com",
     phone: "+86-123-456-7890",
     gender: "Male",
-    organization: "Jinda",
+    organization: "Jinda Group",
     websiteUrl: "https://jinda.com",
     noOfEmployees: "51-200",
     annualRevenueInUSD: 1000000,
@@ -103,13 +103,13 @@ const leads = [
   },
 ];
 
-function showAllLeads() {
+function showAllLeads(leads) {
   console.log(`Currently we have ${leads.length} leads. Here is the details:`);
 
   leads.forEach((lead) => showLead(lead));
 }
 
-function showLeadsByStatus(status) {
+function showLeadsByStatus(leads, status) {
   let filteredLeads = leads.filter((lead) => lead.status === status);
 
   console.log(
@@ -145,16 +145,13 @@ function formatNumberInUSD(number) {
   return formattedNumber;
 }
 
-function searchLeads(query) {
+function searchLeads(leads, query) {
   const q = query.toLowerCase();
 
   const searchedLeads = leads.filter((lead) => {
-    if (lead.firstName.toLowerCase().includes(q)) {
-      return lead;
-    }
-    if (lead.lastName.toLowerCase().includes(q)) {
-      return lead;
-    }
+    if (lead.firstName.toLowerCase().includes(q)) return lead;
+    if (lead.lastName.toLowerCase().includes(q)) return lead;
+    if (lead.organization.toLowerCase().includes(q)) return lead;
   });
 
   return searchedLeads;
@@ -180,8 +177,9 @@ function unassignLead() {}
 
 // ------------------------------------------------------
 
-// showAllLeads();
-// showLeadsByStatus("New");
+showAllLeads(dataLeads);
 
-const results = searchLeads("ei");
-console.log(results);
+// showLeadsByStatus(dataLeads, "New");
+
+// const searchResults = searchLeads(dataLeads, "group");
+// showAllLeads(searchResults);
