@@ -138,7 +138,27 @@ function showLead(lead) {
 `);
 }
 
+function searchLeads() {}
+
+function createLead() {}
+
+function updateLead() {}
+
+function alertFirstNameMissing() {}
+
+function alertEmailMissing() {}
+
+function alertEmailNotValid() {}
+
+function calculateAge() {}
+
+function moveLeadToTrash() {}
+
+function assignLeadToUser() {}
+
+function unassignLead() {}
+
 // ------------------------------------------------------
 
-// showAllLeads();
-showLeadsByStatus("New");
+showAllLeads();
+// showLeadsByStatus("New");
