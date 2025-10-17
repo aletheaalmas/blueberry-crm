@@ -121,21 +121,28 @@ function showLeadsByStatus(status) {
 
 function showLead(lead) {
   console.log(` 
-    Code                 : ${lead.code}
-    Status               : ${lead.status}
-    Name                 : ${lead.salutation} ${lead.lastName} ${
-    lead.firstName
-  } 
-    Email                : ${lead.email ?? "N/A"}
-    Phone                : ${lead.phone ?? "N/A"}
-    Gender               : ${lead.gender}
-    Organization         : ${lead.organization ?? "N/A"}
-    Website URL          : ${lead.websiteUrl ?? "N/A"} 
-    Annual Revenue (USD) : $ ${lead.annualRevenueInUSD ?? "N/A"}
-    Industry             : ${lead.industry ?? "N/A"}  
-    Assigned To          : ${lead.assignedTo ?? "N/A"}
+    Code            : ${lead.code}
+    Status          : ${lead.status}
+    Name            : ${lead.salutation} ${lead.lastName} ${lead.firstName} 
+    Email           : ${lead.email ?? "N/A"}
+    Phone           : ${lead.phone ?? "N/A"}
+    Gender          : ${lead.gender}
+    Organization    : ${lead.organization ?? "N/A"}
+    Website URL     : ${lead.websiteUrl ?? "N/A"} 
+    ARR (USD)       : ${formatNumberInUSD(lead.annualRevenueInUSD) ?? "N/A"}
+    Industry        : ${lead.industry ?? "N/A"}  
+    Assigned To     : ${lead.assignedTo ?? "N/A"}
 
 `);
+}
+
+function formatNumberInUSD(number) {
+  const formattedNumber = new Intl.NumberFormat("en-US", {
+    style: "currency",
+    currency: "USD",
+  }).format(number);
+
+  return formattedNumber;
 }
 
 function searchLeads() {}
