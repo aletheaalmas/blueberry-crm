@@ -4,33 +4,69 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Blueberry CRM</title>
+
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
   </head>
 
-  <body>
-    <!-- sidebar -->
-    <section id="sidebar">
-      <a
-        ><img
-          src="assets/blueberry-crm-logo.svg"
-          alt="logo"
-          width="80"
-          height="89"
-      /></a>
-      <h1>Blueberry CRM</h1>
+  <body class="flex h-screen">
+    <section id="menubar-container" class="h-full border-none bg-indigo-50">
+      <div
+        id="logo-container"
+        class="flex h-12 p-2 items-center -rounded-md py-2 duration-300 ease-in-out w-52 bg-indigo-50 px-2 shadow-sm"
+      >
+        <a
+          ><img
+            src="assets/blueberry-crm-logo.svg"
+            alt="logo"
+            width="50"
+            height="50"
+        /></a>
+        <h1 class="flex">Blueberry CRM</h1>
+      </div>
 
-      <button>Settings</button>
-
-      <nav id="navbar-container">
-        <ul>
-          <li><a href="#">Leads</a></li>
-          <li><a href="#">Deals</a></li>
-          <li><a href="#">Contact</a></li>
-          <li><a href="#">Trash</a></li>
-        </ul>
-      </nav>
+      <div class="flex-1 overflow-y-auto">
+        <nav id="navbar-container" class="flex flex-col">
+          <button
+            class="flex h-7 cursor-pointer item center rounded text-ink-gray-7 duration-300 ease-in-out"
+          >
+            <div
+              class="flex w-full items-center justify-between duration-300 ease-in-out px-8 py-1"
+            >
+              Leads
+            </div>
+          </button>
+          <button
+            class="flex h-7 cursor-pointer item center rounded text-ink-gray-7 duration-300 ease-in-out"
+          >
+            <div
+              class="flex w-full items-center justify-between duration-300 ease-in-out px-8 py-1"
+            >
+              Deals
+            </div>
+          </button>
+          <button
+            class="flex h-7 cursor-pointer item center rounded text-ink-gray-7 duration-300 ease-in-out"
+          >
+            <div
+              class="flex w-full items-center justify-between duration-300 ease-in-out px-8 py-1"
+            >
+              Trash
+            </div>
+          </button>
+           <button
+            class="flex h-7 cursor-pointer item center rounded text-ink-gray-7 duration-300 ease-in-out"
+          >
+            <div
+              class="flex w-full items-center justify-between duration-300 ease-in-out px-8 py-1"
+            >
+              Settings
+            </div>
+          </button>
+        </nav>
+      </div>
     </section>
 
-    <main>
+    <main class="flex">
       <header>
         <h1>Leads</h1>
         <button id="create-lead-btn">Create</button>
