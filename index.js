@@ -163,7 +163,65 @@ function searchLeads(leads, query) {
   return searchedLeads;
 }
 
+function generateCode() {
+  let lastCode= dataLeads[dataLeads.length -1].code;
+  let codePart = lastCode.split("-");
+  let lastCodeNumber = parseInt(codePart[3]);
+  let newCodeNumber = lastCodeNumber + 1;
+  let newCodeNumberPadded = String(newCodeNumber).padStart(3, "0");
+  let newCode = `CRM-LEAD-2025-${newCodeNumberPadded}`;
+  return newCode;
+}
+
+function generateId() {
+  let lastID = 0;
+  for (let i = 0; i < dataLeads.length; i++) {
+    if (dataLeads[i].id > lastID) {
+      lastID = dataLeads[i].id;
+    }
+  }
+  return lastID + 1;
+}
+
+
 function createLead(leads, leadBody) {
+  const {
+    salutation,
+    firstName,
+    lastName,
+    email,
+    phone,
+    gender,
+    organization,
+    websiteUrl,
+    noOfEmployees,
+    annualRevenueInUSD,
+    industry,
+  } = leadBody;
+  const id = generateId();
+  const code = generateCode();
+  const status = "New";
+  const assignedTo = null;
+  const contactedAt = null;
+  const newLead = {
+    ...leads,
+    id,
+    code,
+    salutation,
+    firstName,
+    lastName,
+    email,
+    phone,
+    gender,
+    organization,
+    websiteUrl,
+    noOfEmployees,
+    annualRevenueInUSD,
+    industry,
+    status,
+    assignedTo,
+    contactedAt,
+  };
   // TODO: use spread to add more lead
   // TODO: automatically set the id & code, not manual
   // TODO: input fields:
@@ -214,7 +272,7 @@ function changeStatus(leads, id, newStatus) {} // "Contacted" / "Nurtured" / "Ca
 
 // ------------------------------------------------------
 
-showAllLeads(dataLeads);
+// showAllLeads(dataLeads);
 
 // showLeadsByStatus(dataLeads, "New");
 
