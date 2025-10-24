@@ -163,8 +163,18 @@ function searchLeads(leads, query) {
   return searchedLeads;
 }
 
+function generateId() {
+  let lastID = 0;
+  for (let index = 0; index < dataLeads.length; index++) {
+    if (dataLeads[index].id > lastID) {
+      lastID = dataLeads[index].id;
+    }
+  }
+  return lastID + 1;
+}
+
 function generateCode() {
-  let lastCode= dataLeads[dataLeads.length -1].code;
+  let lastCode = dataLeads[dataLeads.length - 1].code;
   let codePart = lastCode.split("-");
   let lastCodeNumber = parseInt(codePart[3]);
   let newCodeNumber = lastCodeNumber + 1;
@@ -172,17 +182,6 @@ function generateCode() {
   let newCode = `CRM-LEAD-2025-${newCodeNumberPadded}`;
   return newCode;
 }
-
-function generateId() {
-  let lastID = 0;
-  for (let i = 0; i < dataLeads.length; i++) {
-    if (dataLeads[i].id > lastID) {
-      lastID = dataLeads[i].id;
-    }
-  }
-  return lastID + 1;
-}
-
 
 function createLead(leads, leadBody) {
   const {
@@ -198,13 +197,14 @@ function createLead(leads, leadBody) {
     annualRevenueInUSD,
     industry,
   } = leadBody;
-  const id = generateId();
-  const code = generateCode();
+
+  const id = generateId(leads);
+  const code = generateCode(leads);
   const status = "New";
   const assignedTo = null;
   const contactedAt = null;
+
   const newLead = {
-    ...leads,
     id,
     code,
     salutation,
@@ -222,21 +222,24 @@ function createLead(leads, leadBody) {
     assignedTo,
     contactedAt,
   };
-  // TODO: use spread to add more lead
-  // TODO: automatically set the id & code, not manual
-  // TODO: input fields:
-  // salutation
-  // firstName
-  // lastName
-  // email
-  // phone
-  // gender
-  // organization
-  // websiteUrl
-  // noOfEmployees
-  // annualRevenueInUSD,
-  // industry
+
+  leads.push(newLead);
+  return newLead;
 }
+// TODO: use spread to add more lead
+// TODO: automatically set the id & code, not manual
+// TODO: input fields:
+// salutation
+// firstName
+// lastName
+// email
+// phone
+// gender
+// organization
+// websiteUrl
+// noOfEmployees
+// annualRevenueInUSD,
+// industry
 
 function updateLead(leads, id, leadBody) {
   // TODO: use map to update only the specified id
@@ -271,10 +274,24 @@ function unassignLead() {}
 function changeStatus(leads, id, newStatus) {} // "Contacted" / "Nurtured" / "Canceled"
 
 // ------------------------------------------------------
+createLead(dataLeads, {
+  salutation: "Mr.",
+  firstName: "Li",
+  lastName: "Pengbo",
+  email: "lipengbo@tech.com",
+  phone: "+86-888-888-888",
+  gender: "Male",
+  organization: "Tech Innovations",
+  websiteUrl: "https://techinnovations.com",
+  noOfEmployees: "11-50",
+  annualRevenueInUSD: 2000000,
+  industry: "Technology",
+});
 
-// showAllLeads(dataLeads);
+showAllLeads(dataLeads);
 
 // showLeadsByStatus(dataLeads, "New");
 
 // const searchResults = searchLeads(dataLeads, "group");
 // showAllLeads(searchResults);
+//
