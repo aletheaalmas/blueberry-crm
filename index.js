@@ -1,6 +1,6 @@
-const dataLeads = [
+let dataLeads = [
   {
-    id: 1,
+    id: 123,
     code: "CRM-LEAD-2025-001",
     salutation: "Mr.",
     firstName: "Haoming",
@@ -18,7 +18,7 @@ const dataLeads = [
     contactedAt: null,
   },
   {
-    id: 2,
+    id: 456,
     code: "CRM-LEAD-2025-002",
     salutation: "Ms.",
     firstName: "Yan",
@@ -36,7 +36,7 @@ const dataLeads = [
     contactedAt: new Date("2025-02-02"),
   },
   {
-    id: 3,
+    id: 789,
     code: "CRM-LEAD-2025-003",
     salutation: "Mr.",
     firstName: "Wei",
@@ -54,8 +54,8 @@ const dataLeads = [
     contactedAt: new Date("2025-03-03"),
   },
   {
-    id: 4,
-    code: "CRM-LEAD-2025-004",
+    id: 1123,
+    code: "CRM-LEAD-2025-006",
     salutation: "Mrs.",
     firstName: "Meili",
     lastName: "Wang",
@@ -72,8 +72,8 @@ const dataLeads = [
     contactedAt: new Date("2025-04-04"),
   },
   {
-    id: 5,
-    code: "CRM-LEAD-2025-005",
+    id: 1456,
+    code: "CRM-LEAD-2025-008",
     salutation: "Mr.",
     firstName: "Jian",
     lastName: "Li",
@@ -90,8 +90,8 @@ const dataLeads = [
     contactedAt: new Date("2025-05-05"),
   },
   {
-    id: 6,
-    code: "CRM-LEAD-2025-006",
+    id: 1789,
+    code: "CRM-LEAD-2025-010",
     salutation: "Ms.",
     firstName: "Yan",
     lastName: "Zhang",
@@ -109,24 +109,21 @@ const dataLeads = [
   },
 ];
 
-function showAllLeads(leads) {
-  console.log(`Currently we have ${leads.length} leads. Here is the details:`);
+// ---
 
+function showAllLeads(leads) {
   leads.forEach((lead) => showLead(lead));
 }
 
 function showLeadsByStatus(leads, status) {
-  let filteredLeads = leads.filter((lead) => lead.status === status);
+  const filteredLeads = leads.filter((lead) => lead.status === status);
 
-  console.log(
-    `Currently we have ${filteredLeads.length} leads with status '${status}'. Here is the details:`
-  );
-
-  filteredLeads.forEach((lead) => showLead(lead));
+  showAllLeads(filteredLeads);
 }
 
 function showLead(lead) {
   console.log(` 
+    ID              : ${lead.id}
     Code            : ${lead.code}
     Status          : ${lead.status}
     Name            : ${lead.salutation} ${lead.lastName} ${lead.firstName} 
@@ -157,29 +154,44 @@ function searchLeads(leads, query) {
   const searchedLeads = leads.filter((lead) => {
     if (lead.firstName.toLowerCase().includes(q)) return lead;
     if (lead.lastName.toLowerCase().includes(q)) return lead;
+    if (lead.email.toLowerCase().includes(q)) return lead;
     if (lead.organization.toLowerCase().includes(q)) return lead;
   });
 
   return searchedLeads;
 }
 
-function generateId() {
-  let lastID = 0;
-  for (let index = 0; index < dataLeads.length; index++) {
-    if (dataLeads[index].id > lastID) {
-      lastID = dataLeads[index].id;
-    }
-  }
-  return lastID + 1;
+// ---
+
+function generateId(items) {
+  // const lastIndex = items.length - 1;
+  // const lastItem = items[lastIndex];
+  // const lastId = lastItem.id;
+  // const newId = lastId + 1;
+
+  const newId = items[items.length - 1].id + 1;
+
+  return newId;
 }
 
-function generateCode() {
-  let lastCode = dataLeads[dataLeads.length - 1].code;
-  let codePart = lastCode.split("-");
-  let lastCodeNumber = parseInt(codePart[3]);
-  let newCodeNumber = lastCodeNumber + 1;
-  let newCodeNumberPadded = String(newCodeNumber).padStart(3, "0");
-  let newCode = `CRM-LEAD-2025-${newCodeNumberPadded}`;
+function generateCode(items) {
+  const lastIndex = items.length - 1;
+  const lastItem = items[lastIndex];
+  const lastCode = lastItem.code;
+
+  let lastCodeAsArray = lastCode.split("-");
+
+  lastCodeAsArray[2] = new Date().getFullYear().toString();
+
+  const lastCodeNumber = parseInt(lastCodeAsArray[3]);
+  const newCodeNumber = lastCodeNumber + 1;
+  const newCodeAsString = newCodeNumber.toString();
+  const newCodePadded = newCodeAsString.padStart(3, "0");
+
+  lastCodeAsArray[3] = newCodePadded;
+
+  const newCode = lastCodeAsArray.join("-");
+
   return newCode;
 }
 
@@ -226,6 +238,7 @@ function createLead(leads, leadBody) {
   leads.push(newLead);
   return newLead;
 }
+
 // TODO: use spread to add more lead
 // TODO: automatically set the id & code, not manual
 // TODO: input fields:
@@ -274,6 +287,7 @@ function unassignLead() {}
 function changeStatus(leads, id, newStatus) {} // "Contacted" / "Nurtured" / "Canceled"
 
 // ------------------------------------------------------
+
 createLead(dataLeads, {
   salutation: "Mr.",
   firstName: "Li",
@@ -286,6 +300,20 @@ createLead(dataLeads, {
   noOfEmployees: "11-50",
   annualRevenueInUSD: 2000000,
   industry: "Technology",
+});
+
+createLead(dataLeads, {
+  salutation: "Ms.",
+  firstName: "Sarah",
+  lastName: "Johnson",
+  email: "sarah.johnson@example.com",
+  phone: "+1-555-123-4567",
+  gender: "Female",
+  organization: "Global Solutions Inc.",
+  websiteUrl: "https://globalsolutions.com",
+  noOfEmployees: "51-200",
+  annualRevenueInUSD: 5000000,
+  industry: "Consulting",
 });
 
 showAllLeads(dataLeads);
