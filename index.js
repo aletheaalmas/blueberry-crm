@@ -173,14 +173,13 @@ function generateId(items) {
   return newId;
 }
 
-function generateCode() {
-  let lastCode = dataLeads[dataLeads.length - 1].code;
-  let codePart = lastCode.split("-");
-  let lastCodeNumber = parseInt(codePart[3]);
-  let newCodeNumber = lastCodeNumber + 1;
-  let newCodeNumberPadded = String(newCodeNumber).padStart(3, "0");
-  let newCode = `CRM-LEAD-2025-${newCodeNumberPadded}`;
-  return newCode;
+function generateCode(items) {
+  const lastIndex = items.length - 1;
+  const lastItem = items[lastIndex];
+
+  const lastCode = lastItem.code;
+
+  console.log(lastCode);
 }
 
 function createLead(leads, leadBody) {
@@ -275,21 +274,24 @@ function unassignLead() {}
 function changeStatus(leads, id, newStatus) {} // "Contacted" / "Nurtured" / "Canceled"
 
 // ------------------------------------------------------
-createLead(dataLeads, {
-  salutation: "Mr.",
-  firstName: "Li",
-  lastName: "Pengbo",
-  email: "lipengbo@tech.com",
-  phone: "+86-888-888-888",
-  gender: "Male",
-  organization: "Tech Innovations",
-  websiteUrl: "https://techinnovations.com",
-  noOfEmployees: "11-50",
-  annualRevenueInUSD: 2000000,
-  industry: "Technology",
-});
 
-showAllLeads(dataLeads);
+generateCode(dataLeads);
+
+// createLead(dataLeads, {
+//   salutation: "Mr.",
+//   firstName: "Li",
+//   lastName: "Pengbo",
+//   email: "lipengbo@tech.com",
+//   phone: "+86-888-888-888",
+//   gender: "Male",
+//   organization: "Tech Innovations",
+//   websiteUrl: "https://techinnovations.com",
+//   noOfEmployees: "11-50",
+//   annualRevenueInUSD: 2000000,
+//   industry: "Technology",
+// });
+
+// showAllLeads(dataLeads);
 
 // showLeadsByStatus(dataLeads, "New");
 
