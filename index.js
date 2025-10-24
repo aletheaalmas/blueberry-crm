@@ -1,4 +1,4 @@
-const dataLeads = [
+let dataLeads = [
   {
     id: 1,
     code: "CRM-LEAD-2025-001",
@@ -110,19 +110,13 @@ const dataLeads = [
 ];
 
 function showAllLeads(leads) {
-  console.log(`Currently we have ${leads.length} leads. Here is the details:`);
-
   leads.forEach((lead) => showLead(lead));
 }
 
 function showLeadsByStatus(leads, status) {
-  let filteredLeads = leads.filter((lead) => lead.status === status);
+  const filteredLeads = leads.filter((lead) => lead.status === status);
 
-  console.log(
-    `Currently we have ${filteredLeads.length} leads with status '${status}'. Here is the details:`
-  );
-
-  filteredLeads.forEach((lead) => showLead(lead));
+  showAllLeads(filteredLeads);
 }
 
 function showLead(lead) {
