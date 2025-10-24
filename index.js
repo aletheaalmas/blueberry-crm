@@ -162,14 +162,15 @@ function searchLeads(leads, query) {
 
 // ---
 
-function generateId() {
-  let lastID = 0;
-  for (let index = 0; index < dataLeads.length; index++) {
-    if (dataLeads[index].id > lastID) {
-      lastID = dataLeads[index].id;
-    }
-  }
-  return lastID + 1;
+function generateId(items) {
+  // const lastIndex = items.length - 1;
+  // const lastItem = items[lastIndex];
+  // const lastId = lastItem.id;
+  // const newId = lastId + 1;
+
+  const newId = items[items.length - 1].id + 1;
+
+  return newId;
 }
 
 function generateCode() {
@@ -225,6 +226,7 @@ function createLead(leads, leadBody) {
   leads.push(newLead);
   return newLead;
 }
+
 // TODO: use spread to add more lead
 // TODO: automatically set the id & code, not manual
 // TODO: input fields:
