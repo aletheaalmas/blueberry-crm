@@ -1,6 +1,6 @@
 let dataLeads = [
   {
-    id: 1,
+    id: 123,
     code: "CRM-LEAD-2025-001",
     salutation: "Mr.",
     firstName: "Haoming",
@@ -18,7 +18,7 @@ let dataLeads = [
     contactedAt: null,
   },
   {
-    id: 2,
+    id: 456,
     code: "CRM-LEAD-2025-002",
     salutation: "Ms.",
     firstName: "Yan",
@@ -36,7 +36,7 @@ let dataLeads = [
     contactedAt: new Date("2025-02-02"),
   },
   {
-    id: 3,
+    id: 789,
     code: "CRM-LEAD-2025-003",
     salutation: "Mr.",
     firstName: "Wei",
@@ -54,8 +54,8 @@ let dataLeads = [
     contactedAt: new Date("2025-03-03"),
   },
   {
-    id: 4,
-    code: "CRM-LEAD-2025-004",
+    id: 1123,
+    code: "CRM-LEAD-2025-006",
     salutation: "Mrs.",
     firstName: "Meili",
     lastName: "Wang",
@@ -72,8 +72,8 @@ let dataLeads = [
     contactedAt: new Date("2025-04-04"),
   },
   {
-    id: 5,
-    code: "CRM-LEAD-2025-005",
+    id: 1456,
+    code: "CRM-LEAD-2025-008",
     salutation: "Mr.",
     firstName: "Jian",
     lastName: "Li",
@@ -90,8 +90,8 @@ let dataLeads = [
     contactedAt: new Date("2025-05-05"),
   },
   {
-    id: 6,
-    code: "CRM-LEAD-2025-006",
+    id: 1789,
+    code: "CRM-LEAD-2025-010",
     salutation: "Ms.",
     firstName: "Yan",
     lastName: "Zhang",
@@ -123,6 +123,7 @@ function showLeadsByStatus(leads, status) {
 
 function showLead(lead) {
   console.log(` 
+    ID              : ${lead.id}
     Code            : ${lead.code}
     Status          : ${lead.status}
     Name            : ${lead.salutation} ${lead.lastName} ${lead.firstName} 
@@ -176,10 +177,22 @@ function generateId(items) {
 function generateCode(items) {
   const lastIndex = items.length - 1;
   const lastItem = items[lastIndex];
-
   const lastCode = lastItem.code;
 
-  console.log(lastCode);
+  let lastCodeAsArray = lastCode.split("-");
+
+  lastCodeAsArray[2] = new Date().getFullYear().toString();
+
+  const lastCodeNumber = parseInt(lastCodeAsArray[3]);
+  const newCodeNumber = lastCodeNumber + 1;
+  const newCodeAsString = newCodeNumber.toString();
+  const newCodePadded = newCodeAsString.padStart(3, "0");
+
+  lastCodeAsArray[3] = newCodePadded;
+
+  const newCode = lastCodeAsArray.join("-");
+
+  return newCode;
 }
 
 function createLead(leads, leadBody) {
@@ -275,23 +288,35 @@ function changeStatus(leads, id, newStatus) {} // "Contacted" / "Nurtured" / "Ca
 
 // ------------------------------------------------------
 
-generateCode(dataLeads);
+createLead(dataLeads, {
+  salutation: "Mr.",
+  firstName: "Li",
+  lastName: "Pengbo",
+  email: "lipengbo@tech.com",
+  phone: "+86-888-888-888",
+  gender: "Male",
+  organization: "Tech Innovations",
+  websiteUrl: "https://techinnovations.com",
+  noOfEmployees: "11-50",
+  annualRevenueInUSD: 2000000,
+  industry: "Technology",
+});
 
-// createLead(dataLeads, {
-//   salutation: "Mr.",
-//   firstName: "Li",
-//   lastName: "Pengbo",
-//   email: "lipengbo@tech.com",
-//   phone: "+86-888-888-888",
-//   gender: "Male",
-//   organization: "Tech Innovations",
-//   websiteUrl: "https://techinnovations.com",
-//   noOfEmployees: "11-50",
-//   annualRevenueInUSD: 2000000,
-//   industry: "Technology",
-// });
+createLead(dataLeads, {
+  salutation: "Ms.",
+  firstName: "Sarah",
+  lastName: "Johnson",
+  email: "sarah.johnson@example.com",
+  phone: "+1-555-123-4567",
+  gender: "Female",
+  organization: "Global Solutions Inc.",
+  websiteUrl: "https://globalsolutions.com",
+  noOfEmployees: "51-200",
+  annualRevenueInUSD: 5000000,
+  industry: "Consulting",
+});
 
-// showAllLeads(dataLeads);
+showAllLeads(dataLeads);
 
 // showLeadsByStatus(dataLeads, "New");
 
