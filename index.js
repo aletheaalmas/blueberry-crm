@@ -109,6 +109,8 @@ let dataLeads = [
   },
 ];
 
+// ---
+
 function showAllLeads(leads) {
   leads.forEach((lead) => showLead(lead));
 }
@@ -151,11 +153,14 @@ function searchLeads(leads, query) {
   const searchedLeads = leads.filter((lead) => {
     if (lead.firstName.toLowerCase().includes(q)) return lead;
     if (lead.lastName.toLowerCase().includes(q)) return lead;
+    if (lead.email.toLowerCase().includes(q)) return lead;
     if (lead.organization.toLowerCase().includes(q)) return lead;
   });
 
   return searchedLeads;
 }
+
+// ---
 
 function generateId() {
   let lastID = 0;
