@@ -149,10 +149,15 @@ function searchLeads(leads, query) {
   const q = query.toLowerCase();
 
   const searchedLeads = leads.filter((lead) => {
+    // if (lead.firstName === null) return false;
+    // if (lead.lastName === null) return false;
+    // if (lead.email === null) return false;
+    // if (lead.organization === null) return false;
+
     if (lead.firstName.toLowerCase().includes(q)) return lead;
     if (lead.lastName.toLowerCase().includes(q)) return lead;
     if (lead.email.toLowerCase().includes(q)) return lead;
-    if (lead.organization?.toLowerCase().includes(q)) return lead;
+    if (lead.organization.toLowerCase().includes(q)) return lead;
   });
 
   return searchedLeads;
@@ -180,12 +185,12 @@ function generateCode(items) {
   // const newCodeNumber = lastCodeNumber + 1;
   // const newCodeAsString = newCodeNumber.toString();
   // const newCodePadded = newCodeAsString.padStart(3, "0");
-  const newCodePadded = (parseInt(lastCodeasArray[3]) + 1)
+  const newCodePadded = (parseInt(lastCodeAsArray[3]) + 1)
     .toString()
     .padStart(3, "0");
 
   lastCodeAsArray[3] = newCodePadded;
-  const newCode = lastCodeasArray.join("-");
+  const newCode = lastCodeAsArray.join("-");
 
   return newCode;
 }
@@ -291,7 +296,7 @@ createLead(dataLeads, {
 
 // const searchResults = searchLeads(dataLeads, "group");
 // showAllLeads(searchResults);
-// searchLeads(dataLeads, "haoming");
+searchLeads(dataLeads, "haoming");
 
 // generateCode(dataLeads);
 
