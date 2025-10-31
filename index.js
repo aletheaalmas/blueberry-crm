@@ -75,7 +75,7 @@ let dataLeads = [
     id: 534,
     code: "CRM-LEAD-2025-005",
     salutation: "Mr.",
-    firstName: "Jian",
+    firstName: null,
     lastName: "Li",
     email: "lijian@supplier.com",
     phone: "+86-123-456-7894",
@@ -149,15 +149,26 @@ function searchLeads(leads, query) {
   const q = query.toLowerCase();
 
   const searchedLeads = leads.filter((lead) => {
-    if (lead.firstName === null) return false;
-    if (lead.lastName === null) return false;
-    if (lead.email === null) return false;
-    if (lead.organization === null) return false;
-
-    if (lead.firstName.toLowerCase().includes(q)) return lead;
-    if (lead.lastName.toLowerCase().includes(q)) return lead;
-    if (lead.email.toLowerCase().includes(q)) return lead;
-    if (lead.organization.toLowerCase().includes(q)) return lead;
+    if (lead.firstName !== null) {
+      if (lead.firstName.toLowerCase().includes(q)) {
+        return lead;
+      }
+    }
+    if (lead.lastName !== null) {
+      if (lead.lastName.toLowerCase().includes(q)) {
+        return lead;
+      }
+    }
+    if (lead.email !== null) {
+      if (lead.email.toLowerCase().includes(q)) {
+        return lead;
+      }
+    }
+    if (lead.organization !== null) {
+      if (lead.organization.toLowerCase().includes(q)) {
+        return lead;
+      }
+    }
   });
 
   return searchedLeads;
@@ -305,9 +316,9 @@ createLead(dataLeads, {
 
 // showLeadsByStatus(dataLeads, "New");
 
-// const searchResults = searchLeads(dataLeads, "group");
-// showAllLeads(searchResults);
-searchLeads(dataLeads, "haoming");
+const searchResults = searchLeads(dataLeads, "jian");
+
+console.log(searchResults);
 
 // generateCode(dataLeads);
 
