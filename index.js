@@ -219,10 +219,21 @@ function createLead(leads, leadBody) {
   const newLead = {
     id,
     code,
-    leadBody,
+    salutation,
+    firstName,
+    lastName,
+    email,
+    phone,
+    gender,
+    organization,
+    websiteUrl,
+    noOfEmployees,
+    annualRevenueInUSD,
+    industry,
   };
 
   leads.push(newLead);
+
   return newLead;
 }
 // TODO: use spread to add more lead
@@ -300,6 +311,6 @@ searchLeads(dataLeads, "haoming");
 
 // generateCode(dataLeads);
 
-deleteLead(dataLeads, 245);
+// deleteLead(dataLeads, 245);
 
-showAllLeads(dataLeads);
+// showAllLeads(dataLeads);
