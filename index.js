@@ -149,25 +149,17 @@ function searchLeads(leads, query) {
   const q = query.toLowerCase();
 
   const searchedLeads = leads.filter((lead) => {
-    if (lead.firstName !== null) {
-      if (lead.firstName.toLowerCase().includes(q)) {
-        return lead;
-      }
+    if (lead.firstName && lead.firstName.toLowerCase().includes(q)) {
+      return lead;
     }
-    if (lead.lastName !== null) {
-      if (lead.lastName.toLowerCase().includes(q)) {
-        return lead;
-      }
+    if (lead.lastName && lead.lastName.toLowerCase().includes(q)) {
+      return lead;
     }
-    if (lead.email !== null) {
-      if (lead.email.toLowerCase().includes(q)) {
-        return lead;
-      }
+    if (lead.email && lead.email.toLowerCase().includes(q)) {
+      return lead;
     }
-    if (lead.organization !== null) {
-      if (lead.organization.toLowerCase().includes(q)) {
-        return lead;
-      }
+    if (lead.organization && lead.organization.toLowerCase().includes(q)) {
+      return lead;
     }
   });
 
@@ -318,7 +310,11 @@ createLead(dataLeads, {
 
 const searchResults = searchLeads(dataLeads, "jian");
 
-console.log(searchResults);
+if (searchResults.length <= 0) {
+  console.log("No leads found");
+} else {
+  console.log(searchResults);
+}
 
 // generateCode(dataLeads);
 
