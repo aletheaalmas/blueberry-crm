@@ -162,14 +162,13 @@ function generateId(items) {
   return newId;
 }
 
-function generateCode() {
-  let lastCode = dataLeads[dataLeads.length - 1].code;
-  let codePart = lastCode.split("-");
-  let lastCodeNumber = parseInt(codePart[3]);
-  let newCodeNumber = lastCodeNumber + 1;
-  let newCodeNumberPadded = String(newCodeNumber).padStart(3, "0");
-  let newCode = `CRM-LEAD-2025-${newCodeNumberPadded}`;
-  return newCode;
+function generateCode(items) {
+  const lastIndex = items.length - 1;
+  const lastItem = items[lastIndex];
+  const lastCode = lastItem.code;
+
+  console.log(lastCode);
+ 
 }
 
 function createLead(leads, leadBody) {
@@ -279,6 +278,7 @@ createLead(dataLeads, {
 
 searchLeads(dataLeads, "haoming");
 
+generateCode(dataLeads);
 // showLeadsByStatus(dataLeads, "New");
 
 // const searchResults = searchLeads(dataLeads, "group");
