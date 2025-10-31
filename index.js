@@ -1,6 +1,6 @@
 let dataLeads = [
   {
-    id: 1,
+    id: 132,
     code: "CRM-LEAD-2025-001",
     salutation: "Mr.",
     firstName: "Haoming",
@@ -18,7 +18,7 @@ let dataLeads = [
     contactedAt: null,
   },
   {
-    id: 2,
+    id: 245,
     code: "CRM-LEAD-2025-002",
     salutation: "Ms.",
     firstName: "Yan",
@@ -36,7 +36,7 @@ let dataLeads = [
     contactedAt: new Date("2025-02-02"),
   },
   {
-    id: 3,
+    id: 367,
     code: "CRM-LEAD-2025-003",
     salutation: "Mr.",
     firstName: "Wei",
@@ -54,7 +54,7 @@ let dataLeads = [
     contactedAt: new Date("2025-03-03"),
   },
   {
-    id: 4,
+    id: 412,
     code: "CRM-LEAD-2025-004",
     salutation: "Mrs.",
     firstName: "Meili",
@@ -72,7 +72,7 @@ let dataLeads = [
     contactedAt: new Date("2025-04-04"),
   },
   {
-    id: 5,
+    id: 534,
     code: "CRM-LEAD-2025-005",
     salutation: "Mr.",
     firstName: "Jian",
@@ -90,7 +90,7 @@ let dataLeads = [
     contactedAt: new Date("2025-05-05"),
   },
   {
-    id: 6,
+    id: 486,
     code: "CRM-LEAD-2025-006",
     salutation: "Ms.",
     firstName: "Yan",
@@ -111,6 +111,7 @@ let dataLeads = [
 
 function showLead(lead) {
   console.log(` 
+    ID              : ${lead.id}
     Code            : ${lead.code}
     Status          : ${lead.status}
     Name            : ${lead.salutation} ${lead.lastName} ${lead.firstName} 
@@ -167,8 +168,18 @@ function generateCode(items) {
   const lastItem = items[lastIndex];
   const lastCode = lastItem.code;
 
-  console.log(lastCode);
- 
+  let lastCodeAsArray = lastCode.split("-");
+  lastCodeAsArray[2] = new Date().getFullYear().toString();
+
+  const lastCodeNumber = parseInt(lastCodeasArray[3]);
+  const newCodeNumber = lastCodeNumber + 1;
+  const newCodeAsString = newCodeNumber.toString();
+  const newCodePadded = newCodeAsString.padStart(3, "0");
+
+  lastCodeAsArray[3] = newCodePadded;
+  const newCode = lastCodeasArray.join("-");
+
+  return newCode;
 }
 
 function createLead(leads, leadBody) {
