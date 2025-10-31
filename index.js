@@ -159,6 +159,11 @@ function searchLeads(leads, query) {
 }
 
 function generateId(items) {
+  // const lastIndex = items.length - 1;
+  // const lastItem = items[lastIndex];
+  // const lastId = lastItem.id;
+  // const newId = lastId + 1;
+
   const newId = items[items.length - 1].id + 1;
   return newId;
 }
@@ -171,10 +176,13 @@ function generateCode(items) {
   let lastCodeAsArray = lastCode.split("-");
   lastCodeAsArray[2] = new Date().getFullYear().toString();
 
-  const lastCodeNumber = parseInt(lastCodeasArray[3]);
-  const newCodeNumber = lastCodeNumber + 1;
-  const newCodeAsString = newCodeNumber.toString();
-  const newCodePadded = newCodeAsString.padStart(3, "0");
+  // const lastCodeNumber = parseInt(lastCodeasArray[3]);
+  // const newCodeNumber = lastCodeNumber + 1;
+  // const newCodeAsString = newCodeNumber.toString();
+  // const newCodePadded = newCodeAsString.padStart(3, "0");
+  const newCodePadded = (parseInt(lastCodeasArray[3]) + 1)
+    .toString()
+    .padStart(3, "0");
 
   lastCodeAsArray[3] = newCodePadded;
   const newCode = lastCodeasArray.join("-");
@@ -206,20 +214,7 @@ function createLead(leads, leadBody) {
   const newLead = {
     id,
     code,
-    salutation,
-    firstName,
-    lastName,
-    email,
-    phone,
-    gender,
-    organization,
-    websiteUrl,
-    noOfEmployees,
-    annualRevenueInUSD,
-    industry,
-    status,
-    assignedTo,
-    contactedAt,
+    leadBody,
   };
 
   leads.push(newLead);
@@ -256,6 +251,11 @@ function updateLead(leads, id, leadBody) {
   // industry
 }
 
+function deleteLead(leads, id) {
+  console.log("Deleting lead with ID:", id);
+  delete leads[id];
+}
+
 function alertFirstNameMissing() {}
 
 function alertEmailMissing() {}
@@ -287,11 +287,14 @@ createLead(dataLeads, {
   industry: "Technology",
 });
 
-searchLeads(dataLeads, "haoming");
-
-generateCode(dataLeads);
 // showLeadsByStatus(dataLeads, "New");
 
 // const searchResults = searchLeads(dataLeads, "group");
 // showAllLeads(searchResults);
-//
+// searchLeads(dataLeads, "haoming");
+
+// generateCode(dataLeads);
+
+deleteLead(dataLeads, 245);
+
+showAllLeads(dataLeads);
