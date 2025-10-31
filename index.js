@@ -151,20 +151,15 @@ function searchLeads(leads, query) {
     if (lead.firstName.toLowerCase().includes(q)) return lead;
     if (lead.lastName.toLowerCase().includes(q)) return lead;
     if (lead.email.toLowerCase().includes(q)) return lead;
-    if (lead.organization?.toLowerCase().includes(q)) return lead; 
+    if (lead.organization?.toLowerCase().includes(q)) return lead;
   });
 
   return searchedLeads;
 }
 
-function generateId() {
-  let lastID = 0;
-  for (let index = 0; index < dataLeads.length; index++) {
-    if (dataLeads[index].id > lastID) {
-      lastID = dataLeads[index].id;
-    }
-  }
-  return lastID + 1;
+function generateId(items) {
+  const newId = items[items.length - 1].id + 1;
+  return newId;
 }
 
 function generateCode() {
@@ -281,8 +276,6 @@ createLead(dataLeads, {
   annualRevenueInUSD: 2000000,
   industry: "Technology",
 });
-
-
 
 searchLeads(dataLeads, "haoming");
 
