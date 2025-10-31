@@ -149,25 +149,17 @@ function searchLeads(leads, query) {
   const q = query.toLowerCase();
 
   const searchedLeads = leads.filter((lead) => {
-    if (lead.firstName !== null) {
-      if (lead.firstName.toLowerCase().includes(q)) {
-        return lead;
-      }
+    if (lead.firstName && lead.firstName.toLowerCase().includes(q)) {
+      return lead;
     }
-    if (lead.lastName !== null) {
-      if (lead.lastName.toLowerCase().includes(q)) {
-        return lead;
-      }
+    if (lead.lastName && lead.lastName.toLowerCase().includes(q)) {
+      return lead;
     }
-    if (lead.email !== null) {
-      if (lead.email.toLowerCase().includes(q)) {
-        return lead;
-      }
+    if (lead.email && lead.email.toLowerCase().includes(q)) {
+      return lead;
     }
-    if (lead.organization !== null) {
-      if (lead.organization.toLowerCase().includes(q)) {
-        return lead;
-      }
+    if (lead.organization && lead.organization.toLowerCase().includes(q)) {
+      return lead;
     }
   });
 
@@ -247,20 +239,6 @@ function createLead(leads, leadBody) {
 
   return newLead;
 }
-// TODO: use spread to add more lead
-// TODO: automatically set the id & code, not manual
-// TODO: input fields:
-// salutation
-// firstName
-// lastName
-// email
-// phone
-// gender
-// organization
-// websiteUrl
-// noOfEmployees
-// annualRevenueInUSD,
-// industry
 
 function updateLead(leads, id, leadBody) {
   // TODO: use map to update only the specified id
@@ -280,22 +258,10 @@ function updateLead(leads, id, leadBody) {
 
 function deleteLead(leads, id) {
   console.log("Deleting lead with ID:", id);
-  delete leads[id];
+  // HINT: Filter
 }
 
-function alertFirstNameMissing() {}
-
-function alertEmailMissing() {}
-
-function alertEmailNotValid() {}
-
 function calculateAge() {}
-
-function moveLeadToTrash() {}
-
-function assignLeadToUser() {}
-
-function unassignLead() {}
 
 function changeStatus(leads, id, newStatus) {} // "Contacted" / "Nurtured" / "Canceled"
 
@@ -314,14 +280,12 @@ createLead(dataLeads, {
   industry: "Technology",
 });
 
-// showLeadsByStatus(dataLeads, "New");
-
 const searchResults = searchLeads(dataLeads, "jian");
 
-console.log(searchResults);
-
-// generateCode(dataLeads);
-
-// deleteLead(dataLeads, 245);
+if (searchResults.length <= 0) {
+  console.log("No leads found");
+} else {
+  console.log(searchResults);
+}
 
 // showAllLeads(dataLeads);
