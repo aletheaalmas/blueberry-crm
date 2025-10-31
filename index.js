@@ -1,4 +1,4 @@
-const dataLeads = [
+let dataLeads = [
   {
     id: 1,
     code: "CRM-LEAD-2025-001",
@@ -109,22 +109,6 @@ const dataLeads = [
   },
 ];
 
-function showAllLeads(leads) {
-  console.log(`Currently we have ${leads.length} leads. Here is the details:`);
-
-  leads.forEach((lead) => showLead(lead));
-}
-
-function showLeadsByStatus(leads, status) {
-  let filteredLeads = leads.filter((lead) => lead.status === status);
-
-  console.log(
-    `Currently we have ${filteredLeads.length} leads with status '${status}'. Here is the details:`
-  );
-
-  filteredLeads.forEach((lead) => showLead(lead));
-}
-
 function showLead(lead) {
   console.log(` 
     Code            : ${lead.code}
@@ -142,6 +126,15 @@ function showLead(lead) {
 `);
 }
 
+function showAllLeads(leads) {
+  leads.forEach((lead) => showLead(lead));
+}
+
+function showLeadsByStatus(leads, status) {
+  const filteredLeads = leads.filter((lead) => lead.status === status);
+  showAllLeads(filteredLeads);
+}
+
 function formatNumberInUSD(number) {
   const formattedNumber = new Intl.NumberFormat("en-US", {
     style: "currency",
@@ -157,7 +150,8 @@ function searchLeads(leads, query) {
   const searchedLeads = leads.filter((lead) => {
     if (lead.firstName.toLowerCase().includes(q)) return lead;
     if (lead.lastName.toLowerCase().includes(q)) return lead;
-    if (lead.organization.toLowerCase().includes(q)) return lead;
+    if (lead.email.toLowerCase().includes(q)) return lead;
+    if (lead.organization?.toLowerCase().includes(q)) return lead; 
   });
 
   return searchedLeads;
@@ -288,7 +282,9 @@ createLead(dataLeads, {
   industry: "Technology",
 });
 
-showAllLeads(dataLeads);
+
+
+searchLeads(dataLeads, "haoming");
 
 // showLeadsByStatus(dataLeads, "New");
 
