@@ -149,10 +149,10 @@ function searchLeads(leads, query) {
   const q = query.toLowerCase();
 
   const searchedLeads = leads.filter((lead) => {
-    // if (lead.firstName === null) return false;
-    // if (lead.lastName === null) return false;
-    // if (lead.email === null) return false;
-    // if (lead.organization === null) return false;
+    if (lead.firstName === null) return false;
+    if (lead.lastName === null) return false;
+    if (lead.email === null) return false;
+    if (lead.organization === null) return false;
 
     if (lead.firstName.toLowerCase().includes(q)) return lead;
     if (lead.lastName.toLowerCase().includes(q)) return lead;
