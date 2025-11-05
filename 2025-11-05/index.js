@@ -87,10 +87,17 @@ function searchContact(contacts, query) {
   return searchedContacts;
 }
 
+function generateId(items) {
+  const newId = items[items.length - 1].id + 1;
+
+  return newId;
+}
+
+function generateCode(items){
+  
+}
+
 // showContact(dataContacts[1]);
 // showAllContacts(dataContacts);
 // showContactsByStatus(dataContacts, "New");
-
-searchContact(dataContacts, "sarah");
-
-
+// searchContact(dataContacts, "sarah");
