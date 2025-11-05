@@ -81,6 +81,9 @@ function searchContact(contacts, query) {
       }
     }
   });
+
+  console.log(showAllContacts(searchedContacts));
+
   return searchedContacts;
 }
 
@@ -89,3 +92,5 @@ function searchContact(contacts, query) {
 // showContactsByStatus(dataContacts, "New");
 
 searchContact(dataContacts, "sarah");
+
+
