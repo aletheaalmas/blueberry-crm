@@ -45,6 +45,7 @@ function showContact(contact) {
     Contry: ${contact.country ?? "N/A"}
     Organization: ${contact.organization ?? "N/A"}
     Salary:  ${formatNumberInCNY(contact.salary) ?? "N/A"}
+    Status: ${contact.status}
     `);
 }
 
@@ -74,23 +75,12 @@ function searchContact(contacts, query) {
   const q = query.toLowerCase();
 
   const searchedContacts = contacts.filter((contact) => {
-    if (contact.name && contact.name.toLowerCase().includes(q)) {
-      return contact;
-    }
-    if (contact.email && contact.email.toLowerCase().includes(q)) {
-      return contact;
-    }
-    if (contact.country && contact.country.toLowerCase().includes(q)) {
-      return contact;
-    }
-    if (
-      contact.organization &&
-      contact.organization.toLowerCase().includes(q)
-    ) {
-      return contact;
+    if (contact.name !== null) {
+      if (contact.name.toLowerCase().includes(q)) {
+        return contact;
+      }
     }
   });
-
   return searchedContacts;
 }
 
@@ -98,3 +88,4 @@ function searchContact(contacts, query) {
 // showAllContacts(dataContacts);
 // showContactsByStatus(dataContacts, "New");
 
+searchContact(dataContacts, "sarah");
