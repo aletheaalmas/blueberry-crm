@@ -241,20 +241,6 @@ function createLead(leads, leadBody) {
 
   return updatedLeads;
 }
-// TODO: use spread to add more lead
-// TODO: automatically set the id & code, not manual
-// TODO: input fields:
-// salutation
-// firstName
-// lastName
-// email
-// phone
-// gender
-// organization
-// websiteUrl
-// noOfEmployees
-// annualRevenueInUSD,
-// industry
 
 function updateLead(leads, id, leadBody) {
   // TODO: use map to update only the specified id
@@ -272,10 +258,7 @@ function updateLead(leads, id, leadBody) {
   // industry
 }
 
-function deleteLead(leads, id) {
-  console.log("Deleting lead with ID:", id);
-  delete leads[id];
-}
+function deleteLead(leads, id) {}
 
 function alertFirstNameMissing() {}
 
@@ -311,5 +294,4 @@ createLead(dataLeads, {
 
 // generateCode(dataLeads);
 
-// deleteLead(dataLeads, 245);
 showAllLeads(dataLeads);
