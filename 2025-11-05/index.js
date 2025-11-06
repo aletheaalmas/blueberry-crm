@@ -44,14 +44,21 @@ let dataContacts = [
 function showContact(contact) {
   console.log(`
     Id: ${contact.id}
-    Name: ${contact.name}
+    Name: ${contact.name ?? "No Name"}
     Email: ${contact.email ?? "N/A"}
     Contry: ${contact.country ?? "N/A"}
     Organization: ${contact.organization ?? "N/A"}
-    Salary:  ${formatNumberInCNY(contact.salary) ?? "N/A"}
+    Salary:  ${
+      contact.salary != null
+        ? formatNumberInCNY(contact.salary.toString())
+        : "N/A"
+    }
     Status: ${contact.status}
     `);
 }
+
+// {formatNumberInCNY(contact.salary !== null, contact.salary.toString()) ??
+//   "N/A"}
 
 function showAllContacts(contacts) {
   contacts.forEach((contact) => {
@@ -111,18 +118,21 @@ function generateCode(items) {
 }
 
 function addContact(contacts, body) {
-  const {
-    name = "No Name",
-    email = "N/A",
-    country = "N/A",
-    organization= "N/A",
-    salary= "N/A",
-  } = body;
+  const { name, email, country, organization, salary } = body;
   const id = generateId(contacts);
   const code = generateCode(contacts);
   const status = "New";
 
-  const newContact = { id, code, name, email, country, organization, salary, status };
+  const newContact = {
+    id,
+    code,
+    name,
+    email,
+    country,
+    organization,
+    salary,
+    status,
+  };
 
   const updatedContacts = [...contacts, newContact];
   dataContacts = updatedContacts;
