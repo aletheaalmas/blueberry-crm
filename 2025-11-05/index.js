@@ -101,7 +101,12 @@ function generateCode(items) {
   const lastCodeAsArray = lastCode.split("-");
   lastCodeAsArray[2] = new Date().getFullYear().toString();
 
-  return lastCodeAsArray;
+  const newCodePadded = (parseInt(lastCodeAsArray[3]) + 1)
+    .toString().padStart(3, "0");
+
+  lastCodeAsArray[3] = newCodePadded;
+  const newCode = lastCodeAsArray.join("-");
+  return newCode;
 }
 
 // showContact(dataContacts[1]);
