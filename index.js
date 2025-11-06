@@ -175,10 +175,6 @@ function searchLeads(leads, query) {
 }
 
 function generateId(items) {
-  // const lastIndex = items.length - 1;
-  // const lastItem = items[lastIndex];
-  // const lastId = lastItem.id;
-  // const newId = lastId + 1;
 
   const newId = items[items.length - 1].id + 1;
   return newId;
@@ -192,10 +188,6 @@ function generateCode(items) {
   let lastCodeAsArray = lastCode.split("-");
   lastCodeAsArray[2] = new Date().getFullYear().toString();
 
-  // const lastCodeNumber = parseInt(lastCodeasArray[3]);
-  // const newCodeNumber = lastCodeNumber + 1;
-  // const newCodeAsString = newCodeNumber.toString();
-  // const newCodePadded = newCodeAsString.padStart(3, "0");
   const newCodePadded = (parseInt(lastCodeAsArray[3]) + 1)
     .toString()
     .padStart(3, "0");
