@@ -1,6 +1,7 @@
 let dataContacts = [
   {
     id: 184,
+    code: "CRM-CONTACT-2025-001",
     name: "Bitna",
     email: "bitna@email.com",
     country: "Indonesia",
@@ -10,6 +11,7 @@ let dataContacts = [
   },
   {
     id: 839,
+    code: "CRM-CONTACT-2025-002",
     name: "Kijong",
     email: "kijong@email.com",
     country: "Korea",
@@ -19,6 +21,7 @@ let dataContacts = [
   },
   {
     id: 840,
+    code: "CRM-CONTACT-2025-003",
     name: "Ali",
     email: "ali@email.com",
     country: "Qatar",
@@ -28,6 +31,7 @@ let dataContacts = [
   },
   {
     id: 103,
+    code: "CRM-CONTACT-2025-004",
     name: "Sarah",
     email: null,
     country: "Indonesia",
@@ -82,8 +86,6 @@ function searchContact(contacts, query) {
     }
   });
 
-  console.log(showAllContacts(searchedContacts));
-
   return searchedContacts;
 }
 
@@ -93,11 +95,19 @@ function generateId(items) {
   return newId;
 }
 
-function generateCode(items){
-  
+function generateCode(items) {
+  const lastCode = items[items.length - 1].code;
+
+  const lastCodeAsArray = lastCode.split("-");
+  lastCodeAsArray[2] = new Date().getFullYear().toString();
+
+  return lastCodeAsArray;
 }
 
 // showContact(dataContacts[1]);
 // showAllContacts(dataContacts);
 // showContactsByStatus(dataContacts, "New");
 // searchContact(dataContacts, "sarah");
+
+const testCode = generateCode(dataContacts);
+console.log(testCode);
