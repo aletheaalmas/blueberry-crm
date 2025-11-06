@@ -202,14 +202,14 @@ function createLead(leads, leadBody) {
     salutation,
     firstName,
     lastName,
-    email = "N/A",
-    phone = "N/A",
-    gender = "N/A",
-    organization = "N/A",
-    websiteUrl = "N/A",
-    noOfEmployees = "N/A",
-    annualRevenueInUSD = "N/A",
-    industry = "N/A",
+    email,
+    phone,
+    gender,
+    organization,
+    websiteUrl,
+    noOfEmployees,
+    annualRevenueInUSD,
+    industry,
   } = leadBody;
 
   const id = generateId(leads);
@@ -220,6 +220,7 @@ function createLead(leads, leadBody) {
   const newLead = {
     id,
     code,
+    status,
     salutation,
     firstName,
     lastName,
@@ -231,7 +232,7 @@ function createLead(leads, leadBody) {
     noOfEmployees,
     annualRevenueInUSD,
     industry,
-    status,
+
     assignedTo,
   };
 
@@ -297,14 +298,13 @@ createLead(dataLeads, {
   salutation: "Mr.",
   firstName: "Li",
   lastName: "Pengbo",
-  email: "lipengbo@tech.com",
   phone: "+86-888-888-888",
   gender: "Male",
-  organization: "Tech Innovations",
-  websiteUrl: "https://techinnovations.com",
+  organization: "HuangFeng Crossfit",
+  websiteUrl: "https://huangfeng.com",
   noOfEmployees: "11-50",
   annualRevenueInUSD: 2000000,
-  industry: "Technology",
+  industry: "Sport",
 });
 
 // showLeadsByStatus(dataLeads, "New");
