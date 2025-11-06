@@ -102,17 +102,31 @@ function generateCode(items) {
   lastCodeAsArray[2] = new Date().getFullYear().toString();
 
   const newCodePadded = (parseInt(lastCodeAsArray[3]) + 1)
-    .toString().padStart(3, "0");
+    .toString()
+    .padStart(3, "0");
 
   lastCodeAsArray[3] = newCodePadded;
   const newCode = lastCodeAsArray.join("-");
   return newCode;
 }
 
+function addContact(id, name, email, country, organization) {
+  const id = generateId;
+
+  const newContact = {
+    name: name,
+    email: email,
+    country: country,
+    organization: organization,
+  };
+
+  console.log(newContact);
+}
+
 // showContact(dataContacts[1]);
 // showAllContacts(dataContacts);
 // showContactsByStatus(dataContacts, "New");
 // searchContact(dataContacts, "sarah");
-
-const testCode = generateCode(dataContacts);
-console.log(testCode);
+// const testCode = generateCode(dataContacts);
+// console.log(testCode);
+addContact("Ale", "ale@email.com", "China", "IRT")
