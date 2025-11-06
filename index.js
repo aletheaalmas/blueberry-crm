@@ -203,14 +203,14 @@ function createLead(leads, leadBody) {
     salutation,
     firstName,
     lastName,
-    email,
-    phone,
-    gender,
-    organization,
-    websiteUrl,
-    noOfEmployees,
-    annualRevenueInUSD,
-    industry,
+    email="N/A",
+    phone="N/A",
+    gender="N/A",
+    organization="N/A",
+    websiteUrl="N/A",
+    noOfEmployees="N/A",
+    annualRevenueInUSD="N/A",
+    industry="N/A",
   } = leadBody;
 
   const id = generateId(leads);
@@ -307,10 +307,6 @@ createLead(dataLeads, {
 });
 
 // showLeadsByStatus(dataLeads, "New");
-
-const searchResults = searchLeads(dataLeads, "jian");
-
-console.log(searchResults);
 
 // generateCode(dataLeads);
 
