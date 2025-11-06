@@ -110,17 +110,21 @@ function generateCode(items) {
   return newCode;
 }
 
-function addContact(id, name, email, country, organization) {
-  const id = generateId;
+function addContact(contacts, contactBody) {
+  const id = generateId(contacts);
+  const code = generateCode(contacts);
+  const { name, contact, email, country, organization, status, salary } =
+    contactBody;
 
   const newContact = {
-    name: name,
-    email: email,
-    country: country,
-    organization: organization,
+    id,
+    code,
+    contactBody,
   };
 
-  console.log(newContact);
+  const updatedContacts = [...contacts, newContact];
+
+  console.log(updatedContacts);
 }
 
 // showContact(dataContacts[1]);
@@ -129,4 +133,4 @@ function addContact(id, name, email, country, organization) {
 // searchContact(dataContacts, "sarah");
 // const testCode = generateCode(dataContacts);
 // console.log(testCode);
-addContact("Ale", "ale@email.com", "China", "IRT")
+addContact(dataContacts, "Ale", "ale@email.com", "China", "Ginee");
