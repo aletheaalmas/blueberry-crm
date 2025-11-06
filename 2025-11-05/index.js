@@ -110,20 +110,15 @@ function generateCode(items) {
   return newCode;
 }
 
-function addContact(contacts, name, email, country, organization, salary) {
+function addContact(contacts, body) {
   const id = generateId(contacts);
   const code = generateCode(contacts);
-  const body = {
-    name: name,
-    email: email,
-    country: country,
-    organization: organization,
-    salary: salary,
-  };
+  const { name, email, country, organization, salary } = body;
   const newContact = { id, code, body };
 
+  contacts.push(newContact);
   const updatedContact = [...contacts, newContact];
-  console.log(updatedContact);
+  return updatedContact;
 }
 
 // showContact(dataContacts[1]);
