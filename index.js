@@ -175,7 +175,6 @@ function searchLeads(leads, query) {
 }
 
 function generateId(items) {
-
   const newId = items[items.length - 1].id + 1;
   return newId;
 }
@@ -203,21 +202,20 @@ function createLead(leads, leadBody) {
     salutation,
     firstName,
     lastName,
-    email="N/A",
-    phone="N/A",
-    gender="N/A",
-    organization="N/A",
-    websiteUrl="N/A",
-    noOfEmployees="N/A",
-    annualRevenueInUSD="N/A",
-    industry="N/A",
+    email = "N/A",
+    phone = "N/A",
+    gender = "N/A",
+    organization = "N/A",
+    websiteUrl = "N/A",
+    noOfEmployees = "N/A",
+    annualRevenueInUSD = "N/A",
+    industry = "N/A",
   } = leadBody;
 
   const id = generateId(leads);
   const code = generateCode(leads);
   const status = "New";
   const assignedTo = null;
-  const contactedAt = null;
 
   const newLead = {
     id,
@@ -233,11 +231,14 @@ function createLead(leads, leadBody) {
     noOfEmployees,
     annualRevenueInUSD,
     industry,
+    status,
+    assignedTo,
   };
 
-  leads.push(newLead);
+  const updatedLeads = [...leads, newLead];
+  dataLeads = updatedLeads;
 
-  return newLead;
+  return updatedLeads;
 }
 // TODO: use spread to add more lead
 // TODO: automatically set the id & code, not manual
@@ -311,5 +312,4 @@ createLead(dataLeads, {
 // generateCode(dataLeads);
 
 // deleteLead(dataLeads, 245);
-
-// showAllLeads(dataLeads);
+showAllLeads(dataLeads);
