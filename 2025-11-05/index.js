@@ -57,8 +57,8 @@ function showContact(contact) {
     `);
 }
 
-// {formatNumberInCNY(contact.salary !== null, contact.salary.toString()) ??
-//   "N/A"}
+//Kenapa kalau seperti ini malah jadi NAN?
+// {formatNumberInCNY(contact.salary !== null, contact.salary.toString()) ?? "N/A"}
 
 function showAllContacts(contacts) {
   contacts.forEach((contact) => {
@@ -140,15 +140,14 @@ function addContact(contacts, body) {
 }
 
 // showContact(dataContacts[1]);
-// showAllContacts(dataContacts);
 // showContactsByStatus(dataContacts, "New");
 // searchContact(dataContacts, "sarah");
 // const testCode = generateCode(dataContacts);
 // console.log(testCode);
-addContact(dataContacts, {
+/* addContact(dataContacts, {
   name: "Ale",
   email: "ale@email.com",
   country: "China",
 });
-
+ */
 showAllContacts(dataContacts);
