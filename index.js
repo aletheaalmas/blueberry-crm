@@ -243,51 +243,6 @@ function createLead(leads, leadBody) {
   return updatedLeads;
 }
 
-function updateLead(leads, id, leadBody) {
-  const newValue = leads;
-
-  const {
-    id,
-    code,
-    status,
-    salutation,
-    firstName,
-    lastName,
-    email,
-    phone,
-    gender,
-    organization,
-    websiteUrl,
-    noOfEmployees,
-    annualRevenueInUSD,
-    industry,
-    assignedTo,
-  } = leadBody;
-
-  const leadsWithNewValue = {
-    id,
-    code,
-    status,
-    salutation,
-    firstName,
-    lastName,
-    email,
-    phone,
-    gender,
-    organization,
-    websiteUrl,
-    noOfEmployees,
-    annualRevenueInUSD,
-    industry,
-    assignedTo,
-  };
-
-  const updatedLeads = leadsWithNewValue;
-
-  return updatedLeads;
-}
-// TODO: use map to update only the specified id
-
 function deleteLead(leads, id) {
   const deletedLead = leads.filter((lead) => {
     if (lead.id == id) {
@@ -310,6 +265,52 @@ function deleteLeads(leads, idsToDelete) {
 
   return deletedLeads;
 }
+
+function updateLead(leads, id, leadBody) {
+  const {
+    code,
+    status,
+    salutation,
+    firstName,
+    lastName,
+    email,
+    phone,
+    gender,
+    organization,
+    websiteUrl,
+    noOfEmployees,
+    annualRevenueInUSD,
+    industry,
+    assignedTo,
+  } = leadBody;
+
+  const updatedLead = leads.map((lead) => {
+    if (lead.id === id) {
+      return {
+        ...lead,
+        code,
+        status,
+        salutation,
+        firstName,
+        lastName,
+        email,
+        phone,
+        gender,
+        organization,
+        websiteUrl,
+        noOfEmployees,
+        annualRevenueInUSD,
+        industry,
+        assignedTo,
+      };
+    } else {
+      return lead;
+    }
+  });
+
+  return updatedLead;
+}
+// TODO: use map to update only the specified id
 
 function alertFirstNameMissing() {}
 
