@@ -110,6 +110,10 @@ let dataLeads = [
 ];
 
 function showLead(lead) {
+  const amountARR = !lead.annualRevenueInUSD
+    ? "N/A"
+    : formatNumberInUSD(lead.annualRevenueInUSD.toString());
+
   console.log(` 
     ID              : ${lead.id}
     Code            : ${lead.code}
@@ -120,11 +124,7 @@ function showLead(lead) {
     Gender          : ${lead.gender}
     Organization    : ${lead.organization ?? "N/A"}
     Website URL     : ${lead.websiteUrl ?? "N/A"} 
-    ARR (USD)       : ${
-      lead.annualRevenueInUSD != null
-        ? formatNumberInUSD(lead.annualRevenueInUSD.toString())
-        : "N/A"
-    }
+    ARR (USD)       : ${amountARR}
     Industry        : ${lead.industry ?? "N/A"}  
     Assigned To     : ${lead.assignedTo ?? "N/A"}
 
