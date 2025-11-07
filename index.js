@@ -279,7 +279,6 @@ function updateLead(leads, id, leadBody) {
 
   dataLeads = updatedLeads;
 }
-// TODO: use map to update only the specified id
 
 function alertFirstNameMissing() {}
 
