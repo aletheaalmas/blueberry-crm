@@ -241,7 +241,6 @@ function deleteLeads(leads, ids) {
 
 function updateLead(leads, id, leadBody) {
   const {
-    code,
     status,
     salutation,
     firstName,
@@ -257,31 +256,28 @@ function updateLead(leads, id, leadBody) {
     assignedTo,
   } = leadBody;
 
-  const updatedLead = leads.map((lead) => {
-    if (lead.id === id) {
-      return {
-        ...lead,
-        code,
-        status,
-        salutation,
-        firstName,
-        lastName,
-        email,
-        phone,
-        gender,
-        organization,
-        websiteUrl,
-        noOfEmployees,
-        annualRevenueInUSD,
-        industry,
-        assignedTo,
-      };
-    } else {
-      return lead;
-    }
+  const updatedLeads = leads.map((lead) => {
+    if (lead.id !== id) return lead;
+
+    return {
+      ...lead,
+      status,
+      salutation,
+      firstName,
+      lastName,
+      email,
+      phone,
+      gender,
+      organization,
+      websiteUrl,
+      noOfEmployees,
+      annualRevenueInUSD,
+      industry,
+      assignedTo,
+    };
   });
 
-  return updatedLead;
+  dataLeads = updatedLeads;
 }
 // TODO: use map to update only the specified id
 
@@ -313,9 +309,3 @@ createLead(dataLeads, {
   noOfEmployees: "11-50",
   industry: "Sport",
 });
-
-// showLeadsByStatus(dataLeads, "New");
-
-// generateCode(dataLeads);
-
-// deleteLead(dataLeads, 245);
