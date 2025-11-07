@@ -1,4 +1,4 @@
-let dataLeads = [
+const initialDataLeads = [
   {
     id: 132,
     code: "CRM-LEAD-2025-001",
@@ -108,6 +108,8 @@ let dataLeads = [
     contactedAt: null,
   },
 ];
+
+let dataLeads = loadFromStorage();
 
 function showLead(lead) {
   const amountARR = !lead.annualRevenueInUSD
@@ -227,16 +229,22 @@ function createLead(leads, leadBody) {
 
   const updatedLeads = [...leads, newLead];
   dataLeads = updatedLeads;
+
+  saveToStorage(dataLeads);
 }
 
 function deleteLead(leads, id) {
   const updatedLeads = leads.filter((lead) => lead.id !== id);
   dataLeads = updatedLeads;
+
+  saveToStorage(dataLeads);
 }
 
 function deleteLeads(leads, ids) {
   const updatedLeads = leads.filter((lead) => !ids.includes(lead.id));
   dataLeads = updatedLeads;
+
+  saveToStorage(dataLeads);
 }
 
 function updateLead(leads, id, leadBody) {
@@ -278,24 +286,41 @@ function updateLead(leads, id, leadBody) {
   });
 
   dataLeads = updatedLeads;
+
+  saveToStorage(dataLeads);
 }
 
 function changeStatus(leads, id, newStatus) {
   // "Contacted" / "Nurtured" / "Canceled"
 }
 
+function saveToStorage(leads) {
+  localStorage.setItem("leads", JSON.stringify(leads));
+}
+
+function loadFromStorage() {
+  const leads = JSON.parse(localStorage.getItem("leads"));
+
+  if (!leads || leads.length <= 0) {
+    saveToStorage(initialDataLeads);
+    return initialDataLeads;
+  }
+
+  return leads;
+}
+
 // ------------------------------------------------------
 
-createLead(dataLeads, {
-  salutation: "Mr.",
-  firstName: "Li",
-  lastName: "Pengbo",
-  phone: "+86-888-888-888",
-  gender: "Male",
-  organization: "HuangFeng Crossfit",
-  websiteUrl: "https://huangfeng.com",
-  noOfEmployees: "11-50",
-  industry: "Sport",
-});
+// createLead(dataLeads, {
+//   salutation: "Mr.",
+//   firstName: "Li",
+//   lastName: "Pengbo",
+//   phone: "+86-888-888-888",
+//   gender: "Male",
+//   organization: "HuangFeng Crossfit",
+//   websiteUrl: "https://huangfeng.com",
+//   noOfEmployees: "11-50",
+//   industry: "Sport",
+// });
 
 showAllLeads(dataLeads);
