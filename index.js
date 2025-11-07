@@ -152,7 +152,7 @@ function formatNumberInUSD(number) {
 function searchLeads(leads, query) {
   const q = query.toLowerCase();
 
-  const searchedLeads = leads.filter((lead) => {
+  const foundLeads = leads.filter((lead) => {
     if (
       (lead.firstName && lead.firstName.toLowerCase().includes(q)) ||
       (lead.lastName && lead.lastName.toLowerCase().includes(q)) ||
@@ -163,7 +163,7 @@ function searchLeads(leads, query) {
     }
   });
 
-  return searchedLeads;
+  return foundLeads;
 }
 
 function generateId(items) {
