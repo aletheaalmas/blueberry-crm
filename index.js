@@ -120,7 +120,11 @@ function showLead(lead) {
     Gender          : ${lead.gender}
     Organization    : ${lead.organization ?? "N/A"}
     Website URL     : ${lead.websiteUrl ?? "N/A"} 
-    ARR (USD)       : ${formatNumberInUSD(lead.annualRevenueInUSD) ?? "N/A"}
+    ARR (USD)       : ${
+      lead.annualRevenueInUSD != null
+        ? formatNumberInUSD(lead.annualRevenueInUSD.toString())
+        : "N/A"
+    }
     Industry        : ${lead.industry ?? "N/A"}  
     Assigned To     : ${lead.assignedTo ?? "N/A"}
 
@@ -286,7 +290,6 @@ createLead(dataLeads, {
   organization: "HuangFeng Crossfit",
   websiteUrl: "https://huangfeng.com",
   noOfEmployees: "11-50",
-  annualRevenueInUSD: 2000000,
   industry: "Sport",
 });
 
