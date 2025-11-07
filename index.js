@@ -261,16 +261,27 @@ function updateLead(leads, id, leadBody) {
   // annualRevenueInUSD,
   // industry
 }
-
 function deleteLead(leads, id) {
-  const deletedLeads = leads.filter((lead) => {
-    if (lead.id !== id) {
-      return true;
-    } else {
+  const deletedLead = leads.filter((lead) => {
+    if (lead.id == id) {
       return false;
+    } else {
+      return true;
     }
   });
-  console.log(deletedLeads);
+  return deletedLead;
+}
+
+function deleteLeads(leads, idsToDelete) {
+  const deletedLeads = leads.filter((lead) => {
+    if (idsToDelete.includes(lead.id)) {
+      return false;
+    } else {
+      return true;
+    }
+  });
+
+  return deletedLeads;
 }
 
 function alertFirstNameMissing() {}
@@ -306,6 +317,4 @@ createLead(dataLeads, {
 
 // generateCode(dataLeads);
 
-deleteLead(dataLeads, 132);
-
-showAllLeads(dataLeads)
+deleteLead(dataLeads, 245);
