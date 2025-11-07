@@ -228,7 +228,7 @@ function createLead(leads, leadBody) {
   const updatedLeads = [...leads, newLead];
   dataLeads = updatedLeads;
 
-  return updatedLeads;
+  return newLead;
 }
 
 function deleteLead(leads, id) {
@@ -333,4 +333,4 @@ createLead(dataLeads, {
 
 // generateCode(dataLeads);
 
-deleteLead(dataLeads, 245);
+// deleteLead(dataLeads, 245);
