@@ -280,23 +280,12 @@ function updateLead(leads, id, leadBody) {
   dataLeads = updatedLeads;
 }
 
-function alertFirstNameMissing() {}
-
-function alertEmailMissing() {}
-
-function alertEmailNotValid() {}
-
-function calculateAge() {}
-
-function moveLeadToTrash() {}
-
-function assignLeadToUser() {}
-
-function unassignLead() {}
-
-function changeStatus(leads, id, newStatus) {} // "Contacted" / "Nurtured" / "Canceled"
+function changeStatus(leads, id, newStatus) {
+  // "Contacted" / "Nurtured" / "Canceled"
+}
 
 // ------------------------------------------------------
+
 createLead(dataLeads, {
   salutation: "Mr.",
   firstName: "Li",
@@ -308,3 +297,5 @@ createLead(dataLeads, {
   noOfEmployees: "11-50",
   industry: "Sport",
 });
+
+showAllLeads(dataLeads);
