@@ -184,9 +184,7 @@ function generateId(items) {
 }
 
 function generateCode(items) {
-  const lastIndex = items.length - 1;
-  const lastItem = items[lastIndex];
-  const lastCode = lastItem.code;
+  const lastCode = items[items.length - 1].code;
 
   let lastCodeAsArray = lastCode.split("-");
   lastCodeAsArray[2] = new Date().getFullYear().toString();
@@ -236,7 +234,6 @@ function createLead(leads, leadBody) {
     noOfEmployees,
     annualRevenueInUSD,
     industry,
-
     assignedTo,
   };
 
@@ -247,20 +244,50 @@ function createLead(leads, leadBody) {
 }
 
 function updateLead(leads, id, leadBody) {
-  // TODO: use map to update only the specified id
-  // TODO: update fields:
-  // salutation
-  // firstName
-  // lastName
-  // email
-  // phone
-  // gender
-  // organization
-  // websiteUrl
-  // noOfEmployees
-  // annualRevenueInUSD,
-  // industry
+  const newValue = leads;
+
+  const {
+    id,
+    code,
+    status,
+    salutation,
+    firstName,
+    lastName,
+    email,
+    phone,
+    gender,
+    organization,
+    websiteUrl,
+    noOfEmployees,
+    annualRevenueInUSD,
+    industry,
+    assignedTo,
+  } = leadBody;
+
+  const leadsWithNewValue = {
+    id,
+    code,
+    status,
+    salutation,
+    firstName,
+    lastName,
+    email,
+    phone,
+    gender,
+    organization,
+    websiteUrl,
+    noOfEmployees,
+    annualRevenueInUSD,
+    industry,
+    assignedTo,
+  };
+
+  const updatedLeads = leadsWithNewValue;
+
+  return updatedLeads;
 }
+// TODO: use map to update only the specified id
+
 function deleteLead(leads, id) {
   const deletedLead = leads.filter((lead) => {
     if (lead.id == id) {
