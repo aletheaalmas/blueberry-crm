@@ -262,7 +262,16 @@ function updateLead(leads, id, leadBody) {
   // industry
 }
 
-function deleteLead(leads, id) {}
+function deleteLead(leads, id) {
+  const deletedLeads = leads.filter((lead) => {
+    if (lead.id !== id) {
+      return true;
+    } else {
+      return false;
+    }
+  });
+  console.log(deletedLeads);
+}
 
 function alertFirstNameMissing() {}
 
@@ -297,4 +306,6 @@ createLead(dataLeads, {
 
 // generateCode(dataLeads);
 
-showAllLeads(dataLeads);
+deleteLead(dataLeads, 132);
+
+showAllLeads(dataLeads)
