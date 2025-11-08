@@ -75,7 +75,7 @@ let dataLeads = [
     id: 534,
     code: "CRM-LEAD-2025-005",
     salutation: "Mr.",
-    firstName: "Jian",
+    firstName: null,
     lastName: "Li",
     email: "lijian@supplier.com",
     phone: "+86-123-456-7894",
@@ -120,7 +120,11 @@ function showLead(lead) {
     Gender          : ${lead.gender}
     Organization    : ${lead.organization ?? "N/A"}
     Website URL     : ${lead.websiteUrl ?? "N/A"} 
-    ARR (USD)       : ${formatNumberInUSD(lead.annualRevenueInUSD) ?? "N/A"}
+    ARR (USD)       : ${
+      lead.annualRevenueInUSD != null
+        ? formatNumberInUSD(lead.annualRevenueInUSD.toString())
+        : "N/A"
+    }
     Industry        : ${lead.industry ?? "N/A"}  
     Assigned To     : ${lead.assignedTo ?? "N/A"}
 
@@ -149,10 +153,26 @@ function searchLeads(leads, query) {
   const q = query.toLowerCase();
 
   const searchedLeads = leads.filter((lead) => {
-    if (lead.firstName.toLowerCase().includes(q)) return lead;
-    if (lead.lastName.toLowerCase().includes(q)) return lead;
-    if (lead.email.toLowerCase().includes(q)) return lead;
-    if (lead.organization?.toLowerCase().includes(q)) return lead;
+    if (lead.firstName !== null) {
+      if (lead.firstName.toLowerCase().includes(q)) {
+        return lead;
+      }
+    }
+    if (lead.lastName !== null) {
+      if (lead.lastName.toLowerCase().includes(q)) {
+        return lead;
+      }
+    }
+    if (lead.email !== null) {
+      if (lead.email.toLowerCase().includes(q)) {
+        return lead;
+      }
+    }
+    if (lead.organization !== null) {
+      if (lead.organization.toLowerCase().includes(q)) {
+        return lead;
+      }
+    }
   });
 
   return searchedLeads;
@@ -164,20 +184,17 @@ function generateId(items) {
 }
 
 function generateCode(items) {
-  const lastIndex = items.length - 1;
-  const lastItem = items[lastIndex];
-  const lastCode = lastItem.code;
+  const lastCode = items[items.length - 1].code;
 
   let lastCodeAsArray = lastCode.split("-");
   lastCodeAsArray[2] = new Date().getFullYear().toString();
 
-  const lastCodeNumber = parseInt(lastCodeasArray[3]);
-  const newCodeNumber = lastCodeNumber + 1;
-  const newCodeAsString = newCodeNumber.toString();
-  const newCodePadded = newCodeAsString.padStart(3, "0");
+  const newCodePadded = (parseInt(lastCodeAsArray[3]) + 1)
+    .toString()
+    .padStart(3, "0");
 
   lastCodeAsArray[3] = newCodePadded;
-  const newCode = lastCodeasArray.join("-");
+  const newCode = lastCodeAsArray.join("-");
 
   return newCode;
 }
@@ -201,11 +218,11 @@ function createLead(leads, leadBody) {
   const code = generateCode(leads);
   const status = "New";
   const assignedTo = null;
-  const contactedAt = null;
 
   const newLead = {
     id,
     code,
+    status,
     salutation,
     firstName,
     lastName,
@@ -217,44 +234,83 @@ function createLead(leads, leadBody) {
     noOfEmployees,
     annualRevenueInUSD,
     industry,
-    status,
     assignedTo,
-    contactedAt,
   };
 
-  leads.push(newLead);
-  return newLead;
+  const updatedLeads = [...leads, newLead];
+  dataLeads = updatedLeads;
+
+  return updatedLeads;
 }
-// TODO: use spread to add more lead
-// TODO: automatically set the id & code, not manual
-// TODO: input fields:
-// salutation
-// firstName
-// lastName
-// email
-// phone
-// gender
-// organization
-// websiteUrl
-// noOfEmployees
-// annualRevenueInUSD,
-// industry
+
+function deleteLead(leads, id) {
+  const deletedLead = leads.filter((lead) => {
+    if (lead.id == id) {
+      return false;
+    } else {
+      return true;
+    }
+  });
+  return deletedLead;
+}
+
+function deleteLeads(leads, idsToDelete) {
+  const deletedLeads = leads.filter((lead) => {
+    if (idsToDelete.includes(lead.id)) {
+      return false;
+    } else {
+      return true;
+    }
+  });
+
+  return deletedLeads;
+}
 
 function updateLead(leads, id, leadBody) {
-  // TODO: use map to update only the specified id
-  // TODO: update fields:
-  // salutation
-  // firstName
-  // lastName
-  // email
-  // phone
-  // gender
-  // organization
-  // websiteUrl
-  // noOfEmployees
-  // annualRevenueInUSD,
-  // industry
+  const {
+    code,
+    status,
+    salutation,
+    firstName,
+    lastName,
+    email,
+    phone,
+    gender,
+    organization,
+    websiteUrl,
+    noOfEmployees,
+    annualRevenueInUSD,
+    industry,
+    assignedTo,
+  } = leadBody;
+
+  const updatedLead = leads.map((lead) => {
+    if (lead.id === id) {
+      return {
+        ...lead,
+        code,
+        status,
+        salutation,
+        firstName,
+        lastName,
+        email,
+        phone,
+        gender,
+        organization,
+        websiteUrl,
+        noOfEmployees,
+        annualRevenueInUSD,
+        industry,
+        assignedTo,
+      };
+    } else {
+      return lead;
+    }
+  });
+
+  return updatedLead;
 }
+// TODO: use map to update only the specified id
 
 function alertFirstNameMissing() {}
 
@@ -277,21 +333,16 @@ createLead(dataLeads, {
   salutation: "Mr.",
   firstName: "Li",
   lastName: "Pengbo",
-  email: "lipengbo@tech.com",
   phone: "+86-888-888-888",
   gender: "Male",
-  organization: "Tech Innovations",
-  websiteUrl: "https://techinnovations.com",
+  organization: "HuangFeng Crossfit",
+  websiteUrl: "https://huangfeng.com",
   noOfEmployees: "11-50",
-  annualRevenueInUSD: 2000000,
-  industry: "Technology",
+  industry: "Sport",
 });
 
-searchLeads(dataLeads, "haoming");
-
-generateCode(dataLeads);
 // showLeadsByStatus(dataLeads, "New");
 
-// const searchResults = searchLeads(dataLeads, "group");
-// showAllLeads(searchResults);
-//
+// generateCode(dataLeads);
+
+deleteLead(dataLeads, 245);
