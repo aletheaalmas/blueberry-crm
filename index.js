@@ -238,17 +238,12 @@ function deleteLead(leads, id) {
   return updatedLeads;
 }
 
-function deleteLeads(leads, idsToDelete) {
-  const deletedLeads = leads.filter((lead) => {
-    if (idsToDelete.includes(lead.id)) {
-      return false;
-    } else {
-      return true;
-    }
-  });
-
-  return deletedLeads;
+function deleteLeads(leads, ids) {
+  const updatedLeads = leads.filter((lead) =>  ids.includes(lead.id));
+  return updatedLeads;
 }
+
+
 
 function updateLead(leads, id, leadBody) {
   const {
