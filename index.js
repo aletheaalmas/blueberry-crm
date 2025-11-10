@@ -229,18 +229,13 @@ function createLead(leads, leadBody) {
   const updatedLeads = [...leads, newLead];
   dataLeads = updatedLeads;
 
-  return updatedLeads;
+  return newLead;
 }
 
 function deleteLead(leads, id) {
-  const deletedLead = leads.filter((lead) => {
-    if (lead.id == id) {
-      return false;
-    } else {
-      return true;
-    }
-  });
-  return deletedLead;
+  const updatedLeads = leads.filter((lead) => lead.id !== id);
+
+  return updatedLeads;
 }
 
 function deleteLeads(leads, idsToDelete) {
