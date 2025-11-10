@@ -281,24 +281,22 @@ function updateLead(leads, id, leadBody) {
       assignedTo,
     };
   });
-  dataLeads = updatedLeads;
+  dataLeads = updatedLead;
 }
 
-function alertFirstNameMissing() {}
+function changeStatus(leads, id, newStatus) {
+  const updatedStatus = leads.map((lead) => {
+    if (lead.id === id) {
+      return {
+        ...lead,
+        status: newStatus,
+      };
+    }
+    return lead;
+  });
 
-function alertEmailMissing() {}
-
-function alertEmailNotValid() {}
-
-function calculateAge() {}
-
-function moveLeadToTrash() {}
-
-function assignLeadToUser() {}
-
-function unassignLead() {}
-
-function changeStatus(leads, id, newStatus) {} // "Contacted" / "Nurtured" / "Canceled"
+  dataLeads = updatedStatus;
+} // "Contacted" / "Nurtured" / "Canceled"
 
 // ------------------------------------------------------
 createLead(dataLeads, {
