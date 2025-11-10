@@ -110,6 +110,11 @@ let dataLeads = [
 ];
 
 function showLead(lead) {
+  const amountARR =
+    lead.annualRevenueInUSD != null
+      ? formatNumberInUSD(lead.annualRevenueInUSD.toString())
+      : "N/A";
+
   console.log(` 
     ID              : ${lead.id}
     Code            : ${lead.code}
