@@ -42,23 +42,20 @@ let dataContacts = [
 ];
 
 function showContact(contact) {
+  const salary = !contact.salary
+    ? formatNumberInCNY(contact.salary.toString())
+    : "N/A";
+
   console.log(`
     Id: ${contact.id}
     Name: ${contact.name ?? "No Name"}
     Email: ${contact.email ?? "N/A"}
     Contry: ${contact.country ?? "N/A"}
     Organization: ${contact.organization ?? "N/A"}
-    Salary:  ${
-      contact.salary != null
-        ? formatNumberInCNY(contact.salary.toString())
-        : "N/A"
-    }
+    Salary:  ${salary}
     Status: ${contact.status}
     `);
 }
-
-//Kenapa kalau seperti ini malah jadi NAN?
-// {formatNumberInCNY(contact.salary !== null, contact.salary.toString()) ?? "N/A"}
 
 function showAllContacts(contacts) {
   contacts.forEach((contact) => {
@@ -133,10 +130,15 @@ function addContact(contacts, body) {
     salary,
     status,
   };
+}
 
-  const updatedContacts = [...contacts, newContact];
-  dataContacts = updatedContacts;
-  return dataContacts;
+
+
+function deleteContact(contacts, id) {
+  const deleteContact = contacts.filter((contact) => {
+    if (contact.id !== id);
+  });
+  dataLeads = deleteContact;
 }
 
 // showContact(dataContacts[1]);
