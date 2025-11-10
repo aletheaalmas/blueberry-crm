@@ -125,11 +125,7 @@ function showLead(lead) {
     Gender          : ${lead.gender}
     Organization    : ${lead.organization ?? "N/A"}
     Website URL     : ${lead.websiteUrl ?? "N/A"} 
-    ARR (USD)       : ${
-      lead.annualRevenueInUSD != null
-        ? formatNumberInUSD(lead.annualRevenueInUSD.toString())
-        : "N/A"
-    }
+    ARR (USD)       : ${amountARR}
     Industry        : ${lead.industry ?? "N/A"}  
     Assigned To     : ${lead.assignedTo ?? "N/A"}
 
@@ -157,7 +153,7 @@ function formatNumberInUSD(number) {
 function searchLeads(leads, query) {
   const q = query.toLowerCase();
 
-  const searchedLeads = leads.filter((lead) => {
+  const foundLeads = leads.filter((lead) => {
     if (
       (lead.firstName && lead.firstName.toLowerCase().includes(q)) ||
       (lead.lastName && lead.lastName.toLowerCase().includes(q)) ||
@@ -168,7 +164,7 @@ function searchLeads(leads, query) {
     }
   });
 
-  return searchedLeads;
+  return foundLeads;
 }
 
 function generateId(items) {
