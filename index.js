@@ -314,7 +314,7 @@ function loadFromStorage() {
     saveToStorage(initialDataLeads);
     return initialDataLeads;
   }
-  return dataLeads;
+  return leads;
 }
 // ------------------------------------------------------
 /* createLead(dataLeads, {
