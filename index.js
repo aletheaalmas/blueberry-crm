@@ -229,7 +229,7 @@ function createLead(leads, leadBody) {
   const updatedLeads = [...leads, newLead];
   dataLeads = updatedLeads;
 
-  return newLead;
+  saveToStorage(dataLeads);
 }
 
 function deleteLead(leads, id) {
@@ -241,6 +241,7 @@ function deleteLead(leads, id) {
 function deleteLeads(leads, ids) {
   const updatedLeads = leads.filter((lead) => ids.includes(lead.id));
   dataLeads = updatedLeads;
+  saveToStorage(dataLeads);
 }
 
 function updateLead(leads, id, leadBody) {
@@ -282,6 +283,7 @@ function updateLead(leads, id, leadBody) {
     };
   });
   dataLeads = updatedLead;
+  saveToStorage(dataLeads);
 }
 
 function changeStatus(leads, id, newStatus) {
@@ -296,10 +298,14 @@ function changeStatus(leads, id, newStatus) {
   });
 
   dataLeads = updatedStatus;
+  saveToStorage(dataLeads);
 } // "Contacted" / "Nurtured" / "Canceled"
 
+function saveToStorage(leads) {
+  localStorage.setItem("leads", JSON.stringify(leads));
+}
 // ------------------------------------------------------
-createLead(dataLeads, {
+/* createLead(dataLeads, {
   salutation: "Mr.",
   firstName: "Li",
   lastName: "Pengbo",
@@ -309,12 +315,12 @@ createLead(dataLeads, {
   websiteUrl: "https://huangfeng.com",
   noOfEmployees: "11-50",
   industry: "Sport",
-});
+}); */
 
 // showLeadsByStatus(dataLeads, "New");
 
 // generateCode(dataLeads);
- 
-changeStatus(dataLeads, 487, "Contacted");
+
+// changeStatus(dataLeads, 487, "Contacted");
 
 showAllLeads(dataLeads);
