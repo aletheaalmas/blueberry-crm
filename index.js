@@ -314,5 +314,7 @@ createLead(dataLeads, {
 // showLeadsByStatus(dataLeads, "New");
 
 // generateCode(dataLeads);
+ 
+changeStatus(dataLeads, 487, "Contacted");
 
-deleteLead(dataLeads, 245);
+showAllLeads(dataLeads);
