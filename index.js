@@ -1,4 +1,4 @@
-let dataLeads = [
+const initialDataLeads = [
   {
     id: 132,
     code: "CRM-LEAD-2025-001",
@@ -108,6 +108,8 @@ let dataLeads = [
     contactedAt: null,
   },
 ];
+
+let dataLeads = loadFromStorage();
 
 function showLead(lead) {
   const amountARR =
@@ -303,6 +305,16 @@ function changeStatus(leads, id, newStatus) {
 
 function saveToStorage(leads) {
   localStorage.setItem("leads", JSON.stringify(leads));
+}
+
+function loadFromStorage() {
+  const leads = JSON.parse(localStorage.getItem("leads"));
+
+  if (!leads || leads.length <= 0) {
+    saveToStorage(initialDataLeads);
+    return initialDataLeads;
+  }
+  return dataLeads;
 }
 // ------------------------------------------------------
 /* createLead(dataLeads, {
