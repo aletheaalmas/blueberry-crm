@@ -150,6 +150,9 @@ function renderLead(lead) {
       <span>Admin</span>
     </td>
     <td class="px-6 py-3 text-gray-500">52 minutes ago</td>
+    <td class="px-6 py-3 text-gray-500">
+      <a href="/leads/?id=${lead.id}" class="p-2 bg-blue-100 rounded">View</a>
+    </td>
   </tr>`;
 }
 
