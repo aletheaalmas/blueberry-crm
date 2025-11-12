@@ -33,24 +33,6 @@
             >
               <span class="ml-2">Leads</span>
             </a>
-            <a
-              href="#"
-              class="flex items-center px-6 py-2 text-gray-600 hover:bg-white"
-            >
-              <span class="ml-2">Deals</span>
-            </a>
-            <a
-              href="#"
-              class="flex items-center px-6 py-2 text-gray-600 hover:bg-white"
-            >
-              <span class="ml-2">Trash</span>
-            </a>
-            <a
-              href="#"
-              class="flex items-center px-6 py-2 text-gray-600 hover:bg-white"
-            >
-              <span class="ml-2">Settings</span>
-            </a>
           </nav>
         </div>
         <div id="footer" class="px-6 py-4 text-xs text-gray-400">
@@ -60,12 +42,12 @@
       <main id="leads-list-content" class="flex-1 p-8 overflow-auto">
         <header class="flex justify-between items-center mb-6">
           <h2 class="text-2xl font-semibold">Leads</h2>
-          <button
-            id="openModal"
+          <a
+            href="/create"
             class="bg-black text-white px-4 py-2 rounded-lg hover:bg-gray-800"
           >
             + Create
-          </button>
+          </a>
         </header>
         <!-- Table -->
         <div
@@ -137,17 +119,6 @@
               </tr>
             </tbody>
           </table>
-        </div>
-        <!-- Pagination -->
-        <div
-          class="flex justify-between items-center mt-4 text-sm text-gray-500"
-        >
-          <div class="space-x-2">
-            <button class="px-2 py-1 border rounded">20</button>
-            <button class="px-2 py-1 border rounded">50</button>
-            <button class="px-2 py-1 border rounded">100</button>
-          </div>
-          <span>2 of 2</span>
         </div>
       </main>
     </section>
@@ -266,25 +237,17 @@
           </div>
 
           <div class="flex justify-end pt-4">
-            <button
-              type="submit"
+            <a
+              href="/create"
               class="bg-black text-white px-4 py-2 rounded-lg hover:bg-gray-800"
             >
               Create
-            </button>
+            </a>
           </div>
         </form>
       </div>
     </section>
 
     <script src="/index.js"></script>
-    <script>
-      const modal = document.getElementById("modal");
-      const openModal = document.getElementById("openModal");
-      const closeModal = document.getElementById("closeModal");
-
-      openModal.onclick = () => modal.classList.remove("hidden");
-      closeModal.onclick = () => modal.classList.add("hidden");
-    </script>
   </body>
 </html>
