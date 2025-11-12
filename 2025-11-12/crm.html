@@ -7,7 +7,7 @@
   </head>
   <body class="bg-white-100 text-gray-800">
     <!-- Sidebar -->
-    <div class="flex h-screen">
+    <div id="display" class="flex h-screen">
       <aside class="w-64 bg-indigo-50 shadow-sm flex flex-col justify-between">
         <div>
           <div class="px-6 py-4 border-b">
@@ -147,9 +147,13 @@
         </div>
 
         <form class="space-y-4">
-          <div class="grid grid-cols-3 gap-4">
+          <label id="name-with-salutation" class="grid grid-cols-3 gap-4">
             <select class="border rounded-lg p-2 col-span-1">
               <option>Salutation</option>
+              <option value="mr">Mr.</option>
+              <option value="ms">Ms.</option>
+              <option value="mrs">Mrs.</option>
+              <option value="dr">Dr.</option>
             </select>
             <input
               type="text"
@@ -161,9 +165,14 @@
               placeholder="Last Name"
               class="border rounded-lg p-2 col-span-1"
             />
-          </div>
+            <select class="border rounded-lg p-2">
+              <option>Gender</option>
+              <option value="male">Male</option>
+              <option value="ms">Female</option>
+            </select>
+          </label>
 
-          <div class="grid grid-cols-2 gap-4">
+          <label id="contact" class="grid grid-cols-2 gap-4">
             <input
               type="email"
               placeholder="Email"
@@ -174,9 +183,9 @@
               placeholder="Mobile No"
               class="border rounded-lg p-2"
             />
-          </div>
+          </label>
 
-          <div class="grid grid-cols-2 gap-4">
+          <label id="company" class="grid grid-cols-2 gap-4">
             <input
               type="text"
               placeholder="Organization"
@@ -187,18 +196,28 @@
               placeholder="Website"
               class="border rounded-lg p-2"
             />
-          </div>
+          </label>
 
-          <div class="grid grid-cols-2 gap-4">
+          <label id="company-details" class="grid grid-cols-2 gap-4">
             <select class="border rounded-lg p-2">
-              <option>1-10</option>
+              <option value="1-10">1-10</option>
+              <option value="11-50">11-50</option>
+              <option value="51-200">51-200</option>
+              <option value="201-500">201-500</option>
+              <option value="501-1000">501-1000</option>
+              <option value="1000+">1000+</option>
             </select>
-            <input
-              type="text"
-              placeholder="Industry"
-              class="border rounded-lg p-2"
-            />
-          </div>
+            <select class="border rounded-lg p-2">
+              <option value="">Industry</option>
+              <option value="technology">Technology</option>
+              <option value="healthcare">Healthcare</option>
+              <option value="finance">Finance</option>
+              <option value="education">Education</option>
+              <option value="manufacturing">Manufacturing</option>
+              <option value="retail">Retail</option>
+              <option value="retail">Other</option>
+            </select>
+          </label>
 
           <div class="grid grid-cols-2 gap-4">
             <input
@@ -206,12 +225,9 @@
               placeholder="Annual Revenue"
               class="border rounded-lg p-2"
             />
-            <select class="border rounded-lg p-2">
-              <option>Gender</option>
-            </select>
           </div>
 
-          <div class="grid grid-cols-2 gap-4">
+          <div id="lead-status" class="grid grid-cols-2 gap-4">
             <select class="border rounded-lg p-2">
               <option>New</option>
               <option>Contacted</option>
@@ -220,11 +236,12 @@
               <option>Unqualified</option>
               <option>Junk</option>
             </select>
-            <input
-              type="text"
-              placeholder="Lead Owner"
-              class="border rounded-lg p-2"
-            />
+            <select>
+              <option value="">Administrator</option>
+              <option value="administrator">Administrator</option>
+              <option value="user1">User 1</option>
+              <option value="user2">User 2</option>
+            </select>
           </div>
 
           <div class="flex justify-end pt-4">
