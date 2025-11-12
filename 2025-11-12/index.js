@@ -4,4 +4,4 @@ function handleSayHello() {
   alert("Hello");
 }
 
-buttonSayHelloElement.onclick = handleSayHello;
+buttonSayHelloElement.addEventListener("click", handleSayHello);
