@@ -1,7 +1,6 @@
-const buttonSayHelloElement = document.getElementById("say-hello");
+const checkEventButtonElement = document.getElementById("check-event");
 
-function handleSayHello() {
-  alert("Hello");
-}
-
-buttonSayHelloElement.addEventListener("click", handleSayHello);
+checkEventButtonElement.addEventListener("click", function (event) {
+  console.log(this.innerText);
+  console.log({ event });
+});
