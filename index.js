@@ -301,7 +301,7 @@ function changeStatus(leads, id, newStatus) {
 
   dataLeads = updatedStatus;
   saveToStorage(dataLeads);
-} // "Contacted" / "Nurtured" / "Canceled"
+}
 
 function saveToStorage(leads) {
   localStorage.setItem("leads", JSON.stringify(leads));
@@ -317,17 +317,17 @@ function loadFromStorage() {
   return leads;
 }
 // ------------------------------------------------------
-/* createLead(dataLeads, {
-  salutation: "Mr.",
-  firstName: "Li",
-  lastName: "Pengbo",
-  phone: "+86-888-888-888",
-  gender: "Male",
-  organization: "HuangFeng Crossfit",
-  websiteUrl: "https://huangfeng.com",
-  noOfEmployees: "11-50",
-  industry: "Sport",
-}); */
+// createLead(dataLeads, {
+//   salutation: "Mr.",
+//   firstName: "Li",
+//   lastName: "Pengbo",
+//   phone: "+86-888-888-888",
+//   gender: "Male",
+//   organization: "HuangFeng Crossfit",
+//   websiteUrl: "https://huangfeng.com",
+//   noOfEmployees: "11-50",
+//   industry: "Sport",
+// });
 
 // showLeadsByStatus(dataLeads, "New");
 
@@ -335,4 +335,4 @@ function loadFromStorage() {
 
 // changeStatus(dataLeads, 487, "Contacted");
 
-showAllLeads(dataLeads);
+// showAllLeads(dataLeads);
