@@ -294,6 +294,7 @@ function changeStatus(leads, id, newStatus) {
       return {
         ...lead,
         status: newStatus,
+        // "Contacted" / "Nurtured" / "Canceled"
       };
     }
     return lead;
@@ -301,7 +302,7 @@ function changeStatus(leads, id, newStatus) {
 
   dataLeads = updatedStatus;
   saveToStorage(dataLeads);
-} // "Contacted" / "Nurtured" / "Canceled"
+}
 
 function saveToStorage(leads) {
   localStorage.setItem("leads", JSON.stringify(leads));
@@ -316,23 +317,25 @@ function loadFromStorage() {
   }
   return leads;
 }
+
 // ------------------------------------------------------
-/* createLead(dataLeads, {
-  salutation: "Mr.",
-  firstName: "Li",
-  lastName: "Pengbo",
-  phone: "+86-888-888-888",
-  gender: "Male",
-  organization: "HuangFeng Crossfit",
-  websiteUrl: "https://huangfeng.com",
-  noOfEmployees: "11-50",
-  industry: "Sport",
-}); */
+
+showAllLeads(dataLeads);
+
+// createLead(dataLeads, {
+//   salutation: "Mr.",
+//   firstName: "Li",
+//   lastName: "Pengbo",
+//   phone: "+86-888-888-888",
+//   gender: "Male",
+//   organization: "HuangFeng Crossfit",
+//   websiteUrl: "https://huangfeng.com",
+//   noOfEmployees: "11-50",
+//   industry: "Sport",
+// });
 
 // showLeadsByStatus(dataLeads, "New");
 
 // generateCode(dataLeads);
 
 // changeStatus(dataLeads, 487, "Contacted");
-
-showAllLeads(dataLeads);
