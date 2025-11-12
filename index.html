@@ -9,20 +9,21 @@
   </head>
 
   <body class="bg-white-100 text-gray-800">
-    <section id="display" class="flex h-screen">
+    <div id="display" class="flex h-screen">
       <aside
         id="sidebar-container"
         class="w-64 bg-indigo-50 shadow-sm flex flex-col justify-between"
       >
         <div>
           <div id="brand-container" class="px-6 py-4 border-b">
-            <a
-              ><img
+            <a>
+              <img
                 src="assets/blueberry-crm-logo.svg"
                 alt="logo"
                 width="50"
                 height="50"
-            /></a>
+              />
+            </a>
             <h1 class="text-xl font-semibold text-purple-600">Blueberry CRM</h1>
             <p class="text-sm text-gray-500">Administrator</p>
           </div>
@@ -39,6 +40,7 @@
           <p>© 2025 Blueberry CRM System</p>
         </div>
       </aside>
+
       <main id="leads-list-content" class="flex-1 p-8 overflow-auto">
         <header class="flex justify-between items-center mb-6">
           <h2 class="text-2xl font-semibold">Leads</h2>
@@ -86,7 +88,7 @@
           </table>
         </div>
       </main>
-    </section>
+    </div>
 
     <script src="/index.js"></script>
   </body>
