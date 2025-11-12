@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>CRM Leads</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body class="bg-white-100 text-gray-800">
+    <!-- Sidebar -->
+    <div class="flex h-screen">
+      <aside class="w-64 bg-indigo-50 shadow-sm flex flex-col justify-between">
+        <div>
+          <div class="px-6 py-4 border-b">
+            <h1 class="text-xl font-semibold text-purple-600">CRM</h1>
+            <p class="text-sm text-gray-500">Administrator</p>
+          </div>
+
+          <nav class="mt-4 space-y-2">
+            <a
+              href="#"
+              class="flex items-center px-6 py-2 text-gray-700 bg-gray-100 font-medium"
+            >
+              <span class="ml-2">Leads</span>
+            </a>
+            <a
+              href="#"
+              class="flex items-center px-6 py-2 text-gray-600 hover:bg-gray-100"
+            >
+              <span class="ml-2">Deals</span>
+            </a>
+          </nav>
+        </div>
+
+        <div class="px-6 py-4 text-xs text-gray-400">
+          <p>© 2025 CRM System</p>
+        </div>
+      </aside>
+
+      <!-- Main Content -->
+      <main class="flex-1 p-8 overflow-auto">
+        <div class="flex justify-between items-center mb-6">
+          <h2 class="text-2xl font-semibold">Leads</h2>
+          <button
+            id="openModal"
+            class="bg-black text-white px-4 py-2 rounded-lg hover:bg-gray-800"
+          >
+            + Create
+          </button>
+        </div>
+
+        <!-- Table -->
+        <div class="bg-white rounded-xl shadow-sm overflow-hidden">
+          <table class="min-w-full text-sm">
+            <thead class="bg-gray-50 border-b">
+              <tr>
+                <th class="px-6 py-3 text-left font-medium text-gray-500">
+                  Name
+                </th>
+                <th class="px-6 py-3 text-left font-medium text-gray-500">
+                  Organization
+                </th>
+                <th class="px-6 py-3 text-left font-medium text-gray-500">
+                  Status
+                </th>
+                <th class="px-6 py-3 text-left font-medium text-gray-500">
+                  Email
+                </th>
+                <th class="px-6 py-3 text-left font-medium text-gray-500">
+                  Mobile No
+                </th>
+                <th class="px-6 py-3 text-left font-medium text-gray-500">
+                  Assigned To
+                </th>
+                <th class="px-6 py-3 text-left font-medium text-gray-500">
+                  Last Modified
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="border-b hover:bg-gray-50">
+                <td class="px-6 py-3 font-medium">Miss Adinda</td>
+                <td class="px-6 py-3">—</td>
+                <td class="px-6 py-3">
+                  <span class="flex items-center text-gray-600"
+                    ><span class="w-2 h-2 rounded-full bg-gray-400 mr-2"></span
+                    >New</span
+                  >
+                </td>
+                <td class="px-6 py-3">dinda@email.com</td>
+                <td class="px-6 py-3">567890390</td>
+                <td class="px-6 py-3 flex items-center space-x-2">
+                  <div class="w-6 h-6 rounded-full bg-gray-300"></div>
+                  <span>Admin</span>
+                </td>
+                <td class="px-6 py-3 text-gray-500">52 minutes ago</td>
+              </tr>
+              <tr class="border-b hover:bg-gray-50">
+                <td class="px-6 py-3 font-medium">Miss Dinda Ningkasih</td>
+                <td class="px-6 py-3">—</td>
+                <td class="px-6 py-3">
+                  <span class="flex items-center text-orange-500"
+                    ><span
+                      class="w-2 h-2 rounded-full bg-orange-500 mr-2"
+                    ></span
+                    >Contacted</span
+                  >
+                </td>
+                <td class="px-6 py-3">dindadulldul@email.com</td>
+                <td class="px-6 py-3">86333333</td>
+                <td class="px-6 py-3 flex items-center space-x-2">
+                  <div class="w-6 h-6 rounded-full bg-gray-300"></div>
+                  <span>Admin</span>
+                </td>
+                <td class="px-6 py-3 text-gray-500">1 hour ago</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Pagination -->
+        <div
+          class="flex justify-between items-center mt-4 text-sm text-gray-500"
+        >
+          <div class="space-x-2">
+            <button class="px-2 py-1 border rounded">20</button>
+            <button class="px-2 py-1 border rounded">50</button>
+            <button class="px-2 py-1 border rounded">100</button>
+          </div>
+          <span>2 of 2</span>
+        </div>
+      </main>
+    </div>
+
+    <!-- Modal -->
+    <div
+      id="modal"
+      class="fixed inset-0 bg-black bg-opacity-40 flex justify-center items-center hidden"
+    >
+      <div
+        class="bg-white rounded-xl p-8 w-[600px] max-h-[90vh] overflow-y-auto"
+      >
+        <div class="flex justify-between items-center mb-4">
+          <h3 class="text-xl font-semibold">Create Lead</h3>
+          <button id="closeModal" class="text-gray-500 hover:text-gray-800">
+            &times;
+          </button>
+        </div>
+
+        <form class="space-y-4">
+          <div class="grid grid-cols-3 gap-4">
+            <select class="border rounded-lg p-2 col-span-1">
+              <option>Salutation</option>
+            </select>
+            <input
+              type="text"
+              placeholder="First Name"
+              class="border rounded-lg p-2 col-span-1"
+            />
+            <input
+              type="text"
+              placeholder="Last Name"
+              class="border rounded-lg p-2 col-span-1"
+            />
+          </div>
+
+          <div class="grid grid-cols-2 gap-4">
+            <input
+              type="email"
+              placeholder="Email"
+              class="border rounded-lg p-2"
+            />
+            <input
+              type="text"
+              placeholder="Mobile No"
+              class="border rounded-lg p-2"
+            />
+          </div>
+
+          <div class="grid grid-cols-2 gap-4">
+            <input
+              type="text"
+              placeholder="Organization"
+              class="border rounded-lg p-2"
+            />
+            <input
+              type="text"
+              placeholder="Website"
+              class="border rounded-lg p-2"
+            />
+          </div>
+
+          <div class="grid grid-cols-2 gap-4">
+            <select class="border rounded-lg p-2">
+              <option>1-10</option>
+            </select>
+            <input
+              type="text"
+              placeholder="Industry"
+              class="border rounded-lg p-2"
+            />
+          </div>
+
+          <div class="grid grid-cols-2 gap-4">
+            <input
+              type="text"
+              placeholder="Annual Revenue"
+              class="border rounded-lg p-2"
+            />
+            <select class="border rounded-lg p-2">
+              <option>Gender</option>
+            </select>
+          </div>
+
+          <div class="grid grid-cols-2 gap-4">
+            <select class="border rounded-lg p-2">
+              <option>New</option>
+              <option>Contacted</option>
+              <option>Nurture</option>
+              <option>Qualified</option>
+              <option>Unqualified</option>
+              <option>Junk</option>
+            </select>
+            <input
+              type="text"
+              placeholder="Lead Owner"
+              class="border rounded-lg p-2"
+            />
+          </div>
+
+          <div class="flex justify-end pt-4">
+            <button
+              type="submit"
+              class="bg-black text-white px-4 py-2 rounded-lg hover:bg-gray-800"
+            >
+              Create
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <script>
+      const modal = document.getElementById("modal");
+      const openModal = document.getElementById("openModal");
+      const closeModal = document.getElementById("closeModal");
+
+      openModal.onclick = () => modal.classList.remove("hidden");
+      closeModal.onclick = () => modal.classList.add("hidden");
+    </script>
+  </body>
+</html>
