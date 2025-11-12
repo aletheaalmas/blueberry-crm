@@ -132,6 +132,42 @@ function showLead(lead) {
     Assigned To     : ${lead.assignedTo ?? "N/A"}
 
 `);
+const leadRow = `<tr class="border-b hover:bg-gray-50">
+                <td class="px-6 py-3 font-medium">Mr. Shen Haoming</td>
+                <td class="px-6 py-3">Jinda Group</td>
+                <td class="px-6 py-3">
+                  <span class="flex items-center text-gray-600"
+                    ><span class="w-2 h-2 rounded-full bg-gray-400 mr-2"></span
+                    >New</span
+                  >
+                </td>
+                <td class="px-6 py-3">shenhaoming@jinda.com</td>
+                <td class="px-6 py-3">+86-123-456-7890</td>
+                <td class="px-6 py-3 flex items-center space-x-2">
+                  <div class="w-6 h-6 rounded-full bg-gray-300"></div>
+                  <span>Admin</span>
+                </td>
+                <td class="px-6 py-3 text-gray-500">52 minutes ago</td>
+              </tr>
+              <tr class="border-b hover:bg-gray-50">
+                <td class="px-6 py-3 font-medium">Ms. Xu Yan</td>
+                <td class="px-6 py-3">Yanyifang</td>
+                <td class="px-6 py-3">
+                  <span class="flex items-center text-orange-500"
+                    ><span
+                      class="w-2 h-2 rounded-full bg-orange-500 mr-2"
+                    ></span
+                    >Contacted</span
+                  >
+                </td>
+                <td class="px-6 py-3">xuyan@yanyifang.com</td>
+                <td class="px-6 py-3">+86-666-666-6663</td>
+                <td class="px-6 py-3 flex items-center space-x-2">
+                  <div class="w-6 h-6 rounded-full bg-gray-300"></div>
+                  <span>Admin</span>
+                </td>
+                <td class="px-6 py-3 text-gray-500">1 hour ago</td>
+              </tr>`;
 }
 
 function showAllLeads(leads) {
