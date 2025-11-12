@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Create Lead</title>
+  </head>
+  <body>
+    <section
+      class="fixed inset-0 bg-black bg-opacity-40 flex justify-center items-center hidden"
+    >
+      <div
+        class="bg-white rounded-xl p-8 w-[600px] max-h-[90vh] overflow-y-auto"
+      >
+        <form class="space-y-4">
+          <label id="name-with-salutation" class="grid grid-cols-3 gap-4">
+            <select class="border rounded-lg p-2 col-span-1">
+              <option>Salutation</option>
+              <option value="mr">Mr.</option>
+              <option value="ms">Ms.</option>
+              <option value="mrs">Mrs.</option>
+              <option value="dr">Dr.</option>
+            </select>
+            <input
+              type="text"
+              placeholder="First Name"
+              class="border rounded-lg p-2 col-span-1"
+            />
+            <input
+              type="text"
+              placeholder="Last Name"
+              class="border rounded-lg p-2 col-span-1"
+            />
+            <select class="border rounded-lg p-2">
+              <option>Gender</option>
+              <option value="male">Male</option>
+              <option value="ms">Female</option>
+            </select>
+          </label>
+
+          <label id="contact" class="grid grid-cols-2 gap-4">
+            <input
+              type="email"
+              placeholder="Email"
+              class="border rounded-lg p-2"
+            />
+            <input
+              type="text"
+              placeholder="Mobile No"
+              class="border rounded-lg p-2"
+            />
+          </label>
+
+          <label id="company" class="grid grid-cols-2 gap-4">
+            <input
+              type="text"
+              placeholder="Organization"
+              class="border rounded-lg p-2"
+            />
+            <input
+              type="text"
+              placeholder="Website"
+              class="border rounded-lg p-2"
+            />
+          </label>
+
+          <label id="company-details" class="grid grid-cols-2 gap-4">
+            <select class="border rounded-lg p-2">
+              <option value="1-10">1-10</option>
+              <option value="11-50">11-50</option>
+              <option value="51-200">51-200</option>
+              <option value="201-500">201-500</option>
+              <option value="501-1000">501-1000</option>
+              <option value="1000+">1000+</option>
+            </select>
+            <select class="border rounded-lg p-2">
+              <option value="">Industry</option>
+              <option value="technology">Technology</option>
+              <option value="healthcare">Healthcare</option>
+              <option value="finance">Finance</option>
+              <option value="education">Education</option>
+              <option value="manufacturing">Manufacturing</option>
+              <option value="retail">Retail</option>
+              <option value="retail">Other</option>
+            </select>
+          </label>
+
+          <div class="grid grid-cols-2 gap-4">
+            <input
+              type="text"
+              placeholder="Annual Revenue"
+              class="border rounded-lg p-2"
+            />
+          </div>
+
+          <div id="lead-status" class="grid grid-cols-2 gap-4">
+            <select class="border rounded-lg p-2">
+              <option>New</option>
+              <option>Contacted</option>
+              <option>Nurture</option>
+              <option>Qualified</option>
+              <option>Unqualified</option>
+              <option>Junk</option>
+            </select>
+            <select>
+              <option value="">Administrator</option>
+              <option value="administrator">Administrator</option>
+              <option value="user1">User 1</option>
+              <option value="user2">User 2</option>
+            </select>
+          </div>
+
+          <div class="flex justify-end pt-4">
+            <a
+              href="/create"
+              class="bg-black text-white px-4 py-2 rounded-lg hover:bg-gray-800"
+            >
+              Create
+            </a>
+          </div>
+        </form>
+      </div>
+    </section>
+  </body>
+</html>
