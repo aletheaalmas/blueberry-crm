@@ -9,21 +9,24 @@
   </head>
 
   <body class="bg-white-100 text-gray-800">
-    <section id="display" class="flex h-screen">
+    <div id="display" class="flex h-screen">
       <aside
         id="sidebar-container"
         class="w-64 bg-indigo-50 shadow-sm flex flex-col justify-between"
       >
         <div>
           <div id="brand-container" class="px-6 py-4 border-b">
-            <a
-              ><img
-                src="assets/blueberry-crm-logo.svg"
+            <a>
+              <img
+                src="/assets/blueberry-crm-logo.svg"
                 alt="logo"
                 width="50"
                 height="50"
-            /></a>
-            <h1 class="text-xl font-semibold text-purple-600">Blueberry CRM</h1>
+              />
+            </a>
+            <h1 id="app-name" class="text-xl font-semibold text-purple-600">
+              Blueberry CRM
+            </h1>
             <p class="text-sm text-gray-500">Administrator</p>
           </div>
           <nav id="navbar-container" class="mt-4 space-y-2">
@@ -33,40 +36,24 @@
             >
               <span class="ml-2">Leads</span>
             </a>
-            <a
-              href="#"
-              class="flex items-center px-6 py-2 text-gray-600 hover:bg-white"
-            >
-              <span class="ml-2">Deals</span>
-            </a>
-            <a
-              href="#"
-              class="flex items-center px-6 py-2 text-gray-600 hover:bg-white"
-            >
-              <span class="ml-2">Trash</span>
-            </a>
-            <a
-              href="#"
-              class="flex items-center px-6 py-2 text-gray-600 hover:bg-white"
-            >
-              <span class="ml-2">Settings</span>
-            </a>
           </nav>
         </div>
         <div id="footer" class="px-6 py-4 text-xs text-gray-400">
           <p>© 2025 Blueberry CRM System</p>
         </div>
       </aside>
+
       <main id="leads-list-content" class="flex-1 p-8 overflow-auto">
         <header class="flex justify-between items-center mb-6">
           <h2 class="text-2xl font-semibold">Leads</h2>
-          <button
-            id="openModal"
+          <a
+            href="/create"
             class="bg-black text-white px-4 py-2 rounded-lg hover:bg-gray-800"
           >
             + Create
-          </button>
+          </a>
         </header>
+
         <!-- Table -->
         <div
           id="leads-list"
@@ -98,193 +85,15 @@
                 </th>
               </tr>
             </thead>
-            <tbody>
-              <tr class="border-b hover:bg-gray-50">
-                <td class="px-6 py-3 font-medium">Mr. Shen Haoming</td>
-                <td class="px-6 py-3">Jinda Group</td>
-                <td class="px-6 py-3">
-                  <span class="flex items-center text-gray-600"
-                    ><span class="w-2 h-2 rounded-full bg-gray-400 mr-2"></span
-                    >New</span
-                  >
-                </td>
-                <td class="px-6 py-3">shenhaoming@jinda.com</td>
-                <td class="px-6 py-3">+86-123-456-7890</td>
-                <td class="px-6 py-3 flex items-center space-x-2">
-                  <div class="w-6 h-6 rounded-full bg-gray-300"></div>
-                  <span>Admin</span>
-                </td>
-                <td class="px-6 py-3 text-gray-500">52 minutes ago</td>
-              </tr>
-              <tr class="border-b hover:bg-gray-50">
-                <td class="px-6 py-3 font-medium">Ms. Xu Yan</td>
-                <td class="px-6 py-3">Yanyifang</td>
-                <td class="px-6 py-3">
-                  <span class="flex items-center text-orange-500"
-                    ><span
-                      class="w-2 h-2 rounded-full bg-orange-500 mr-2"
-                    ></span
-                    >Contacted</span
-                  >
-                </td>
-                <td class="px-6 py-3">xuyan@yanyifang.com</td>
-                <td class="px-6 py-3">+86-666-666-6663</td>
-                <td class="px-6 py-3 flex items-center space-x-2">
-                  <div class="w-6 h-6 rounded-full bg-gray-300"></div>
-                  <span>Admin</span>
-                </td>
-                <td class="px-6 py-3 text-gray-500">1 hour ago</td>
-              </tr>
+
+            <tbody id="leads-table-body">
+              <!-- ... -->
             </tbody>
           </table>
         </div>
-        <!-- Pagination -->
-        <div
-          class="flex justify-between items-center mt-4 text-sm text-gray-500"
-        >
-          <div class="space-x-2">
-            <button class="px-2 py-1 border rounded">20</button>
-            <button class="px-2 py-1 border rounded">50</button>
-            <button class="px-2 py-1 border rounded">100</button>
-          </div>
-          <span>2 of 2</span>
-        </div>
       </main>
-    </section>
-
-    <!-- Modal -->
-    <section
-      id="modal"
-      class="fixed inset-0 bg-black bg-opacity-40 flex justify-center items-center hidden"
-    >
-      <div
-        class="bg-white rounded-xl p-8 w-[600px] max-h-[90vh] overflow-y-auto"
-      >
-        <div class="flex justify-between items-center mb-4">
-          <h3 class="text-xl font-semibold">Create Lead</h3>
-          <button id="closeModal" class="text-gray-500 hover:text-gray-800">
-            &times;
-          </button>
-        </div>
-
-        <form class="space-y-4">
-          <label id="name-with-salutation" class="grid grid-cols-3 gap-4">
-            <select class="border rounded-lg p-2 col-span-1">
-              <option>Salutation</option>
-              <option value="mr">Mr.</option>
-              <option value="ms">Ms.</option>
-              <option value="mrs">Mrs.</option>
-              <option value="dr">Dr.</option>
-            </select>
-            <input
-              type="text"
-              placeholder="First Name"
-              class="border rounded-lg p-2 col-span-1"
-            />
-            <input
-              type="text"
-              placeholder="Last Name"
-              class="border rounded-lg p-2 col-span-1"
-            />
-            <select class="border rounded-lg p-2">
-              <option>Gender</option>
-              <option value="male">Male</option>
-              <option value="ms">Female</option>
-            </select>
-          </label>
-
-          <label id="contact" class="grid grid-cols-2 gap-4">
-            <input
-              type="email"
-              placeholder="Email"
-              class="border rounded-lg p-2"
-            />
-            <input
-              type="text"
-              placeholder="Mobile No"
-              class="border rounded-lg p-2"
-            />
-          </label>
-
-          <label id="company" class="grid grid-cols-2 gap-4">
-            <input
-              type="text"
-              placeholder="Organization"
-              class="border rounded-lg p-2"
-            />
-            <input
-              type="text"
-              placeholder="Website"
-              class="border rounded-lg p-2"
-            />
-          </label>
-
-          <label id="company-details" class="grid grid-cols-2 gap-4">
-            <select class="border rounded-lg p-2">
-              <option value="1-10">1-10</option>
-              <option value="11-50">11-50</option>
-              <option value="51-200">51-200</option>
-              <option value="201-500">201-500</option>
-              <option value="501-1000">501-1000</option>
-              <option value="1000+">1000+</option>
-            </select>
-            <select class="border rounded-lg p-2">
-              <option value="">Industry</option>
-              <option value="technology">Technology</option>
-              <option value="healthcare">Healthcare</option>
-              <option value="finance">Finance</option>
-              <option value="education">Education</option>
-              <option value="manufacturing">Manufacturing</option>
-              <option value="retail">Retail</option>
-              <option value="retail">Other</option>
-            </select>
-          </label>
-
-          <div class="grid grid-cols-2 gap-4">
-            <input
-              type="text"
-              placeholder="Annual Revenue"
-              class="border rounded-lg p-2"
-            />
-          </div>
-
-          <div id="lead-status" class="grid grid-cols-2 gap-4">
-            <select class="border rounded-lg p-2">
-              <option>New</option>
-              <option>Contacted</option>
-              <option>Nurture</option>
-              <option>Qualified</option>
-              <option>Unqualified</option>
-              <option>Junk</option>
-            </select>
-            <select>
-              <option value="">Administrator</option>
-              <option value="administrator">Administrator</option>
-              <option value="user1">User 1</option>
-              <option value="user2">User 2</option>
-            </select>
-          </div>
-
-          <div class="flex justify-end pt-4">
-            <button
-              type="submit"
-              class="bg-black text-white px-4 py-2 rounded-lg hover:bg-gray-800"
-            >
-              Create
-            </button>
-          </div>
-        </form>
-      </div>
-    </section>
+    </div>
 
     <script src="/index.js"></script>
-    <script>
-      const modal = document.getElementById("modal");
-      const openModal = document.getElementById("openModal");
-      const closeModal = document.getElementById("closeModal");
-
-      openModal.onclick = () => modal.classList.remove("hidden");
-      closeModal.onclick = () => modal.classList.add("hidden");
-    </script>
   </body>
 </html>
