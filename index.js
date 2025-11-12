@@ -111,7 +111,7 @@ const initialDataLeads = [
 
 let dataLeads = loadFromStorage();
 
-function showLead(lead) {
+function renderLead(lead) {
   const amountARR =
     lead.annualRevenueInUSD != null
       ? formatNumberInUSD(lead.annualRevenueInUSD.toString())
@@ -153,17 +153,17 @@ function showLead(lead) {
   </tr> `;
 }
 
-function showAllLeads(leads) {
-  // leads.forEach((lead) => showLead(lead));
+function renderAllLeads(leads) {
+  // leads.forEach((lead) => renderLead(lead));
   const leadsTableBodyElement = document.getElementById("leads-table-body");
-  const leadsTableRowElement = leads.map((lead) => showLead(lead)).join("");
+  const leadsTableRowElement = leads.map((lead) => renderLead(lead)).join("");
 
   leadsTableBodyElement.innerHTML = leadsTableRowElement;
 }
 
-function showLeadsByStatus(leads, status) {
+function renameLeadsByStatus(leads, status) {
   const filteredLeads = leads.filter((lead) => lead.status === status);
-  showAllLeads(filteredLeads);
+  renderAllLeads(filteredLeads);
 }
 
 function formatNumberInUSD(number) {
@@ -352,10 +352,10 @@ function loadFromStorage() {
 //   industry: "Sport",
 // });
 
-// showLeadsByStatus(dataLeads, "New");
+// renderLeadsByStatus(dataLeads, "New");
 
 // generateCode(dataLeads);
 
 // changeStatus(dataLeads, 487, "Contacted");
 
-// showAllLeads(dataLeads);
+// renderAllLeads(dataLeads);
