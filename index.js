@@ -1,4 +1,4 @@
-let dataLeads = [
+const initialDataLeads = [
   {
     id: 132,
     code: "CRM-LEAD-2025-001",
@@ -109,7 +109,14 @@ let dataLeads = [
   },
 ];
 
+let dataLeads = loadFromStorage();
+
 function showLead(lead) {
+  const amountARR =
+    lead.annualRevenueInUSD != null
+      ? formatNumberInUSD(lead.annualRevenueInUSD.toString())
+      : "N/A";
+
   console.log(` 
     ID              : ${lead.id}
     Code            : ${lead.code}
@@ -120,11 +127,7 @@ function showLead(lead) {
     Gender          : ${lead.gender}
     Organization    : ${lead.organization ?? "N/A"}
     Website URL     : ${lead.websiteUrl ?? "N/A"} 
-    ARR (USD)       : ${
-      lead.annualRevenueInUSD != null
-        ? formatNumberInUSD(lead.annualRevenueInUSD.toString())
-        : "N/A"
-    }
+    ARR (USD)       : ${amountARR}
     Industry        : ${lead.industry ?? "N/A"}  
     Assigned To     : ${lead.assignedTo ?? "N/A"}
 
@@ -152,30 +155,18 @@ function formatNumberInUSD(number) {
 function searchLeads(leads, query) {
   const q = query.toLowerCase();
 
-  const searchedLeads = leads.filter((lead) => {
-    if (lead.firstName !== null) {
-      if (lead.firstName.toLowerCase().includes(q)) {
-        return lead;
-      }
-    }
-    if (lead.lastName !== null) {
-      if (lead.lastName.toLowerCase().includes(q)) {
-        return lead;
-      }
-    }
-    if (lead.email !== null) {
-      if (lead.email.toLowerCase().includes(q)) {
-        return lead;
-      }
-    }
-    if (lead.organization !== null) {
-      if (lead.organization.toLowerCase().includes(q)) {
-        return lead;
-      }
+  const foundLeads = leads.filter((lead) => {
+    if (
+      (lead.firstName && lead.firstName.toLowerCase().includes(q)) ||
+      (lead.lastName && lead.lastName.toLowerCase().includes(q)) ||
+      (lead.email && lead.email.toLowerCase().includes(q)) ||
+      (lead.organization && lead.organization.toLowerCase().includes(q))
+    ) {
+      return lead;
     }
   });
 
-  return searchedLeads;
+  return foundLeads;
 }
 
 function generateId(items) {
@@ -240,35 +231,23 @@ function createLead(leads, leadBody) {
   const updatedLeads = [...leads, newLead];
   dataLeads = updatedLeads;
 
-  return updatedLeads;
+  saveToStorage(dataLeads);
 }
 
 function deleteLead(leads, id) {
-  const deletedLead = leads.filter((lead) => {
-    if (lead.id == id) {
-      return false;
-    } else {
-      return true;
-    }
-  });
-  return deletedLead;
+  const updatedLeads = leads.filter((lead) => lead.id !== id);
+
+  dataLeads = updatedLeads;
 }
 
-function deleteLeads(leads, idsToDelete) {
-  const deletedLeads = leads.filter((lead) => {
-    if (idsToDelete.includes(lead.id)) {
-      return false;
-    } else {
-      return true;
-    }
-  });
-
-  return deletedLeads;
+function deleteLeads(leads, ids) {
+  const updatedLeads = leads.filter((lead) => ids.includes(lead.id));
+  dataLeads = updatedLeads;
+  saveToStorage(dataLeads);
 }
 
 function updateLead(leads, id, leadBody) {
   const {
-    code,
     status,
     salutation,
     firstName,
@@ -285,51 +264,60 @@ function updateLead(leads, id, leadBody) {
   } = leadBody;
 
   const updatedLead = leads.map((lead) => {
+    if (lead.id !== id) return lead;
+
+    return {
+      ...lead,
+      code,
+      status,
+      salutation,
+      firstName,
+      lastName,
+      email,
+      phone,
+      gender,
+      organization,
+      websiteUrl,
+      noOfEmployees,
+      annualRevenueInUSD,
+      industry,
+      assignedTo,
+    };
+  });
+  dataLeads = updatedLead;
+  saveToStorage(dataLeads);
+}
+
+function changeStatus(leads, id, newStatus) {
+  const updatedStatus = leads.map((lead) => {
     if (lead.id === id) {
       return {
         ...lead,
-        code,
-        status,
-        salutation,
-        firstName,
-        lastName,
-        email,
-        phone,
-        gender,
-        organization,
-        websiteUrl,
-        noOfEmployees,
-        annualRevenueInUSD,
-        industry,
-        assignedTo,
+        status: newStatus,
       };
-    } else {
-      return lead;
     }
+    return lead;
   });
 
-  return updatedLead;
+  dataLeads = updatedStatus;
+  saveToStorage(dataLeads);
+} // "Contacted" / "Nurtured" / "Canceled"
+
+function saveToStorage(leads) {
+  localStorage.setItem("leads", JSON.stringify(leads));
 }
-// TODO: use map to update only the specified id
 
-function alertFirstNameMissing() {}
+function loadFromStorage() {
+  const leads = JSON.parse(localStorage.getItem("leads"));
 
-function alertEmailMissing() {}
-
-function alertEmailNotValid() {}
-
-function calculateAge() {}
-
-function moveLeadToTrash() {}
-
-function assignLeadToUser() {}
-
-function unassignLead() {}
-
-function changeStatus(leads, id, newStatus) {} // "Contacted" / "Nurtured" / "Canceled"
-
+  if (!leads || leads.length <= 0) {
+    saveToStorage(initialDataLeads);
+    return initialDataLeads;
+  }
+  return leads;
+}
 // ------------------------------------------------------
-createLead(dataLeads, {
+/* createLead(dataLeads, {
   salutation: "Mr.",
   firstName: "Li",
   lastName: "Pengbo",
@@ -339,10 +327,12 @@ createLead(dataLeads, {
   websiteUrl: "https://huangfeng.com",
   noOfEmployees: "11-50",
   industry: "Sport",
-});
+}); */
 
 // showLeadsByStatus(dataLeads, "New");
 
 // generateCode(dataLeads);
 
-deleteLead(dataLeads, 245);
+// changeStatus(dataLeads, 487, "Contacted");
+
+showAllLeads(dataLeads);
