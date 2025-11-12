@@ -117,44 +117,48 @@ function showLead(lead) {
       ? formatNumberInUSD(lead.annualRevenueInUSD.toString())
       : "N/A";
 
-  console.log(` 
-    ID              : ${lead.id}
-    Code            : ${lead.code}
-    Status          : ${lead.status}
-    Name            : ${lead.salutation} ${lead.lastName} ${lead.firstName} 
-    Email           : ${lead.email ?? "N/A"}
-    Phone           : ${lead.phone ?? "N/A"}
-    Gender          : ${lead.gender}
-    Organization    : ${lead.organization ?? "N/A"}
-    Website URL     : ${lead.websiteUrl ?? "N/A"} 
-    ARR (USD)       : ${amountARR}
-    Industry        : ${lead.industry ?? "N/A"}  
-    Assigned To     : ${lead.assignedTo ?? "N/A"}
-`);
+  //   console.log(`
+  //     ID              : ${lead.id}
+  //     Code            : ${lead.code}
+  //     Status          : ${lead.status}
+  //     Name            : ${lead.salutation} ${lead.lastName} ${lead.firstName}
+  //     Email           : ${lead.email ?? "N/A"}
+  //     Phone           : ${lead.phone ?? "N/A"}
+  //     Gender          : ${lead.gender}
+  //     Organization    : ${lead.organization ?? "N/A"}
+  //     Website URL     : ${lead.websiteUrl ?? "N/A"}
+  //     ARR (USD)       : ${amountARR}
+  //     Industry        : ${lead.industry ?? "N/A"}
+  //     Assigned To     : ${lead.assignedTo ?? "N/A"}
+  // `);
 
-  const leadRow = `<tr class="border-b hover:bg-gray-50">
-<td class="px-6 py-3 font-medium">${lead.salutation} ${lead.lastName} ${
-    lead.firstName
-  } </td>
-<td class="px-6 py-3">${lead.organization ?? "N/A"}</td>
-<td class="px-6 py-3">
-  <span class="flex items-center text-gray-600"
-    ><span class="w-2 h-2 rounded-full bg-gray-400 mr-2"></span
-    >New</span
-  >
-</td>
-<td class="px-6 py-3">shenhaoming@jinda.com</td>
-<td class="px-6 py-3">+86-123-456-7890</td>
-<td class="px-6 py-3 flex items-center space-x-2">
-  <div class="w-6 h-6 rounded-full bg-gray-300"></div>
-  <span>Admin</span>
-</td>
-<td class="px-6 py-3 text-gray-500">52 minutes ago</td>
-</tr>`;
+  return `<tr class="border-b hover:bg-gray-50">
+    <td class="px-6 py-3 font-medium">
+      ${lead.salutation} ${lead.lastName} ${lead.firstName}
+    </td>
+    <td class="px-6 py-3">${lead.organization ?? "N/A"}</td>
+    <td class="px-6 py-3">
+      <span class="flex items-center text-gray-600">
+        <span class="w-2 h-2 rounded-full bg-gray-400 mr-2"></span>
+        ${lead.status}
+      </span>
+    </td>
+    <td class="px-6 py-3">${lead.email ?? "N/A"}</td>
+    <td class="px-6 py-3">${lead.phone}</td>
+    <td class="px-6 py-3 flex items-center space-x-2">
+      <div class="w-6 h-6 rounded-full bg-gray-300"></div>
+      <span>Admin</span>
+    </td>
+    <td class="px-6 py-3 text-gray-500">52 minutes ago</td>
+  </tr>`;
 }
 
 function showAllLeads(leads) {
-  leads.forEach((lead) => showLead(lead));
+  const leadsTableBodyElement = document.getElementById("leads-table-body");
+
+  const leadsTableRowElements = leads.map((lead) => showLead(lead)).join("");
+
+  leadsTableBodyElement.innerHTML = leadsTableRowElements;
 }
 
 function showLeadsByStatus(leads, status) {
