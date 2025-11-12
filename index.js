@@ -111,7 +111,7 @@ const initialDataLeads = [
 
 let dataLeads = loadFromStorage();
 
-function showLead(lead) {
+function renderLead(lead) {
   const amountARR =
     lead.annualRevenueInUSD != null
       ? formatNumberInUSD(lead.annualRevenueInUSD.toString())
@@ -153,17 +153,17 @@ function showLead(lead) {
   </tr>`;
 }
 
-function showAllLeads(leads) {
+function renderAllLeads(leads) {
   const leadsTableBodyElement = document.getElementById("leads-table-body");
 
-  const leadsTableRowElements = leads.map((lead) => showLead(lead)).join("");
+  const leadsTableRowElements = leads.map((lead) => renderLead(lead)).join("");
 
   leadsTableBodyElement.innerHTML = leadsTableRowElements;
 }
 
 function showLeadsByStatus(leads, status) {
   const filteredLeads = leads.filter((lead) => lead.status === status);
-  showAllLeads(filteredLeads);
+  renderAllLeads(filteredLeads);
 }
 
 function formatNumberInUSD(number) {
@@ -343,7 +343,7 @@ function loadFromStorage() {
 
 // ------------------------------------------------------
 
-showAllLeads(dataLeads);
+renderAllLeads(dataLeads);
 
 // createLead(dataLeads, {
 //   salutation: "Mr.",
