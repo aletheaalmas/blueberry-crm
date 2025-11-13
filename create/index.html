@@ -50,20 +50,25 @@
         </div>
       </aside>
 
-      <main
-        id="create-lead-content"
-        class="bg-pink-400 flex-1 p-8 overflow-auto"
-      >
+      <main id="create-lead-content" class="flex-1 p-8 overflow-auto">
         <header
           id="create-lead-title"
-          class="flex justify-between items-center mb-6"
+          class="flex justify-between items-center max-w-6xl mt-2"
         >
           <h2 class="text-2xl font-semibold">Create Lead</h2>
+          <div id="submit-button" class="flex justify-end">
+            <a
+              type="submit"
+              class="bg-indigo-600 text-white px-6 py-2 rounded-lg hover:bg-indigo-700 transition"
+            >
+              Save
+            </a>
+          </div>
         </header>
 
         <section
           id="lead-form"
-          class="p-8 bg-white rounded-xl shadow-sm max-w-6xl mx-auto mt-6"
+          class="bg-white rounded-xl shadow-sm max-w-6xl mt-2"
         >
           <form class="space-y-8">
             <div id="lead-personal-details">
@@ -249,15 +254,6 @@
                   </select>
                 </div>
               </div>
-            </div>
-
-            <div id="submit-button" class="flex justify-end">
-              <a
-                type="submit"
-                class="bg-indigo-600 text-white px-6 py-2 rounded-lg hover:bg-indigo-700 transition"
-              >
-                Save
-              </a>
             </div>
           </form>
         </section>
