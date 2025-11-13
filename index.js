@@ -147,7 +147,12 @@ function renderLead(lead) {
     <td class="px-6 py-3">${lead.phone ?? "N/A"}</td>
     <td class="px-6 py-3 flex items-center space-x-2">
       <div class="w-6 h-6 rounded-full bg-gray-300"></div>
-      <span>${lead.assignedTo ?? "N/A"}</span>
+      <span>${lead.assignedTo ?? "Administrator"}</span>
+    </td>
+      <td class="px-6 py-3 text-gray-500">
+      <a href="/leads/?id=${
+        lead.id
+      }" class="px-6 py-3 text-left font-medium text">View</a>
     </td>
     <td class="px-6 py-3 text-gray-500">52 minutes ago</td>
   </tr> `;
