@@ -111,6 +111,8 @@ const initialDataLeads = [
 
 let dataLeads = loadFromStorage();
 
+const searchInput = document.getElementById("search-input");
+
 function renderLead(lead) {
   const amountARR =
     lead.annualRevenueInUSD != null
@@ -195,6 +197,12 @@ function searchLeads(leads, query) {
 
   return foundLeads;
 }
+
+// searchInput.addEventListener("input", (e) => {
+//   const query = e.target.value;
+//   const filtered = searchLeads(dataLeads, query);
+//   renderLead(filtered);
+// });
 
 function generateId(items) {
   const newId = items[items.length - 1].id + 1;
