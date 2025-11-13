@@ -56,25 +56,20 @@
           class="flex justify-between items-center max-w-6xl mt-2"
         >
           <h2 class="text-2xl font-semibold">Create Lead</h2>
-          <div id="submit-button" class="flex justify-end">
-            <a
-              type="submit"
-              class="bg-indigo-600 text-white px-6 py-2 rounded-lg hover:bg-indigo-700 transition"
-            >
-              Save
-            </a>
-          </div>
         </header>
 
         <section
           id="lead-form"
-          class="bg-white rounded-xl shadow-sm max-w-6xl mt-2"
+          class="flex-1 bg-white rounded-2xl shadow-sm border p-6"
         >
           <form class="space-y-8">
-            <div id="lead-personal-details">
-              <h3 class="text-lg font-semibold mb-4 text-gray-800">
-                Personal Details
-              </h3>
+            <section id="lead-personal-details">
+              <div class="flex items-center justify-between mb-4">
+                <h2 class="text-lg font-medium text-gray-700">Person</h2>
+                <!-- <button class="text-sm text-gray-400 hover:text-indigo-600">
+                  ▼
+                </button> -->
+              </div>
 
               <div id="personal-details-form" class="grid grid-cols-3 gap-6">
                 <div id="salutation-info">
@@ -139,12 +134,15 @@
                   />
                 </div>
               </div>
-            </div>
+            </section>
 
-            <div id="lead-organization-details">
-              <h3 class="text-lg font-semibold mb-4 text-gray-800">
-                Organization Details
-              </h3>
+            <section id="lead-organization-details">
+              <div class="flex items-center justify-between mb-4">
+                <h2 class="text-lg font-medium text-gray-700">Details</h2>
+                <!-- <button class="text-sm text-gray-400 hover:text-indigo-600">
+                  ▼
+                </button> -->
+              </div>
 
               <div
                 id="organization-details-form"
@@ -220,10 +218,15 @@
                   </select>
                 </div>
               </div>
-            </div>
+            </section>
 
-            <div id="other-details">
-              <h3 class="text-lg font-semibold mb-4 text-gray-800">Others</h3>
+            <section id="other-details">
+              <div class="flex items-center justify-between mb-4">
+                <h2 class="text-lg font-medium text-gray-700">Other</h2>
+                <!-- <button class="text-sm text-gray-400 hover:text-indigo-600">
+                  ▼
+                </button> -->
+              </div>
 
               <div id="others-details-form" class="grid grid-cols-3 gap-6">
                 <div id="status-info">
@@ -254,6 +257,15 @@
                   </select>
                 </div>
               </div>
+            </section>
+
+            <div id="submit-button" class="flex justify-end">
+              <a
+                type="submit"
+                class="bg-indigo-600 text-white px-6 py-2 rounded-lg hover:bg-indigo-700 transition"
+              >
+                Save
+              </a>
             </div>
           </form>
         </section>
