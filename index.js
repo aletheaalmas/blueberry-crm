@@ -363,4 +363,6 @@ function loadFromStorage() {
 
 // changeStatus(dataLeads, 487, "Contacted");
 
-// renderAllLeads(dataLeads);
+updateLead(initialDataLeads, 535, { firstName: "Zhiqiang" });
+
+renderAllLeads(dataLeads);
