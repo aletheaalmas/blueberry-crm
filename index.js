@@ -154,7 +154,6 @@ function renderLead(lead) {
         lead.id
       }" class="px-6 py-3 text-left font-medium text">View</a>
     </td>
-    <td class="px-6 py-3 text-gray-500">52 minutes ago</td>
   </tr> `;
 }
 
