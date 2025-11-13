@@ -166,7 +166,7 @@ function renderAllLeads(leads) {
   leadsTableBodyElement.innerHTML = leadsTableRowElement;
 }
 
-function renameLeadsByStatus(leads, status) {
+function renderLeadsByStatus(leads, status) {
   const filteredLeads = leads.filter((lead) => lead.status === status);
   renderAllLeads(filteredLeads);
 }
