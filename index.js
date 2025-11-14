@@ -152,9 +152,9 @@ function renderLead(lead) {
       <span>${lead.assignedTo ?? "Administrator"}</span>
     </td>
       <td class="px-6 py-3 text-gray-500">
-      <a href="/leads/?id=${
+      <a href="/lead/?id=${
         lead.id
-      }" class="px-6 py-3 text-left font-medium text">View</a>
+      }" class="px-6 py-3 text-left font-medium text-black hover:text-indigo-600">View</a>
     </td>
   </tr> `;
 }
