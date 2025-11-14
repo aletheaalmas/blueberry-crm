@@ -9,6 +9,7 @@ const initialDataLeads = [
     phone: "+86-123-456-7890",
     gender: "Male",
     organization: "Jinda Group",
+    jobTitle: "CEO",
     websiteUrl: "https://jinda.com",
     noOfEmployees: "51-200",
     annualRevenueInUSD: 1000000,
@@ -27,6 +28,7 @@ const initialDataLeads = [
     phone: "+86-666-666-666",
     gender: "Female",
     organization: "Yanyifang",
+    jobTitle: "CEO",
     websiteUrl: null,
     noOfEmployees: "11-50",
     annualRevenueInUSD: 0,
@@ -45,6 +47,7 @@ const initialDataLeads = [
     phone: "+86-123-456-7892",
     gender: "Male",
     organization: "Tianlong Corp",
+    jobTitle: "CEO",
     websiteUrl: "https://www.tianlongcorp.com",
     noOfEmployees: "201-500",
     annualRevenueInUSD: 5000000,
@@ -63,6 +66,7 @@ const initialDataLeads = [
     phone: "+86-123-456-7893",
     gender: "Female",
     organization: "Capital Investment Group",
+    jobTitle: "CEO",
     websiteUrl: "https://www.capitalgroup.com",
     noOfEmployees: "501-1000",
     annualRevenueInUSD: 15000000,
@@ -81,6 +85,7 @@ const initialDataLeads = [
     phone: "+86-123-456-7894",
     gender: "Male",
     organization: "Precision Parts Co.",
+    jobTitle: "CEO",
     websiteUrl: "https://www.precisionparts.com",
     noOfEmployees: "11-50",
     annualRevenueInUSD: 1200000,
@@ -99,6 +104,7 @@ const initialDataLeads = [
     phone: null,
     gender: "Female",
     organization: "New Venture Tech",
+    jobTitle: "CEO",
     websiteUrl: "https://www.newventuretech.com",
     noOfEmployees: "1-10",
     annualRevenueInUSD: 500000,
@@ -116,27 +122,12 @@ function renderLead(lead) {
     lead.annualRevenueInUSD != null
       ? formatNumberInUSD(lead.annualRevenueInUSD.toString())
       : "N/A";
-
-  //   console.log(`
-  //     ID              : ${lead.id}
-  //     Code            : ${lead.code}
-  //     Status          : ${lead.status}
-  //     Name            : ${lead.salutation} ${lead.lastName} ${lead.firstName}
-  //     Email           : ${lead.email ?? "N/A"}
-  //     Phone           : ${lead.phone ?? "N/A"}
-  //     Gender          : ${lead.gender}
-  //     Organization    : ${lead.organization ?? "N/A"}
-  //     Website URL     : ${lead.websiteUrl ?? "N/A"}
-  //     ARR (USD)       : ${amountARR}
-  //     Industry        : ${lead.industry ?? "N/A"}
-  //     Assigned To     : ${lead.assignedTo ?? "N/A"}
-
-  // `);
   return `<tr class="border-b hover:bg-gray-50">
     <td class="px-6 py-3 font-medium">
       ${lead.salutation} ${lead.lastName} ${lead.firstName}
     </td>
     <td class="px-6 py-3">${lead.organization ?? "N/A"}</td>
+    <td class="px-6 py-3">${lead.jobTitle ?? "N/A"}</td>
     <td class="px-6 py-3">
       <span class="flex items-center text-gray-600"
         ><span class="w-2 h-2 rounded-full bg-gray-400 mr-2"></span
@@ -234,6 +225,7 @@ function createLead(leads, leadBody) {
     phone,
     gender,
     organization,
+    jobTitle,
     websiteUrl,
     noOfEmployees,
     annualRevenueInUSD,
@@ -256,6 +248,7 @@ function createLead(leads, leadBody) {
     phone,
     gender,
     organization,
+    jobTitle,
     websiteUrl,
     noOfEmployees,
     annualRevenueInUSD,
@@ -291,6 +284,7 @@ function updateLead(leads, id, leadBody) {
     phone,
     gender,
     organization,
+    jobTitle,
     websiteUrl,
     noOfEmployees,
     annualRevenueInUSD,
@@ -312,6 +306,7 @@ function updateLead(leads, id, leadBody) {
       phone,
       gender,
       organization,
+      jobTitle,
       websiteUrl,
       noOfEmployees,
       annualRevenueInUSD,
@@ -359,6 +354,7 @@ function loadFromStorage() {
 //   phone: "+86-888-888-888",
 //   gender: "Male",
 //   organization: "HuangFeng Crossfit",
+//   jobTitle: "CEO",
 //   websiteUrl: "https://huangfeng.com",
 //   noOfEmployees: "11-50",
 //   industry: "Sport",
