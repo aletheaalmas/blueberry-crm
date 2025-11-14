@@ -50,11 +50,14 @@
         </div>
       </aside>
       <main id="leads-list-content" class="flex-1 p-8 overflow-auto">
-        <header class="flex justify-between items-center mb-6">
+        <header
+          id="leads-page-title"
+          class="flex justify-between items-center mb-6"
+        >
           <h2 class="text-2xl font-semibold">Leads</h2>
           <div id="search-bar" class="flex-1 mx-6">
             <input
-              id="search-input"
+              id="search-value"
               type="text"
               placeholder="Search leads..."
               class="w-200 border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-black"
@@ -63,18 +66,17 @@
           <a
             id="create-button"
             href="/create/"
-            class="bg-indigo-600 text-white px-4 py-2 rounded-lg hover:bg-gray-800"
+            class="bg-gray-800 text-white px-4 py-2 rounded-lg hover:bg-indigo-600"
           >
             + Create
           </a>
         </header>
 
-        <!-- Table -->
         <div
-          id="leads-list"
+          id="leads-table"
           class="bg-white rounded-xl shadow-sm overflow-hidden"
         >
-          <table class="min-w-full text-sm">
+          <table id="leads-table-header" class="min-w-full text-sm">
             <thead class="bg-gray-50 border-b">
               <tr>
                 <th class="px-6 py-3 text-left font-medium text-gray-500">
