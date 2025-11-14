@@ -111,8 +111,6 @@ const initialDataLeads = [
 
 let dataLeads = loadFromStorage();
 
-const searchInput = document.getElementById("search-input");
-
 function renderLead(lead) {
   const amountARR =
     lead.annualRevenueInUSD != null
@@ -198,11 +196,13 @@ function searchLeads(leads, query) {
   return foundLeads;
 }
 
-// searchInput.addEventListener("input", (e) => {
-//   const query = e.target.value;
-//   const filtered = searchLeads(dataLeads, query);
-//   renderLead(filtered);
-// });
+const searchInput = document.getElementById("search-value");
+
+searchInput.addEventListener("input", (e) => {
+  const query = e.target.value;
+  const filtered = searchLeads(dataLeads, query);
+  renderAllLeads(filtered);
+});
 
 function generateId(items) {
   const newId = items[items.length - 1].id + 1;
@@ -369,7 +369,5 @@ function loadFromStorage() {
 // generateCode(dataLeads);
 
 // changeStatus(dataLeads, 487, "Contacted");
-
-updateLead(initialDataLeads, 535, { firstName: "Zhiqiang" });
 
 renderAllLeads(dataLeads);
