@@ -9,16 +9,14 @@ function renderLeadDetails(lead) {
       id="lead-name-profpic"
       class="flex items-center space-x-3 mb-4"
     >
-      <div
+      <span
         class="w-10 h-10 rounded-full bg-gray-200 flex items-center justify-center text-gray-600 font-medium"
       >
-        M
-      </div>
-      <div>
-        <h2 id="lead-full-name" class="text-lg font-semibold text-gray-800">
-          v ${lead.lastName} ${lead.firstName}
-        </h2>
-      </div>
+        AB
+      </span>
+      <h2 id="lead-full-name" class="text-lg font-semibold text-gray-800">
+        ${lead.lastName} ${lead.firstName}
+      </h2>
     </div>
     <span id="lead-code" class="text-sm text-gray-500">${lead.code}</span>
     <span

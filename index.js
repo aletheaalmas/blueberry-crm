@@ -118,10 +118,6 @@ const initialDataLeads = [
 let dataLeads = loadFromStorage();
 
 function renderLead(lead) {
-  const amountARR =
-    lead.annualRevenueInUSD != null
-      ? formatNumberInUSD(lead.annualRevenueInUSD.toString())
-      : "N/A";
   return `<tr class="border-b hover:bg-gray-50">
     <td class="px-6 py-3 font-medium">
       ${lead.salutation} ${lead.lastName} ${lead.firstName}
