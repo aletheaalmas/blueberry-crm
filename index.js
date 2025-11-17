@@ -183,16 +183,9 @@ function searchLeads(leads, query) {
   return foundLeads;
 }
 
-const searchInput = document.getElementById("search-value");
-
-searchInput.addEventListener("input", (e) => {
-  const query = e.target.value;
-  const filtered = searchLeads(dataLeads, query);
-  renderAllLeads(filtered);
-});
-
 function generateId(items) {
   const newId = items[items.length - 1].id + 1;
+
   return newId;
 }
 
@@ -207,6 +200,7 @@ function generateCode(items) {
     .padStart(3, "0");
 
   lastCodeAsArray[3] = newCodePadded;
+
   const newCode = lastCodeAsArray.join("-");
 
   return newCode;
@@ -253,6 +247,7 @@ function createLead(leads, leadBody) {
   };
 
   const updatedLeads = [...leads, newLead];
+
   dataLeads = updatedLeads;
 
   saveToStorage(dataLeads);
@@ -266,7 +261,9 @@ function deleteLead(leads, id) {
 
 function deleteLeads(leads, ids) {
   const updatedLeads = leads.filter((lead) => ids.includes(lead.id));
+
   dataLeads = updatedLeads;
+
   saveToStorage(dataLeads);
 }
 
@@ -310,7 +307,9 @@ function updateLead(leads, id, leadBody) {
       assignedTo,
     };
   });
+
   dataLeads = updatedLead;
+
   saveToStorage(dataLeads);
 }
 
@@ -326,6 +325,7 @@ function changeStatus(leads, id, newStatus) {
   });
 
   dataLeads = updatedStatus;
+
   saveToStorage(dataLeads);
 }
 
@@ -340,8 +340,10 @@ function loadFromStorage() {
     saveToStorage(initialDataLeads);
     return initialDataLeads;
   }
+
   return leads;
 }
+
 // ------------------------------------------------------
 // createLead(dataLeads, {
 //   salutation: "Mr.",
