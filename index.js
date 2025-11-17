@@ -119,6 +119,14 @@ let dataLeads = loadFromStorage();
 
 function renderLead(lead) {
   return `<tr class="border-b hover:bg-gray-50">
+    <td class="px-6 py-3 text-gray-500">
+      <a
+        href="/lead/?id=${lead.id}"
+        class="text-left font-medium text-black hover:text-indigo-600"
+      >
+        <img src="/assets/icons/view.svg" alt="View" width="20" height="20" />
+      </a>
+    </td>
     <td class="whitespace-nowrap px-6 py-3 font-medium">
       ${lead.salutation} ${lead.lastName} ${lead.firstName}
     </td>
@@ -135,11 +143,6 @@ function renderLead(lead) {
     <td class="px-6 py-3 flex items-center space-x-2">
       <div class="w-6 h-6 rounded-full bg-gray-300"></div>
       <span>${lead.assignedTo ?? "Administrator"}</span>
-    </td>
-      <td class="px-6 py-3 text-gray-500">
-      <a href="/lead/?id=${
-        lead.id
-      }" class="px-6 py-3 text-left font-medium text-black hover:text-indigo-600">View</a>
     </td>
   </tr> `;
 }
