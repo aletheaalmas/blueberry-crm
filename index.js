@@ -119,11 +119,11 @@ let dataLeads = loadFromStorage();
 
 function renderLead(lead) {
   return `<tr class="border-b hover:bg-gray-50">
-    <td class="px-6 py-3 font-medium">
+    <td class="whitespace-nowrap px-6 py-3 font-medium">
       ${lead.salutation} ${lead.lastName} ${lead.firstName}
     </td>
-    <td class="px-6 py-3">${lead.organization ?? "N/A"}</td>
-    <td class="px-6 py-3">${lead.jobTitle ?? "N/A"}</td>
+    <td class="whitespace-nowrap px-6 py-3">${lead.organization ?? "N/A"}</td>
+    <td class="whitespace-nowrap px-6 py-3">${lead.jobTitle ?? "N/A"}</td>
     <td class="px-6 py-3">
       <span class="flex items-center text-gray-600"
         ><span class="w-2 h-2 rounded-full bg-gray-400 mr-2"></span
@@ -131,7 +131,7 @@ function renderLead(lead) {
       >
     </td>
     <td class="px-6 py-3">${lead.email ?? "N/A"}</td>
-    <td class="px-6 py-3">${lead.phone ?? "N/A"}</td>
+    <td class="px-6 py-3 whitespace-nowrap">${lead.phone ?? "N/A"}</td>
     <td class="px-6 py-3 flex items-center space-x-2">
       <div class="w-6 h-6 rounded-full bg-gray-300"></div>
       <span>${lead.assignedTo ?? "Administrator"}</span>
