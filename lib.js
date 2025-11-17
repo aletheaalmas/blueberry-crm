@@ -30,3 +30,29 @@ function formatNumberInUSD(number) {
 
   return formattedNumber;
 }
+
+function getInitials(firstName, lastName) {
+  const first = firstName?.[0] ?? "";
+  const last = lastName?.[0] ?? "";
+  return (first + last).toUpperCase() || "N/A";
+}
+
+function getStatusColor(status) {
+  switch (status) {
+    case "New":
+      return "bg-stone-600";
+      break;
+    case "Contacted":
+      return "bg-yellow-600";
+      break;
+    case "Qualified":
+      return "bg-indigo-600";
+      break;
+    case "Nurtured":
+      return "bg-green-600";
+      break;
+    default:
+      return "";
+      break;
+  }
+}

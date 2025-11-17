@@ -20,12 +20,7 @@ function renderLeadDetails(leads) {
     return null;
   }
 
-  // Fix typos, dynamic initials, correct organization of data and nulls, and add missing real data
-  function getInitials(firstName, lastName) {
-    const first = firstName?.[0] ?? "";
-    const last = lastName?.[0] ?? "";
-    return (first + last).toUpperCase() || "N/A";
-  }
+  const statusColor = getStatusColor(lead.status);
 
   // Improved layout: details block, grid, and metadata row
   leadDetailsElement.innerHTML = `
@@ -48,7 +43,7 @@ function renderLeadDetails(leads) {
         </div>
         <span
           id="lead-status"
-          class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-sm font-medium bg-gray-100 text-gray-800 mt-2 sm:mt-0"
+          class="${statusColor} text-white inline-flex items-center gap-2 px-3 py-1 rounded-full text-sm font-medium mt-2 sm:mt-0"
         >
           ${lead.status ?? "N/A"}
         </span>

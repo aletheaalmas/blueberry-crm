@@ -118,6 +118,8 @@ const initialDataLeads = [
 let dataLeads = loadFromStorage();
 
 function renderLead(lead) {
+  const statusColor = getStatusColor(lead.status);
+
   return `<tr class="border-b hover:bg-gray-50">
     <td class="px-6 py-3 text-gray-500">
       <a
@@ -133,10 +135,10 @@ function renderLead(lead) {
     <td class="whitespace-nowrap px-6 py-3">${lead.organization ?? "N/A"}</td>
     <td class="whitespace-nowrap px-6 py-3">${lead.jobTitle ?? "N/A"}</td>
     <td class="px-6 py-3">
-      <span class="flex items-center text-gray-600"
-        ><span class="w-2 h-2 rounded-full bg-gray-400 mr-2"></span
-        >${lead.status}</span
-      >
+      <span class="flex items-center text-gray-600">
+        <span class="w-2 h-2 rounded-full mr-2 ${statusColor}"></span>
+        <span>${lead.status}</span>
+      </span>
     </td>
     <td class="px-6 py-3">${lead.email ?? "N/A"}</td>
     <td class="px-6 py-3 whitespace-nowrap">${lead.phone ?? "N/A"}</td>
