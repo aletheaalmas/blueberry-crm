@@ -128,7 +128,7 @@ function renderLead(lead) {
       </a>
     </td>
     <td class="whitespace-nowrap px-6 py-3 font-medium">
-      ${lead.salutation} ${lead.lastName} ${lead.firstName}
+      ${lead.salutation ?? ""} ${lead.lastName ?? ""} ${lead.firstName ?? ""}
     </td>
     <td class="whitespace-nowrap px-6 py-3">${lead.organization ?? "N/A"}</td>
     <td class="whitespace-nowrap px-6 py-3">${lead.jobTitle ?? "N/A"}</td>
