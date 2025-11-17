@@ -1,82 +1,128 @@
-const initialName = dataLeads.map((lead) => {
-  const firstInitial = lead.firstName[0];
-  const lastInitial = lead.lastName[0];
-  return (firstInitial + lastInitial).toUpperCase();
-});
+let dataLeads = loadFromStorage();
 
-function renderLeadDetails(lead) {
-  return html`<div
-      id="lead-name-profpic"
-      class="flex items-center space-x-3 mb-4"
+function getLead(leads) {
+  const searchValue = window.location.search; // '?id=123'
+  const searchParams = new URLSearchParams(searchValue);
+  const id = Number(searchParams.get("id")); // 123
+
+  const lead = dataLeads.find((lead) => lead.id === id);
+
+  return lead;
+}
+
+function renderLeadDetails(leads) {
+  const leadDetailsElement = document.getElementById("lead-details");
+
+  const lead = getLead(leads);
+
+  if (!lead) {
+    leadDetailsElement.innerHTML = `<p>Lead not found</p>`;
+    return null;
+  }
+
+  const fullName = getFullName(lead);
+  const statusColor = getStatusColor(lead.status);
+
+  // Improved layout: details block, grid, and metadata row
+  leadDetailsElement.innerHTML = `
+    <div
+      class="w-full max-w-2xl mx-auto bg-white rounded-xl border shadow px-8 py-6"
     >
       <div
-        class="w-10 h-10 rounded-full bg-gray-200 flex items-center justify-center text-gray-600 font-medium"
+        class="flex flex-col sm:flex-row items-center sm:justify-between mb-6 gap-4"
       >
-        M
+        <div class="flex items-center space-x-4">
+          <img
+            class="size-16 rounded-full"
+            src="https://api.dicebear.com/9.x/initials/svg?seed=${fullName}&radius=50&size=32&"
+            alt="${fullName}"
+          />
+          <div>
+            <h2 id="lead-full-name" class="text-xl font-semibold text-gray-800">
+              ${lead.firstName ?? ""} ${lead.lastName ?? ""}
+            </h2>
+            <span id="lead-code" class="block text-xs text-gray-400 mt-1">
+              ${lead.code}
+            </span>
+          </div>
+        </div>
+        <span
+          id="lead-status"
+          class="${statusColor} text-white inline-flex items-center gap-2 px-3 py-1 rounded-full text-sm font-medium mt-2 sm:mt-0"
+        >
+          ${lead.status ?? "N/A"}
+        </span>
       </div>
-      <div>
-        <h2 id="lead-full-name" class="text-lg font-semibold text-gray-800">
-          v ${lead.lastName} ${lead.firstName}
-        </h2>
+
+      <div class="grid grid-rows-2 gap-8">
+        <div id="personal-details">
+          <h3
+            class="font-semibold text-gray-800 mb-2 uppercase tracking-wide text-sm"
+          >
+            Person
+          </h3>
+          <div class="grid grid-cols-1 gap-y-2 max-w-xs">
+            <div class="grid grid-cols-2 items-center">
+              <span class="text-gray-500">Salutation</span>
+              <span id="lead-salutation">${lead.salutation ?? "N/A"}</span>
+            </div>
+            <div class="grid grid-cols-2 items-center">
+              <span class="text-gray-500">First Name</span>
+              <span id="lead-first-name">${lead.firstName ?? "N/A"}</span>
+            </div>
+            <div class="grid grid-cols-2 items-center">
+              <span class="text-gray-500">Last Name</span>
+              <span id="lead-last-name">${lead.lastName ?? "N/A"}</span>
+            </div>
+            <div class="grid grid-cols-2 items-center">
+              <span class="text-gray-500">Gender</span>
+              <span id="lead-gender">${lead.gender ?? "N/A"}</span>
+            </div>
+            <div class="grid grid-cols-2 items-center">
+              <span class="text-gray-500">Email</span>
+              <span id="lead-email">${lead.email ?? "N/A"}</span>
+            </div>
+            <div class="grid grid-cols-2 items-center">
+              <span class="text-gray-500">Phone</span>
+              <span id="lead-phone">${lead.phone ?? "N/A"}</span>
+            </div>
+          </div>
+        </div>
+        <div id="company-details">
+          <h3
+            class="font-semibold text-gray-800 mb-2 uppercase tracking-wide text-sm"
+          >
+            Company
+          </h3>
+          <div class="grid grid-cols-2 gap-y-2 max-w-xs">
+            <span class="text-gray-500">Organization</span>
+            <span id="lead-organization">${lead.organization ?? "N/A"}</span>
+
+            <span class="text-gray-500">Job Title</span>
+            <span id="lead-job-title">${lead.jobTitle ?? "N/A"}</span>
+
+            <span class="text-gray-500">Website</span>
+            <span id="lead-website"
+              >${
+                lead.website
+                  ? `<a href="${lead.website}" class="text-indigo-600 hover:underline" target="_blank" rel="noopener">${lead.website}</a>`
+                  : "N/A"
+              }</span
+            >
+
+            <span class="text-gray-500">Industry</span>
+            <span id="lead-industry">${lead.industry ?? "N/A"}</span>
+
+            <span class="text-gray-500">Annual Revenue</span>
+            <span id="lead-arr">${lead.annualRevenue ?? "N/A"}</span>
+
+            <span class="text-gray-500">Lead Owner</span>
+            <span id="lead-owner">${lead.owner ?? "N/A"}</span>
+          </div>
+        </div>
       </div>
     </div>
-    <span id="lead-code" class="text-sm text-gray-500">${lead.code}</span>
-    <span
-      id="lead-status"
-      class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-sm font-medium bg-gray-100 text-gray-800"
-    >
-      ${lead.status}
-    </span>
-
-    <div id="lead-details" class="space-y-6 text-sm text-gray-700">
-      <div id="personal-detals">
-        <h3 class="font-semibold text-gray-800 mb-2">Person</h3>
-        <div class="space-y-1">
-          <p id="lead-salutation">
-            <span class="text-gray-500">Salutation:</span> ${lead.salutation}
-          </p>
-          <p id="lead-first-name">
-            <span class="text-gray-500">First Name:</span> ${lead.firstName}
-          </p>
-          <p id="lead-last-name">
-            <span class="text-gray-500">Last Name:</span> ${lead.lastName}
-          </p>
-          <p id="lead-gender">
-            <span class="text-gray-500">Gender:</span> ${lead.gender}
-          </p>
-          <p id="lead-email">
-            <span class="text-gray-500">Email:</span> ${lead.email ?? "N/A"}
-          </p>
-          <p id="lead-phone">
-            <span class="text-gray-500">Phone:</span> ${lead.phone ?? "N/A"}
-          </p>
-        </div>
-      </div>
-      <div id="company-details">
-        <h3 class="font-semibold text-gray-800 mb-2">Company</h3>
-        <div class="space-y-1">
-          <p id="lead-organization">
-            <span class="text-gray-500">Organization:</span>
-            ${lead.organization ?? "N/A"}
-          </p>
-          <p><span class="text-gray-500">Job Title:</span> Add Job Title...</p>
-          <p id="lead-website">
-            <span class="text-gray-500">Website:</span>
-            <a
-              href="https://weblusi.com"
-              class="text-indigo-600 hover:underline"
-              >weblusi.com</a
-            >
-          </p>
-          <p id="lead-industry">
-            <span class="text-gray-500">Industry:</span> Service
-          </p>
-
-          <p id="lead-arr">
-            <span class="text-gray-500">Annual Revenue:</span> ....
-          </p>
-          <p><span class="text-gray-500">Lead Owner:</span> Administrator</p>
-        </div>
-      </div>
-    </div>`;
+  `;
 }
+
+renderLeadDetails(dataLeads);

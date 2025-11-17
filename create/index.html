@@ -19,7 +19,7 @@
             id="sidebar-header"
             class="px-6 py-4 border-b flex items-center space-x-4"
           >
-            <a id="logo">
+            <a href="/" id="logo">
               <img
                 src="/assets/blueberry-icon2.svg"
                 alt="logo"
@@ -30,7 +30,7 @@
 
             <div>
               <h1 id="app-name" class="text-xl font-semibold text-indigo-900">
-                Blueberry CRM
+                <a href="/"> Blueberry CRM </a>
               </h1>
               <p id="user-name" class="text-sm text-gray-500">Administrator</p>
             </div>
@@ -38,7 +38,7 @@
 
           <nav id="navbar-container" class="mt-4 space-y-2">
             <a
-              href="/index.html"
+              href="/"
               class="flex items-center px-6 py-2 text-gray-700 hover:bg-white font-medium"
             >
               <span class="ml-2">Leads</span>
@@ -271,12 +271,12 @@
               </div>
             </section>
 
-            <div id="submit-button" class="flex justify-end">
+            <div id="submit-button" class="flex">
               <a
                 type="submit"
                 class="bg-indigo-600 text-white px-6 py-2 rounded-lg hover:bg-indigo-700 transition"
               >
-                Save
+                Create Lead
               </a>
             </div>
           </form>
@@ -284,6 +284,7 @@
       </main>
     </div>
 
+    <script src="/lib.js"></script>
     <script src="/create/index.js"></script>
   </body>
 </html>

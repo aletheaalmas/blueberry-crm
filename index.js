@@ -118,60 +118,63 @@ const initialDataLeads = [
 let dataLeads = loadFromStorage();
 
 function renderLead(lead) {
-  const amountARR =
-    lead.annualRevenueInUSD != null
-      ? formatNumberInUSD(lead.annualRevenueInUSD.toString())
-      : "N/A";
+  const fullName = getFullName(lead);
+  const statusColor = getStatusColor(lead.status);
+
   return `<tr class="border-b hover:bg-gray-50">
-    <td class="px-6 py-3 font-medium">
-      ${lead.salutation} ${lead.lastName} ${lead.firstName}
-    </td>
-    <td class="px-6 py-3">${lead.organization ?? "N/A"}</td>
-    <td class="px-6 py-3">${lead.jobTitle ?? "N/A"}</td>
-    <td class="px-6 py-3">
-      <span class="flex items-center text-gray-600"
-        ><span class="w-2 h-2 rounded-full bg-gray-400 mr-2"></span
-        >${lead.status}</span
+    <td class="px-6 py-3 text-gray-500">
+      <a
+        href="/lead/?id=${lead.id}"
+        class="text-left font-medium text-black hover:text-indigo-600"
       >
+        <img src="/assets/icons/view.svg" alt="View" width="20" height="20" />
+      </a>
+    </td>
+    <td class="whitespace-nowrap px-6 py-3 font-medium">
+      <div class="flex items-center gap-2">
+        <img
+          class="size-6 rounded-full"
+          src="https://api.dicebear.com/9.x/initials/svg?seed=${fullName}&radius=50&size=32&"
+          alt="${fullName}"
+        />
+        <span> ${lead.salutation ?? ""} ${fullName} </span>
+      </div>
+    </td>
+    <td class="whitespace-nowrap px-6 py-3">${lead.organization ?? "N/A"}</td>
+    <td class="whitespace-nowrap px-6 py-3">${lead.jobTitle ?? "N/A"}</td>
+    <td class="px-6 py-3">
+      <span class="flex items-center text-gray-600">
+        <span class="w-2 h-2 rounded-full mr-2 ${statusColor}"></span>
+        <span>${lead.status}</span>
+      </span>
     </td>
     <td class="px-6 py-3">${lead.email ?? "N/A"}</td>
-    <td class="px-6 py-3">${lead.phone ?? "N/A"}</td>
+    <td class="px-6 py-3 whitespace-nowrap">${lead.phone ?? "N/A"}</td>
     <td class="px-6 py-3 flex items-center space-x-2">
       <div class="w-6 h-6 rounded-full bg-gray-300"></div>
       <span>${lead.assignedTo ?? "Administrator"}</span>
-    </td>
-      <td class="px-6 py-3 text-gray-500">
-      <a href="/lead/?id=${
-        lead.id
-      }" class="px-6 py-3 text-left font-medium text-black hover:text-indigo-600">View</a>
     </td>
   </tr> `;
 }
 
 function renderAllLeads(leads) {
-  // leads.forEach((lead) => renderLead(lead));
   const leadsTableBodyElement = document.getElementById("leads-table-body");
-  const leadsTableRowElement = leads.map((lead) => renderLead(lead)).join("");
+
+  const filteredLeads = searchLeads(leads);
+
+  const leadsTableRowElement = filteredLeads
+    .map((lead) => renderLead(lead))
+    .join("");
 
   leadsTableBodyElement.innerHTML = leadsTableRowElement;
 }
 
-function renderLeadsByStatus(leads, status) {
-  const filteredLeads = leads.filter((lead) => lead.status === status);
-  renderAllLeads(filteredLeads);
-}
+function searchLeads(leads) {
+  const searchValue = window.location.search; // '?q=keyword'
+  const searchParams = new URLSearchParams(searchValue);
+  const q = searchParams.get("q"); // keyword
 
-function formatNumberInUSD(number) {
-  const formattedNumber = new Intl.NumberFormat("en-US", {
-    style: "currency",
-    currency: "USD",
-  }).format(number);
-
-  return formattedNumber;
-}
-
-function searchLeads(leads, query) {
-  const q = query.toLowerCase();
+  if (!q) return leads;
 
   const foundLeads = leads.filter((lead) => {
     if (
@@ -187,81 +190,6 @@ function searchLeads(leads, query) {
   return foundLeads;
 }
 
-const searchInput = document.getElementById("search-value");
-
-searchInput.addEventListener("input", (e) => {
-  const query = e.target.value;
-  const filtered = searchLeads(dataLeads, query);
-  renderAllLeads(filtered);
-});
-
-function generateId(items) {
-  const newId = items[items.length - 1].id + 1;
-  return newId;
-}
-
-function generateCode(items) {
-  const lastCode = items[items.length - 1].code;
-
-  let lastCodeAsArray = lastCode.split("-");
-  lastCodeAsArray[2] = new Date().getFullYear().toString();
-
-  const newCodePadded = (parseInt(lastCodeAsArray[3]) + 1)
-    .toString()
-    .padStart(3, "0");
-
-  lastCodeAsArray[3] = newCodePadded;
-  const newCode = lastCodeAsArray.join("-");
-
-  return newCode;
-}
-
-function createLead(leads, leadBody) {
-  const {
-    salutation,
-    firstName,
-    lastName,
-    email,
-    phone,
-    gender,
-    organization,
-    jobTitle,
-    websiteUrl,
-    noOfEmployees,
-    annualRevenueInUSD,
-    industry,
-  } = leadBody;
-
-  const id = generateId(leads);
-  const code = generateCode(leads);
-  const status = "New";
-  const assignedTo = null;
-
-  const newLead = {
-    id,
-    code,
-    status,
-    salutation,
-    firstName,
-    lastName,
-    email,
-    phone,
-    gender,
-    organization,
-    jobTitle,
-    websiteUrl,
-    noOfEmployees,
-    annualRevenueInUSD,
-    industry,
-    assignedTo,
-  };
-
-  const updatedLeads = [...leads, newLead];
-  dataLeads = updatedLeads;
-
-  saveToStorage(dataLeads);
-}
-
 function deleteLead(leads, id) {
   const updatedLeads = leads.filter((lead) => lead.id !== id);
 
@@ -270,7 +198,9 @@ function deleteLead(leads, id) {
 
 function deleteLeads(leads, ids) {
   const updatedLeads = leads.filter((lead) => ids.includes(lead.id));
+
   dataLeads = updatedLeads;
+
   saveToStorage(dataLeads);
 }
 
@@ -314,7 +244,9 @@ function updateLead(leads, id, leadBody) {
       assignedTo,
     };
   });
+
   dataLeads = updatedLead;
+
   saveToStorage(dataLeads);
 }
 
@@ -330,22 +262,10 @@ function changeStatus(leads, id, newStatus) {
   });
 
   dataLeads = updatedStatus;
+
   saveToStorage(dataLeads);
 }
 
-function saveToStorage(leads) {
-  localStorage.setItem("leads", JSON.stringify(leads));
-}
-
-function loadFromStorage() {
-  const leads = JSON.parse(localStorage.getItem("leads"));
-
-  if (!leads || leads.length <= 0) {
-    saveToStorage(initialDataLeads);
-    return initialDataLeads;
-  }
-  return leads;
-}
 // ------------------------------------------------------
 // createLead(dataLeads, {
 //   salutation: "Mr.",
