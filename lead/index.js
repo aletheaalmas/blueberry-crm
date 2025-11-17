@@ -20,18 +20,23 @@ function renderLeadDetails(leads) {
     return null;
   }
 
+  const fullName = getFullName(lead);
   const statusColor = getStatusColor(lead.status);
 
   // Improved layout: details block, grid, and metadata row
   leadDetailsElement.innerHTML = `
-    <div class="w-full max-w-2xl mx-auto bg-white rounded-xl border shadow px-8 py-6">
-      <div class="flex flex-col sm:flex-row items-center sm:justify-between mb-6 gap-4">
+    <div
+      class="w-full max-w-2xl mx-auto bg-white rounded-xl border shadow px-8 py-6"
+    >
+      <div
+        class="flex flex-col sm:flex-row items-center sm:justify-between mb-6 gap-4"
+      >
         <div class="flex items-center space-x-4">
-          <span
-            class="w-14 h-14 rounded-full bg-gray-200 flex items-center justify-center text-gray-600 font-bold text-xl"
-          >
-            ${getInitials(lead.firstName, lead.lastName)}
-          </span>
+          <img
+            class="size-16 rounded-full"
+            src="https://api.dicebear.com/9.x/initials/svg?seed=${fullName}&radius=50&size=32&"
+            alt="${fullName}"
+          />
           <div>
             <h2 id="lead-full-name" class="text-xl font-semibold text-gray-800">
               ${lead.firstName ?? ""} ${lead.lastName ?? ""}
@@ -51,7 +56,11 @@ function renderLeadDetails(leads) {
 
       <div class="grid grid-rows-2 gap-8">
         <div id="personal-details">
-          <h3 class="font-semibold text-gray-800 mb-2 uppercase tracking-wide text-sm">Person</h3>
+          <h3
+            class="font-semibold text-gray-800 mb-2 uppercase tracking-wide text-sm"
+          >
+            Person
+          </h3>
           <div class="grid grid-cols-1 gap-y-2 max-w-xs">
             <div class="grid grid-cols-2 items-center">
               <span class="text-gray-500">Salutation</span>
@@ -80,27 +89,33 @@ function renderLeadDetails(leads) {
           </div>
         </div>
         <div id="company-details">
-          <h3 class="font-semibold text-gray-800 mb-2 uppercase tracking-wide text-sm">Company</h3>
+          <h3
+            class="font-semibold text-gray-800 mb-2 uppercase tracking-wide text-sm"
+          >
+            Company
+          </h3>
           <div class="grid grid-cols-2 gap-y-2 max-w-xs">
             <span class="text-gray-500">Organization</span>
             <span id="lead-organization">${lead.organization ?? "N/A"}</span>
-            
+
             <span class="text-gray-500">Job Title</span>
             <span id="lead-job-title">${lead.jobTitle ?? "N/A"}</span>
-            
+
             <span class="text-gray-500">Website</span>
-            <span id="lead-website">${
-              lead.website
-                ? `<a href="${lead.website}" class="text-indigo-600 hover:underline" target="_blank" rel="noopener">${lead.website}</a>`
-                : "N/A"
-            }</span>
-            
+            <span id="lead-website"
+              >${
+                lead.website
+                  ? `<a href="${lead.website}" class="text-indigo-600 hover:underline" target="_blank" rel="noopener">${lead.website}</a>`
+                  : "N/A"
+              }</span
+            >
+
             <span class="text-gray-500">Industry</span>
             <span id="lead-industry">${lead.industry ?? "N/A"}</span>
-            
+
             <span class="text-gray-500">Annual Revenue</span>
             <span id="lead-arr">${lead.annualRevenue ?? "N/A"}</span>
-            
+
             <span class="text-gray-500">Lead Owner</span>
             <span id="lead-owner">${lead.owner ?? "N/A"}</span>
           </div>

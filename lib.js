@@ -37,6 +37,10 @@ function getInitials(firstName, lastName) {
   return (first + last).toUpperCase() || "N/A";
 }
 
+function getFullName(lead) {
+  return `${lead.firstName ?? ""} ${lead.lastName ?? ""}`.trim();
+}
+
 function getStatusColor(status) {
   switch (status) {
     case "New":

@@ -118,6 +118,7 @@ const initialDataLeads = [
 let dataLeads = loadFromStorage();
 
 function renderLead(lead) {
+  const fullName = getFullName(lead);
   const statusColor = getStatusColor(lead.status);
 
   return `<tr class="border-b hover:bg-gray-50">
@@ -130,7 +131,14 @@ function renderLead(lead) {
       </a>
     </td>
     <td class="whitespace-nowrap px-6 py-3 font-medium">
-      ${lead.salutation ?? ""} ${lead.lastName ?? ""} ${lead.firstName ?? ""}
+      <div class="flex items-center gap-2">
+        <img
+          class="size-6 rounded-full"
+          src="https://api.dicebear.com/9.x/initials/svg?seed=${fullName}&radius=50&size=32&"
+          alt="${fullName}"
+        />
+        <span> ${lead.salutation ?? ""} ${fullName} </span>
+      </div>
     </td>
     <td class="whitespace-nowrap px-6 py-3">${lead.organization ?? "N/A"}</td>
     <td class="whitespace-nowrap px-6 py-3">${lead.jobTitle ?? "N/A"}</td>
