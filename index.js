@@ -145,9 +145,13 @@ function renderLead(lead) {
 }
 
 function renderAllLeads(leads) {
-  // leads.forEach((lead) => renderLead(lead));
   const leadsTableBodyElement = document.getElementById("leads-table-body");
-  const leadsTableRowElement = leads.map((lead) => renderLead(lead)).join("");
+
+  const filteredLeads = searchLeads(leads);
+
+  const leadsTableRowElement = filteredLeads
+    .map((lead) => renderLead(lead))
+    .join("");
 
   leadsTableBodyElement.innerHTML = leadsTableRowElement;
 }
@@ -166,8 +170,10 @@ function formatNumberInUSD(number) {
   return formattedNumber;
 }
 
-function searchLeads(leads, query) {
-  const q = query.toLowerCase();
+function searchLeads(leads) {
+  const searchValue = window.location.search; // '?q=keyword'
+  const searchParams = new URLSearchParams(searchValue);
+  const q = searchParams.get("q").toLowerCase(); // keyword
 
   const foundLeads = leads.filter((lead) => {
     if (
