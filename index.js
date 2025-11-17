@@ -156,11 +156,6 @@ function renderAllLeads(leads) {
   leadsTableBodyElement.innerHTML = leadsTableRowElement;
 }
 
-function renderLeadsByStatus(leads, status) {
-  const filteredLeads = leads.filter((lead) => lead.status === status);
-  renderAllLeads(filteredLeads);
-}
-
 function formatNumberInUSD(number) {
   const formattedNumber = new Intl.NumberFormat("en-US", {
     style: "currency",
@@ -173,7 +168,9 @@ function formatNumberInUSD(number) {
 function searchLeads(leads) {
   const searchValue = window.location.search; // '?q=keyword'
   const searchParams = new URLSearchParams(searchValue);
-  const q = searchParams.get("q").toLowerCase(); // keyword
+  const q = searchParams.get("q"); // keyword
+
+  if (!q) return leads;
 
   const foundLeads = leads.filter((lead) => {
     if (
