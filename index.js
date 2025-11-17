@@ -156,15 +156,6 @@ function renderAllLeads(leads) {
   leadsTableBodyElement.innerHTML = leadsTableRowElement;
 }
 
-function formatNumberInUSD(number) {
-  const formattedNumber = new Intl.NumberFormat("en-US", {
-    style: "currency",
-    currency: "USD",
-  }).format(number);
-
-  return formattedNumber;
-}
-
 function searchLeads(leads) {
   const searchValue = window.location.search; // '?q=keyword'
   const searchParams = new URLSearchParams(searchValue);
@@ -330,21 +321,6 @@ function changeStatus(leads, id, newStatus) {
   dataLeads = updatedStatus;
 
   saveToStorage(dataLeads);
-}
-
-function saveToStorage(leads) {
-  localStorage.setItem("leads", JSON.stringify(leads));
-}
-
-function loadFromStorage() {
-  const leads = JSON.parse(localStorage.getItem("leads"));
-
-  if (!leads || leads.length <= 0) {
-    saveToStorage(initialDataLeads);
-    return initialDataLeads;
-  }
-
-  return leads;
 }
 
 // ------------------------------------------------------
