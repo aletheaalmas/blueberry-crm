@@ -121,7 +121,7 @@ function renderLead(lead) {
   const fullName = getFullName(lead);
   const statusColor = getStatusColor(lead.status);
 
-  return html`<tr class="border-b hover:bg-gray-50">
+  return `<tr class="border-b hover:bg-gray-50">
     <td class="px-6 py-3 text-gray-500">
       <a
         href="lead/?id=${lead.id}"
@@ -139,7 +139,7 @@ function renderLead(lead) {
       <div class="flex items-center gap-2">
         <img
           class="size-6 rounded-full"
-          src="https://api.dicebear.com/9.x/initials/svg?seed=${fullName}&radius=50&size=32&"
+          src="https://api.dicebear.com/9.x/initials/svg?seed=${fullName}&radius=50&size=32&backgroundColor=b6e3f4,ffd5dc,c0aede,d1d4f9,ffdfbf"
           alt="${fullName}"
         />
         <span> ${lead.salutation ?? ""} ${fullName} </span>
@@ -171,26 +171,12 @@ function renderAllLeads(leads) {
   leadsTableBodyElement.innerHTML = leadsTableRowElement;
 }
 
-function renderLeadsByStatus(leads, status) {
-  const filteredLeads = leads.filter((lead) => lead.status === status);
-  renderAllLeads(filteredLeads);
-}
-
-function formatNumberInUSD(number) {
-  const formattedNumber = new Intl.NumberFormat("en-US", {
-    style: "currency",
-    currency: "USD",
-  }).format(number);
-
-  return formattedNumber;
-}
-
 function searchLeads(leads) {
-const searchValue =window.location.search; //'q=keyword'
-const searchParams= new URLSearchParams (searchValue);
-const q = searchParams.get("q"); //keyword
+  const searchValue = window.location.search; //'?q=keyword'
+  const searchParams = new URLSearchParams(searchValue);
+  const q = searchParams.get("q"); //keyword
 
-if (!q) return leads;
+  if (!q) return leads;
 
   const foundLeads = leads.filter((lead) => {
     if (
@@ -205,13 +191,6 @@ if (!q) return leads;
 
   return foundLeads;
 }
-
-
-
-
-
-
-
 
 // ------------------------------------------------------
 // createLead(dataLeads, {
