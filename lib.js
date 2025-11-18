@@ -20,6 +20,11 @@ function getAmmountARR(annualRevenueInUSD) {
   return amountARR;
 }
 
+function renderLeadsByStatus(leads, status) {
+  const filteredLeads = leads.filter((lead) => lead.status === status);
+  renderAllLeads(filteredLeads);
+}
+
 function formatNumberInUSD(number) {
   const formattedNumber = new Intl.NumberFormat("en-US", {
     style: "currency",
