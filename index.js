@@ -122,7 +122,7 @@ function renderLead(lead) {
   const statusColor = getStatusColor(lead.status);
 
   return `<tr class="border-b hover:bg-gray-50">
-    <td class="px-6 py-3 text-gray-500">
+    <td class="flex content-between gap-2 px-6 py-3 text-gray-500">
       <a
         href="lead/?id=${lead.id}"
         class="text-left font medium text-black hover:text-indigo-600"
@@ -130,8 +130,17 @@ function renderLead(lead) {
         <img
           src="/assets/icons/list-ul.svg"
           alt="View"
-          width="20"
-          height="20"
+          width="15"
+          height="15"
+        />
+      </a>
+      <a
+      >
+        <img
+          src="/assets/icons/bin.svg"
+          alt="View"
+          width="15"
+          height="15"
         />
       </a>
     </td>
