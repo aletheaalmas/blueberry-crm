@@ -1,3 +1,23 @@
+function generateId(items) {
+  const newId = items[items.length - 1].id + 1;
+  return newId;
+}
+
+function generateCode(items) {
+  const lastCode = items[items.length - 1].code;
+
+  let lastCodeAsArray = lastCode.split("-");
+  lastCodeAsArray[2] = new Date().getFullYear().toString();
+
+  const newCodePadded = (parseInt(lastCodeAsArray[3]) + 1)
+    .toString()
+    .padStart(3, "0");
+
+  lastCodeAsArray[3] = newCodePadded;
+  const newCode = lastCodeAsArray.join("-");
+
+  return newCode;
+}
 function createLead(leads, leadBody) {
   const {
     salutation,
