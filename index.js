@@ -163,10 +163,11 @@ function renderLead(lead) {
 }
 
 function renderAllLeads(leads) {
-  // leads.forEach((lead) => renderLead(lead));
   const leadsTableBodyElement = document.getElementById("leads-table-body");
-  const leadsTableRowElement = leads.map((lead) => renderLead(lead)).join("");
-
+  const filteredLeads = searchLeads(leads);
+  const leadsTableRowElement = filteredLeads
+    .map((lead) => renderLead(lead))
+    .join("");
   leadsTableBodyElement.innerHTML = leadsTableRowElement;
 }
 
@@ -184,8 +185,12 @@ function formatNumberInUSD(number) {
   return formattedNumber;
 }
 
-function searchLeads(leads, query) {
-  const q = query.toLowerCase();
+function searchLeads(leads) {
+const searchValue =window.location.search; //'q=keyword'
+const searchParams= new URLSearchParams (searchValue);
+const q = searchParams.get("q"); //keyword
+
+if (!q) return leads;
 
   const foundLeads = leads.filter((lead) => {
     if (
@@ -201,13 +206,7 @@ function searchLeads(leads, query) {
   return foundLeads;
 }
 
-const searchInput = document.getElementById("search-value");
 
-searchInput.addEventListener("input", (e) => {
-  const query = e.target.value;
-  const filtered = searchLeads(dataLeads, query);
-  renderAllLeads(filtered);
-});
 
 function generateId(items) {
   const newId = items[items.length - 1].id + 1;
