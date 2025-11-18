@@ -80,3 +80,74 @@ function renderLeadDetails(lead) {
       </div>
     </div>`;
 }
+
+function deleteLead(leads, id) {
+  const updatedLeads = leads.filter((lead) => lead.id !== id);
+
+  dataLeads = updatedLeads;
+}
+
+function deleteLeads(leads, ids) {
+  const updatedLeads = leads.filter((lead) => ids.includes(lead.id));
+  dataLeads = updatedLeads;
+  saveToStorage(dataLeads);
+}
+
+function updateLead(leads, id, leadBody) {
+  const {
+    status,
+    salutation,
+    firstName,
+    lastName,
+    email,
+    phone,
+    gender,
+    organization,
+    jobTitle,
+    websiteUrl,
+    noOfEmployees,
+    annualRevenueInUSD,
+    industry,
+    assignedTo,
+  } = leadBody;
+
+  const updatedLead = leads.map((lead) => {
+    if (lead.id !== id) return lead;
+
+    return {
+      ...lead,
+      code,
+      status,
+      salutation,
+      firstName,
+      lastName,
+      email,
+      phone,
+      gender,
+      organization,
+      jobTitle,
+      websiteUrl,
+      noOfEmployees,
+      annualRevenueInUSD,
+      industry,
+      assignedTo,
+    };
+  });
+  dataLeads = updatedLead;
+  saveToStorage(dataLeads);
+}
+
+function changeStatus(leads, id, newStatus) {
+  const updatedStatus = leads.map((lead) => {
+    if (lead.id === id) {
+      return {
+        ...lead,
+        status: newStatus,
+      };
+    }
+    return lead;
+  });
+
+  dataLeads = updatedStatus;
+  saveToStorage(dataLeads);
+}
