@@ -118,29 +118,46 @@ const initialDataLeads = [
 let dataLeads = loadFromStorage();
 
 function renderLead(lead) {
-  
-  return `<tr class="border-b hover:bg-gray-50">
-    <td class="px-6 py-3 font-medium">
-      ${lead.salutation} ${lead.lastName} ${lead.firstName}
-    </td>
-    <td class="px-6 py-3">${lead.organization ?? "N/A"}</td>
-    <td class="px-6 py-3">${lead.jobTitle ?? "N/A"}</td>
-    <td class="px-6 py-3">
-      <span class="flex items-center text-gray-600"
-        ><span class="w-2 h-2 rounded-full bg-gray-400 mr-2"></span
-        >${lead.status}</span
+  const fullName = getFullName(lead);
+  const statusColor = getStatusColor(lead.status);
+
+  return html`<tr class="border-b hover:bg-gray-50">
+    <td class="px-6 py-3 text-gray-500">
+      <a
+        href="lead/?id=${lead.id}"
+        class="text-left font medium text-black hover:text-indigo-600"
       >
+        <img
+          src="/assets/icons/list-ul.svg"
+          alt="View"
+          width="20"
+          height="20"
+        />
+      </a>
+    </td>
+    <td class="whitespace-nowrap px-6 py-3 font-medium">
+      <div class="flex items-center gap-2">
+        <img
+          class="size-6 rounded-full"
+          src="https://api.dicebear.com/9.x/initials/svg?seed=${fullName}&radius=50&size=32&"
+          alt="${fullName}"
+        />
+        <span> ${lead.salutation ?? ""} ${fullName} </span>
+      </div>
+    </td>
+    <td class="whitespace-nowrap px-6 py-3">${lead.organization ?? "N/A"}</td>
+    <td class="whitespace-nowrap px-6 py-3">${lead.jobTitle ?? "N/A"}</td>
+    <td class="px-6 py-3">
+      <span class="flex items-center text-gray-600">
+        <span class="w-2 h-2 rounded-full mr-2 ${statusColor}"></span>
+        <span>${lead.status}</span>
+      </span>
     </td>
     <td class="px-6 py-3">${lead.email ?? "N/A"}</td>
-    <td class="px-6 py-3">${lead.phone ?? "N/A"}</td>
+    <td class="px-6 py-3 whitespace-nowrap ">${lead.phone ?? "N/A"}</td>
     <td class="px-6 py-3 flex items-center space-x-2">
       <div class="w-6 h-6 rounded-full bg-gray-300"></div>
       <span>${lead.assignedTo ?? "Administrator"}</span>
-    </td>
-      <td class="px-6 py-3 text-gray-500">
-      <a href="/lead/?id=${
-        lead.id
-      }" class="px-6 py-3 text-left font-medium text-black hover:text-indigo-600">View</a>
     </td>
   </tr> `;
 }
