@@ -1,8 +1,14 @@
-const initialName = dataLeads.map((lead) => {
-  const firstInitial = lead.firstName[0];
-  const lastInitial = lead.lastName[0];
-  return (firstInitial + lastInitial).toUpperCase();
-});
+let dataLeads = loadFromStorage();
+
+function getLead(leads) {
+  const searchValue = window.location.search;
+  const searchParam = new URLSearchParams(searchValue);
+  const id = Number(searchParam.get("id"));
+
+  const lead = dataLeads.find((lead) => lead.id === id);
+
+  return lead;
+}
 
 function renderLeadDetails(lead) {
   return html`<div
