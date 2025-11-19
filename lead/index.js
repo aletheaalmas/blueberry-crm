@@ -22,6 +22,9 @@ function renderLeadDetails(leads) {
 
   const fullName = getFullName(lead);
   const statusColor = getStatusColor(lead.status);
+  const amountARR = !lead.annualRevenueInUSD
+    ? "N/A"
+    : formatNumberInUSD(lead.annualRevenueInUSD.toString());
 
   leadDetailsElement.innerHTML = ` <div
     class="w-full max-w-xl mx-auto bg-white rounded-xl border shadow px-8 py-6"
@@ -100,17 +103,17 @@ function renderLeadDetails(leads) {
               <span class="text-gray-500">Website</span>
               <span id="lead-website"
                 >${
-                  lead.website
-                    ? `<a href="${lead.website}" class="text-indigo-600 hover:underline" target="_blank" rel="noopener">${lead.website}</a>`
+                  lead.websiteUrl
+                    ? `<a href="${lead.websiteUrl}" class="text-indigo-600 hover:underline" target="_blank" rel="noopener">${lead.websiteUrl}</a>`
                     : "N/A"
                 }</span
               >
               <span class="text-gray-500">Industry</span>
             <span id="lead-industry">${lead.industry ?? "N/A"}</span>
             <span class="text-gray-500">Annual Revenue</span>
-            <span id="lead-arr">${lead.annualRevenue ?? "N/A"}</span>
+            <span id="lead-arr">${amountARR}</span>
             <span class="text-gray-500">Lead Owner</span>
-            <span id="lead-owner">${lead.owner ?? "N/A"}</span>
+            <span id="lead-owner">${lead.assignedTo ?? "N/A"}</span>
           </div>
             </div>
           </div>
