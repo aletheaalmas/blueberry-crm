@@ -123,8 +123,6 @@ function renderLeadDetails(leads) {
      `;
 }
 
-renderLeadDetails(dataLeads);
-
 function deleteLead(leads, id) {
   const updatedLeads = leads.filter((lead) => lead.id !== id);
 
@@ -195,3 +193,6 @@ function changeStatus(leads, id, newStatus) {
   dataLeads = updatedStatus;
   saveToStorage(dataLeads);
 }
+
+// ------------------------------------------------------
+renderLeadDetails(dataLeads);

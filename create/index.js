@@ -18,6 +18,7 @@ function generateCode(items) {
 
   return newCode;
 }
+
 function createLead(leads, leadBody) {
   const {
     salutation,
@@ -63,3 +64,5 @@ function createLead(leads, leadBody) {
 
   saveToStorage(dataLeads);
 }
+
+// ------------------------------------------------------
