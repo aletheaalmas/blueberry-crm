@@ -112,6 +112,8 @@ function renderLeadDetails(leads) {
             <span id="lead-industry">${lead.industry ?? "N/A"}</span>
             <span class="text-gray-500">Annual Revenue</span>
             <span id="lead-arr">${amountARR}</span>
+            <span class="text-gray-500">No. of Employees</span>
+            <span id="lead-employee">${lead.noOfEmployees}</span>
             <span class="text-gray-500">Lead Owner</span>
             <span id="lead-owner">${lead.assignedTo ?? "N/A"}</span>
           </div>
