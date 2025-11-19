@@ -35,7 +35,7 @@ function renderLeadDetails(leads) {
       <div class="flex items-center space-x-4">
         <img
           class="size-16 rounded-full"
-          src="https://api.dicebear.com/9.x/initials/svg?seed=${fullName}&radius=50&size=32&"
+          src="https://api.dicebear.com/9.x/initials/svg?seed=${fullName}&radius=50&size=32&backgroundColor=b6e3f4,ffd5dc,c0aede,d1d4f9,ffdfbf"
           alt="${fullName}"
         />
         <div>
