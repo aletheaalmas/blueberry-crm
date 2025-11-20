@@ -58,12 +58,9 @@
           <h2 class="text-2xl font-semibold">Create Lead</h2>
         </header>
 
-        <section
-          id="lead-form"
-          class="flex-1 bg-white rounded-2xl shadow-sm border p-6"
-        >
-          <form class="space-y-8">
-            <section id="lead-personal-details">
+        <section class="flex-1 bg-white rounded-2xl shadow-sm border p-6">
+          <form id="create-form" method="post" class="space-y-8">
+            <section id="personal-details">
               <div class="flex items-center justify-between mb-4">
                 <h2 class="text-lg font-medium text-gray-700">Person</h2>
                 <!-- <button class="text-sm text-gray-400 hover:text-indigo-600">
@@ -72,12 +69,12 @@
               </div>
 
               <div id="personal-details-form" class="grid grid-cols-3 gap-6">
-                <div id="salutation-info">
+                <div>
                   <label class="block text-sm text-gray-500 mb-1"
                     >Salutation</label
                   >
                   <select
-                    id="salutation-option"
+                    name="salutation-option"
                     class="w-full border rounded-lg px-3 py-2 focus:ring-2 focus:ring-indigo-500"
                   >
                     <option>Select Salutation</option>
@@ -93,7 +90,7 @@
                     >First Name</label
                   >
                   <input
-                    id="first-name-input"
+                    name="first-name-input"
                     type="text"
                     placeholder="First Name"
                     class="w-full border rounded-lg px-3 py-2 focus:ring-2 focus:ring-indigo-500"
@@ -105,7 +102,7 @@
                     >Last Name</label
                   >
                   <input
-                    id="last-name-input"
+                    name="last-name-input"
                     type="text"
                     placeholder="Last Name"
                     class="w-full border rounded-lg px-3 py-2 focus:ring-2 focus:ring-indigo-500"
@@ -115,21 +112,19 @@
                 <div id="email-info">
                   <label class="block text-sm text-gray-500 mb-1">Email</label>
                   <input
-                    id="email-input"
+                    name="email-input"
                     type="email"
                     placeholder="Email"
                     class="w-full border rounded-lg px-3 py-2 focus:ring-2 focus:ring-indigo-500"
                   />
                 </div>
 
-                <div id="mobile-info">
-                  <label class="block text-sm text-gray-500 mb-1"
-                    >Mobile No</label
-                  >
+                <div id="phone-info">
+                  <label class="block text-sm text-gray-500 mb-1">Phone</label>
                   <input
-                    id="mobile-input"
+                    name="phone-input"
                     type="text"
-                    placeholder="Mobile No"
+                    placeholder="Phone No"
                     class="w-full border rounded-lg px-3 py-2 focus:ring-2 focus:ring-indigo-500"
                   />
                 </div>
@@ -153,7 +148,7 @@
                     >Organization</label
                   >
                   <input
-                    id="organization-input"
+                    name="organization-input"
                     type="text"
                     placeholder="Organization"
                     class="w-full border rounded-lg px-3 py-2 focus:ring-2 focus:ring-indigo-500"
@@ -165,7 +160,7 @@
                     >Job Title</label
                   >
                   <input
-                    id="website-input"
+                    name="job-title-input"
                     type="text"
                     placeholder="Job Title"
                     class="w-full border rounded-lg px-3 py-2 focus:ring-2 focus:ring-indigo-500"
@@ -177,7 +172,7 @@
                     >Website</label
                   >
                   <input
-                    id="website-input"
+                    name="website-input"
                     type="text"
                     placeholder="Website"
                     class="w-full border rounded-lg px-3 py-2 focus:ring-2 focus:ring-indigo-500"
@@ -189,7 +184,7 @@
                     >Industry</label
                   >
                   <select
-                    id="industry-select"
+                    name="industry-option"
                     class="w-full border rounded-lg px-3 py-2 focus:ring-2 focus:ring-indigo-500"
                   >
                     <option value="">Select Industry</option>
@@ -206,7 +201,7 @@
                     >Annual Revenue</label
                   >
                   <input
-                    id="arr-input"
+                    name="arr-input"
                     type="text"
                     placeholder="Annual Revenue (USD)"
                     class="w-full border rounded-lg px-3 py-2 focus:ring-2 focus:ring-indigo-500"
@@ -218,7 +213,7 @@
                     >Number of Employee</label
                   >
                   <select
-                    id="number-of-employee-select"
+                    name="employees-option"
                     class="w-full border rounded-lg px-3 py-2 focus:ring-2 focus:ring-indigo-500"
                   >
                     <option value="1-10">1-10</option>
@@ -244,7 +239,7 @@
                 <div id="status-info">
                   <label class="block text-sm text-gray-500 mb-1">Status</label>
                   <select
-                    id="status-option"
+                    name="status-option"
                     class="w-full border rounded-lg px-3 py-2 focus:ring-2 focus:ring-indigo-500"
                   >
                     <option>New</option>
@@ -260,7 +255,7 @@
                     >Lead Owner</label
                   >
                   <select
-                    id="lead-owner-option"
+                    name="lead-owner-option"
                     class="w-full border rounded-lg px-3 py-2 focus:ring-2 focus:ring-indigo-500"
                   >
                     <option>Administrator</option>
@@ -272,12 +267,12 @@
             </section>
 
             <div id="submit-button" class="flex">
-              <a
+              <button
                 type="submit"
                 class="bg-indigo-600 text-white px-6 py-2 rounded-lg hover:bg-indigo-700 transition"
               >
                 Create Lead
-              </a>
+              </button>
             </div>
           </form>
         </section>
