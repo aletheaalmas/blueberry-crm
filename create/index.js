@@ -93,27 +93,4 @@ createLeadFormElement.addEventListener("submit", (event) => {
   createLead(dataLeads, newLeadData);
 });
 
-// subscribeFormElement.addEventListener("submit", function (e) {
-//   e.preventDefault();
-//   const formData = new FormData(subscribeFormElement);
-
-//   const subscribeData = {
-//     salutation: formData.get("salutation-option"),
-//     firstName: formData.get("first-name-input"),
-//     lastName: formData.get("last-name-input"),
-//     email: formData.get("email-input"),
-//     phone: formData.get("phone-input"),
-//     organization: formData.get("organiation-input"),
-//     jobTitle: formData.get("job-title-input"),
-//     websiteUrl: formData.get("website-input"),
-//     industry: formData.get("industry-option"),
-//     annualRevenueInUSD: formData.get("arr-input"),
-//     noOfEmployees: formData.get("employees-option"),
-//     status: formData.get("status-option"),
-//     assignedTo: formData.get("lead-owner-option"),
-//   };
-
-//   console.log(subscribeData);
-// });
-
 // ------------------------------------------------------
