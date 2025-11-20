@@ -77,17 +77,17 @@
                     name="salutation-option"
                     class="w-full border rounded-lg px-3 py-2 focus:ring-2 focus:ring-indigo-500"
                   >
-                    <option>Select Salutation</option>
-                    <option>Mr.</option>
-                    <option>Ms.</option>
-                    <option>Mrs.</option>
-                    <option>Dr.</option>
+                    <option value="">Select Salutation</option>
+                    <option value="Mr">Mr.</option>
+                    <option value="Ms.">Ms.</option>
+                    <option value="Mrs.">Mrs.</option>
+                    <option Value="Dr.">Dr.</option>
                   </select>
                 </div>
 
                 <div id="first-name-info">
                   <label class="block text-sm text-gray-500 mb-1"
-                    >First Name</label
+                    >First Name*</label
                   >
                   <input
                     name="first-name-input"
@@ -227,15 +227,12 @@
               </div>
             </section>
 
-            <section id="other-details">
+            <!-- status will be 'new' & lead owner will be 'null' <section id="other-details">
               <div class="flex items-center justify-between mb-4">
                 <h2 class="text-lg font-medium text-gray-700">Other</h2>
-                <!-- <button class="text-sm text-gray-400 hover:text-indigo-600">
-                  ▼
-                </button> -->
-              </div>
+              </div> -->
 
-              <div id="others-details-form" class="grid grid-cols-3 gap-6">
+              <!-- 
                 <div id="status-info">
                   <label class="block text-sm text-gray-500 mb-1">Status</label>
                   <select
@@ -263,7 +260,7 @@
                     <option>User 2</option>
                   </select>
                 </div>
-              </div>
+              </div> -->
             </section>
 
             <div id="submit-button" class="flex">
