@@ -43,7 +43,12 @@ function renderLead(lead) {
     <td class="px-6 py-3">${lead.email ?? "N/A"}</td>
     <td class="px-6 py-3 whitespace-nowrap ">${lead.phone ?? "N/A"}</td>
     <td class="px-6 py-3 flex items-center space-x-2">
-      <div class="w-6 h-6 rounded-full bg-gray-300"></div>
+      <div class="w-6 h-6 rounded-full bg-gray-300">
+      <img
+          class="size-6 rounded-full"
+          src="https://api.dicebear.com/9.x/lorelei/svg?seed=${lead.assignedTo}&radius=50&size=32&backgroundColor=b6e3f4,ffd5dc,c0aede,d1d4f9,ffdfbf"
+          alt="${lead.assigned}"
+        /></div>
       <span>${lead.assignedTo ?? "Administrator"}</span>
     </td>
   </tr> `;
