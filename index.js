@@ -80,6 +80,7 @@ function deleteLead(leads, id) {
   const updatedLeads = leads.filter((lead) => lead.id !== id);
 
   dataLeads = updatedLeads;
+  saveToStorage(dataLeads);
   renderAllLeads(dataLeads);
 }
 
