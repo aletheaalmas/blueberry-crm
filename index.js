@@ -1,4 +1,3 @@
-
 function renderLead(lead) {
   const fullName = getFullName(lead);
   const statusColor = getStatusColor(lead.status);
@@ -16,15 +15,9 @@ function renderLead(lead) {
           height="15"
         />
       </a>
-      <a
-      >
-        <img
-          src="/assets/icons/bin.svg"
-          alt="View"
-          width="15"
-          height="15"
-        />
-      </a>
+      <button onclick="deleteLead(dataLeads, ${lead.id})">
+        <img src="/assets/icons/bin.svg" alt="View" width="15" height="15" />
+      </button>
     </td>
     <td class="whitespace-nowrap px-6 py-3 font-medium">
       <div class="flex items-center gap-2">
@@ -81,6 +74,19 @@ function searchLeads(leads) {
   });
 
   return foundLeads;
+}
+
+function deleteLead(leads, id) {
+  const updatedLeads = leads.filter((lead) => lead.id !== id);
+
+  dataLeads = updatedLeads;
+  renderAllLeads(dataLeads);
+}
+
+function deleteLeads(leads, ids) {
+  const updatedLeads = leads.filter((lead) => ids.includes(lead.id));
+  dataLeads = updatedLeads;
+  saveToStorage(dataLeads);
 }
 
 // ------------------------------------------------------
