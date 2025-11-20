@@ -63,6 +63,9 @@ function createLead(leads, leadBody) {
   dataLeads = updatedLeads;
 
   saveToStorage(dataLeads);
+
+  
+
 }
 
 const createLeadFormElement = document.getElementById("create-form");
@@ -77,7 +80,7 @@ createLeadFormElement.addEventListener("submit", (event) => {
     lastName: formData.get("last-name-input"),
     email: formData.get("email-input"),
     phone: formData.get("phone-input"),
-    organization: formData.get("organiation-input"),
+    organization: formData.get("organization-input"),
     jobTitle: formData.get("job-title-input"),
     websiteUrl: formData.get("website-input"),
     industry: formData.get("industry-option"),
@@ -87,7 +90,7 @@ createLeadFormElement.addEventListener("submit", (event) => {
     assignedTo: formData.get("lead-owner-option"),
   };
 
-  console.log(newLeadData);
+  createLead(dataLeads, newLeadData);
 });
 
 // subscribeFormElement.addEventListener("submit", function (e) {
