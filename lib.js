@@ -11,7 +11,7 @@ const initialDataLeads = [
     organization: "Jinda Group",
     jobTitle: "CEO",
     websiteUrl: "https://jinda.com",
-    noOfEmployees: "51-200",
+    employeesCountRange: "51-200",
     annualRevenueInUSD: 1000000,
     industry: "Retail",
     status: "New",
@@ -30,7 +30,7 @@ const initialDataLeads = [
     organization: "Yanyifang",
     jobTitle: "CEO",
     websiteUrl: null,
-    noOfEmployees: "11-50",
+    employeesCountRange: "11-50",
     annualRevenueInUSD: 0,
     industry: "Manufacturing",
     status: "Contacted",
@@ -49,7 +49,7 @@ const initialDataLeads = [
     organization: "Tianlong Corp",
     jobTitle: "CEO",
     websiteUrl: "https://www.tianlongcorp.com",
-    noOfEmployees: "201-500",
+    employeesCountRange: "201-500",
     annualRevenueInUSD: 5000000,
     industry: "Technology",
     status: "Qualified",
@@ -68,7 +68,7 @@ const initialDataLeads = [
     organization: "Capital Investment Group",
     jobTitle: "CEO",
     websiteUrl: "https://www.capitalgroup.com",
-    noOfEmployees: "501-1000",
+    employeesCountRange: "501-1000",
     annualRevenueInUSD: 15000000,
     industry: "Finance",
     status: "Nurtured",
@@ -87,7 +87,7 @@ const initialDataLeads = [
     organization: "Precision Parts Co.",
     jobTitle: "CEO",
     websiteUrl: "https://www.precisionparts.com",
-    noOfEmployees: "11-50",
+    employeesCountRange: "11-50",
     annualRevenueInUSD: 1200000,
     industry: "Manufacturing",
     status: "Contacted",
@@ -106,7 +106,7 @@ const initialDataLeads = [
     organization: "New Venture Tech",
     jobTitle: "CEO",
     websiteUrl: "https://www.newventuretech.com",
-    noOfEmployees: "1-10",
+    employeesCountRange: "1-10",
     annualRevenueInUSD: 500000,
     industry: null,
     status: "New",
@@ -131,7 +131,7 @@ function loadFromStorage() {
   return leads;
 }
 
-function getAmmountARR(annualRevenueInUSD) {
+function getAmountARR(annualRevenueInUSD) {
   const amountARR =
     lead.annualRevenueInUSD != null
       ? formatNumberInUSD(lead.annualRevenueInUSD.toString())
@@ -184,4 +184,16 @@ function getStatusColor(status) {
       return "";
       break;
   }
+}
+
+function fixWebsiteUrl(text) {
+  if (!text) {
+    return null;
+  }
+
+  if (!text.includes("http")) {
+    return `https://${text}`;
+  }
+
+  return text;
 }

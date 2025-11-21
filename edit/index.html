@@ -5,19 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Lead Details</title>
 
-    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
   </head>
 
   <body class="bg-white-100 text-gray-800">
-    <div id="display" class="flex h-screen">
+    <div id="display" class="flex min-h-screen">
       <aside
         id="sidebar-container"
-        class="w-49 bg-indigo-50 shadow-sm flex flex-col justify-between"
+        class="w-52 bg-indigo-50 shadow-sm flex flex-col justify-between"
       >
         <div>
           <div
             id="sidebar-header"
-            class="px-4 py-4 border-b flex items-center space-x-2"
+            class="px-4 py-4 flex items-center space-x-2"
           >
             <a href="/" id="logo">
               <img
@@ -50,20 +50,12 @@
         </div>
       </aside>
 
-      <main
-        id="lead-details"
-        class="flex flex-1 gap-6 p-6 bg-gray-50 w-full h-screen overflow-y-auto"
-      >
-      <form id="edit-form" method="post">
-       <section class="flex-1 bg-white rounded-2xl shadow-sm border p-6"></section>
-        <!-- Lead Details -->
-    
-      </section>
-      </form>
+      <main id="lead-details" class="flex flex-1 gap-6 p-6 bg-gray-50 w-full">
+        <!-- Render Edit Lead Form -->
       </main>
     </div>
 
     <script src="/lib.js"></script>
-    <script src="index.js"></script>
+    <script src="/edit/index.js"></script>
   </body>
 </html>
