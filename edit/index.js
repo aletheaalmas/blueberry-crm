@@ -297,3 +297,31 @@ function changeStatus(leads, id, newStatus) {
   dataLeads = updatedStatus;
   saveToStorage(dataLeads);
 }
+
+// const createLeadFormElement = document.getElementById("create-form");
+
+// createLeadFormElement.addEventListener("submit", (event) => {
+//   event.preventDefault();
+//   const formData = new FormData(createLeadFormElement);
+
+//   const newLeadData = {
+//     salutation: formData.get("salutation-option"),
+//     firstName: formData.get("first-name-input"),
+//     lastName: formData.get("last-name-input"),
+//     email: formData.get("email-input"),
+//     phone: formData.get("phone-input"),
+//     organization: formData.get("organization-input"),
+//     jobTitle: formData.get("job-title-input"),
+//     websiteUrl: formData.get("website-input"),
+//     industry: formData.get("industry-option"),
+//     annualRevenueInUSD: formData.get("arr-input"),
+//     noOfEmployees: formData.get("employees-option"),
+//     status: formData.get("status-option"),
+//     assignedTo: formData.get("lead-owner-option"),
+//   };
+
+//   createLead(dataLeads, newLeadData);
+// });
+
+const editLeadFormElement = document.getElementById("edit-form");
+console.log (editLeadFormElement);
