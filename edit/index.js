@@ -51,7 +51,7 @@ function renderLeadDetails(leads) {
                 alt="${lead.assigned}"
               />
             </div>
-            <select class="bg-indigo-200 text-white">
+            <select class="bg-indigo-200 text-gray-500">
               <option selected>${lead.assignedTo ?? "Administrator"}</option>
               <option value="Administrator">Administrator</option>
               <option value="User 1">User 1</option>
@@ -62,13 +62,14 @@ function renderLeadDetails(leads) {
             id="lead-status"
             class="${statusColor} text-white inline-flex items-center gap-2 px-3 py-1 rounded-lg text-sm font-medium mt-2 sm:mt-0"
           >
-            <select class="${statusColor} text-white">
+            <select class="${statusColor} text-gray-500">
               <option selected>${lead.status}</option>
-              <option value="New">New</option>
-              <option value="Contacted">Contacted</option>
-              <option value="Nurtured">Nurtured</option>
-              <option value="Qualified">Qualified</option>
-              <option value="Junk">Junk</option>
+              <option value="New" class="bg-stone-200 ">New</option>
+              <option value="Contacted" class="bg-yellow-200">Contacted</option>
+             <option value="Qualified" class="bg-indigo-200">Qualified</option>
+              <option value="Nurtured" class="bg-green-200">Nurtured</option>
+              
+              <option value="Junk" class="bg-red-200">Junk</option>
             </select>
           </span>
         </div>

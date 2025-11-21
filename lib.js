@@ -166,19 +166,19 @@ function getFullName(lead) {
 function getStatusColor(status) {
   switch (status) {
     case "New":
-      return "bg-stone-600";
+      return "bg-stone-200";
       break;
     case "Contacted":
-      return "bg-yellow-600";
+      return "bg-yellow-200";
       break;
     case "Qualified":
-      return "bg-indigo-600";
+      return "bg-indigo-200";
       break;
     case "Nurtured":
-      return "bg-green-600";
+      return "bg-green-200";
       break;
     case "Junk":
-      return "bg-red-600";
+      return "bg-red-200";
       break;
     default:
       return "";
