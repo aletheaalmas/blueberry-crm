@@ -64,8 +64,7 @@ function createLead(leads, leadBody) {
 
   saveToStorage(dataLeads);
 
-  
-
+  window.location = `/lead/?id=${newLead.id}`;
 }
 
 const createLeadFormElement = document.getElementById("create-form");
@@ -92,5 +91,3 @@ createLeadFormElement.addEventListener("submit", (event) => {
 
   createLead(dataLeads, newLeadData);
 });
-
-// ------------------------------------------------------
