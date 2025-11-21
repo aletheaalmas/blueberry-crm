@@ -101,7 +101,7 @@ createLeadFormElement.addEventListener("submit", (event) => {
     annualRevenueInUSD: Number(formData.get("arr")),
     employeesCountRange: formData.get("employees-count-range"),
     status: formData.get("status"),
-    assignedTo: formData.get("lead-owner"),
+    assignedTo: formData.get("assigned-to"),
   };
 
   createLead(dataLeads, newLeadData);

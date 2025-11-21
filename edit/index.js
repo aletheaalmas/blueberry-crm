@@ -1,5 +1,7 @@
 const assignees = ["Administrator", "User 1", "User 2"];
 const statuses = ["New", "Contacted", "Qualified", "Nurtured", "Junk"];
+const salutations = [];
+const industries = [];
 
 function getLead(leads) {
   const searchValue = window.location.search;
@@ -12,7 +14,7 @@ function getLead(leads) {
 }
 
 function renderLeadDetails(leads) {
-  const leadDetailsElement = document.getElementById("lead-details");
+  const leadDetailsElement = document.getElementById("lead-details"); // main#lead-details
 
   const lead = getLead(leads);
 
@@ -28,52 +30,53 @@ function renderLeadDetails(leads) {
     : formatNumberInUSD(lead.annualRevenueInUSD.toString());
 
   leadDetailsElement.innerHTML = `
-    <section class="flex-1 bg-white rounded-2xl shadow-sm border p-6">
-      <div
-        class="flex flex-col sm:flex-row items-center sm:justify-between mb-6 gap-4"
-      >
-        <div>
-          <h1 class="text-xl font-semibold text-gray-800">
-            Leads /
-            <span id="lead-name" class="text-indigo-600"
-              >${lead.salutation} ${fullName}</span
-            >
-          </h1>
-          <span id="lead-code" class="block text-xs text-gray-400 mt-1 mb-6">
-            ${lead.code}
-          </span>
-        </div>
-        <div class="flex gap-2">
-          <span
-            id="lead-owner"
-            class="bg-indigo-200 text-white inline-flex items-center gap-2 px-3 py-1 rounded-lg text-sm font-medium mt-2 sm:mt-0"
-            ><div class="w-6 h-6 rounded-full bg-indigo-200">
-              <img
-                class="size-6 rounded-full"
-                src="https://api.dicebear.com/9.x/lorelei/svg?seed=${
-                  lead.assignedTo
-                }&radius=50&size=32&backgroundColor=b6e3f4,ffd5dc,c0aede,d1d4f9,ffdfbf"
-                alt="${lead.assignedTo}"
-              />
-            </div>
-            <select name="assigned-to" class="bg-indigo-200 text-gray-500">
-              ${assignees.map((assignee) => {
-                return `<option value="${assignee}"
+    <form id="edit-form" method="post">
+      <section class="flex-1 bg-white rounded-2xl shadow-sm p-6">
+        <div
+          class="flex flex-col sm:flex-row items-center sm:justify-between mb-6 gap-4"
+        >
+          <div>
+            <h1 class="text-xl font-semibold text-gray-800">
+              Leads /
+              <span id="lead-name" class="text-indigo-600">
+                ${lead.salutation} ${fullName}
+              </span>
+            </h1>
+            <span id="lead-code" class="block text-xs text-gray-400 mt-1 mb-6">
+              ${lead.code}
+            </span>
+          </div>
+          <div class="flex gap-2">
+            <span
+              id="assigned-to"
+              class="bg-indigo-200 text-white inline-flex items-center gap-2 px-3 py-1 rounded-lg text-sm font-medium mt-2 sm:mt-0"
+              ><div class="w-6 h-6 rounded-full bg-indigo-200">
+                <img
+                  class="size-6 rounded-full"
+                  src="https://api.dicebear.com/9.x/lorelei/svg?seed=${
+                    lead.assignedTo
+                  }&radius=50&size=32&backgroundColor=b6e3f4,ffd5dc,c0aede,d1d4f9,ffdfbf"
+                  alt="${lead.assignedTo}"
+                />
+              </div>
+              <select name="assigned-to" class="bg-indigo-200 text-gray-500">
+                ${assignees.map((assignee) => {
+                  return `<option value="${assignee}"
                  ${assignee === lead.assignedTo ? "selected" : ""}
                 >
                   ${assignee}
                 </option>`;
-              })}
-            </select>
-          </span>
-          <span
-            id="lead-status"
-            class="${statusColor} text-white inline-flex items-center gap-2 px-3 py-1 rounded-lg text-sm font-medium mt-2 sm:mt-0"
-          >
-            <select name="status" class="${statusColor} text-gray-500">
-              ${statuses
-                .map((status) => {
-                  return `
+                })}
+              </select>
+            </span>
+            <span
+              id="lead-status"
+              class="${statusColor} text-white inline-flex items-center gap-2 px-3 py-1 rounded-lg text-sm font-medium mt-2 sm:mt-0"
+            >
+              <select name="status" class="${statusColor} text-gray-500">
+                ${statuses
+                  .map((status) => {
+                    return `
                   <option
                     value="${status}"
                     class="${statusColor}"
@@ -82,174 +85,182 @@ function renderLeadDetails(leads) {
                     ${status}
                   </option>
                 `;
-                })
-                .join("")}
-            </select>
-          </span>
+                  })
+                  .join("")}
+              </select>
+            </span>
+          </div>
         </div>
-      </div>
-      <div id="left-content-data" class="space-y-8">
-        <section id="person-detail">
-          <div
-            id="left-content-person-header"
-            class="flex items-center justify-between mb-4"
+        <div id="left-content-data" class="space-y-8">
+          <section id="person-detail">
+            <div
+              id="left-content-person-header"
+              class="flex items-center justify-between mb-4"
+            >
+              <h2 class="text-lg font-medium text-gray-700">Person</h2>
+            </div>
+
+            <div
+              id="left-content-person-form"
+              class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"
+            >
+              <div id="left-salutation">
+                <label class="block text-sm text-gray-500 mb-1"
+                  >Salutation</label
+                >
+
+                <select
+                  name="salutation"
+                  class="w-full border border-gray-200 rounded-lg px-3 py-2 bg-gray-50 appearance-none text-gray-500"
+                >
+                  <option selected>${lead.salutation}</option>
+                  <option value="Mr">Mr.</option>
+                  <option value="Ms.">Ms.</option>
+                  <option value="Mrs.">Mrs.</option>
+                  <option value="Dr.">Dr.</option>
+                </select>
+              </div>
+              <div id="left-first-name">
+                <label class="block text-sm text-gray-500 mb-1"
+                  >First Name<span class="text-red-500">*</span></label
+                >
+                <input
+                  type="text"
+                  name="first-name"
+                  class="w-full border border-gray-200 rounded-lg px-3 py-2 bg-gray-50"
+                  value=${lead.firstName}
+                />
+              </div>
+              <div>
+                <label class="block text-sm text-gray-500 mb-1"
+                  >Last Name</label
+                >
+                <input
+                  type="text"
+                  name="last-name"
+                  class="w-full border border-gray-200 rounded-lg px-3 py-2 bg-gray-50"
+                />
+              </div>
+              <div>
+                <label class="block text-sm text-gray-500 mb-1">Email</label>
+                <input
+                  type="text"
+                  name="email"
+                  class="w-full border border-gray-200 rounded-lg px-3 py-2 bg-gray-50"
+                />
+              </div>
+              <div>
+                <label class="block text-sm text-gray-500 mb-1">Email</label>
+                <input
+                  type="email"
+                  name="secondary-email"
+                  class="w-full border border-gray-200 rounded-lg px-3 py-2 bg-gray-50"
+                />
+              </div>
+              <div>
+                <label class="block text-sm text-gray-500 mb-1">Phone</label>
+                <input
+                  type="text"
+                  name="phone"
+                  class="w-full border border-gray-200 rounded-lg px-3 py-2 bg-gray-50"
+                />
+              </div>
+            </div>
+          </section>
+
+          <section id="organization-details">
+            <div class="flex items-center justify-between mb-4">
+              <h2 class="text-lg font-medium text-gray-700">Details</h2>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+              <div>
+                <label class="block text-sm text-gray-500 mb-1"
+                  >Organization</label
+                >
+                <input
+                  type="text"
+                  name="organization"
+                  class="w-full border border-gray-200 rounded-lg px-3 py-2 bg-gray-50"
+                />
+              </div>
+              <div>
+                <label class="block text-sm text-gray-500 mb-1"
+                  >Job Title</label
+                >
+                <input
+                  type="text"
+                  name="job-title"
+                  class="w-full border border-gray-200 rounded-lg px-3 py-2 bg-gray-50"
+                />
+              </div>
+              <div>
+                <label class="block text-sm text-gray-500 mb-1">Website</label>
+                <input
+                  type="text"
+                  name="website-url"
+                  class="w-full border border-gray-200 rounded-lg px-3 py-2 bg-gray-50"
+                />
+              </div>
+              <div>
+                <label class="block text-sm text-gray-500 mb-1">Industry</label>
+
+                <select
+                  name="industry"
+                  class="w-full border border-gray-200 rounded-lg px-3 py-2 bg-gray-50 appearance-none text-gray-500"
+                >
+                  <option selected>${lead.industry}</option>
+                  <option value="Technology">Technology</option>
+                  <option value="Healthcare">Healthcare</option>
+                  <option value="Finance">Finance</option>
+                  <option value="Education">Education</option>
+                  <option value="Service">Service</option>
+                  <option value="Retail">Retail</option>
+                  <option value="Manufacture">Manufacture</option>
+                </select>
+              </div>
+              <div>
+                <label class="block text-sm text-gray-500 mb-1"
+                  >Annual Revenue</label
+                >
+                <input
+                  type="text"
+                  name="arr"
+                  class="w-full border border-gray-200 rounded-lg px-3 py-2 bg-gray-50"
+                />
+              </div>
+              <div>
+                <label class="block text-sm text-gray-500 mb-1"
+                  >No. of Employees</label
+                >
+
+                <select
+                  name="employees-count-range"
+                  class="w-full border border-gray-200 rounded-lg px-3 py-2 bg-gray-50 appearance-none text-gray-500"
+                >
+                  <option selected>${lead.employeesCountRange}</option>
+
+                  <option value="1-10">1-10</option>
+                  <option value="11-50">11-50</option>
+                  <option value="51-200">51-200</option>
+                  <option value="201-500">201-500</option>
+                  <option value="501-1000">501-1000</option>
+                  <option value="1000+">1000+</option>
+                </select>
+              </div>
+            </div>
+          </section>
+        </div>
+        <div id="submit-button" class="flex mt-6">
+          <button
+            type="submit"
+            class="bg-indigo-600 text-white px-6 py-2 rounded-lg hover:bg-indigo-700 transition"
           >
-            <h2 class="text-lg font-medium text-gray-700">Person</h2>
-          </div>
-
-          <div
-            id="left-content-person-form"
-            class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"
-          >
-            <div id="left-salutation">
-              <label class="block text-sm text-gray-500 mb-1">Salutation</label>
-
-              <select
-                name="salutation"
-                class="w-full border rounded-lg px-3 py-2 bg-gray-50 appearance-none text-gray-500"
-              >
-                <option selected>${lead.salutation}</option>
-                <option value="Mr">Mr.</option>
-                <option value="Ms.">Ms.</option>
-                <option value="Mrs.">Mrs.</option>
-                <option value="Dr.">Dr.</option>
-              </select>
-            </div>
-            <div id="left-first-name">
-              <label class="block text-sm text-gray-500 mb-1"
-                >First Name<span class="text-red-500">*</span></label
-              >
-              <input
-                type="text"
-                name="first-name"
-                class="w-full border rounded-lg px-3 py-2 bg-gray-50"
-              />
-            </div>
-            <div>
-              <label class="block text-sm text-gray-500 mb-1">Last Name</label>
-              <input
-                type="text"
-                name="last-name"
-                class="w-full border rounded-lg px-3 py-2 bg-gray-50"
-              />
-            </div>
-            <div>
-              <label class="block text-sm text-gray-500 mb-1">Email</label>
-              <input
-                type="text"
-                name="email"
-                class="w-full border rounded-lg px-3 py-2 bg-gray-50"
-              />
-            </div>
-            <div>
-              <label class="block text-sm text-gray-500 mb-1">Email</label>
-              <input
-                type="email"
-                name="secondary-email"
-                class="w-full border rounded-lg px-3 py-2 bg-gray-50"
-              />
-            </div>
-            <div>
-              <label class="block text-sm text-gray-500 mb-1">Phone</label>
-              <input
-                type="text"
-                name="phone"
-                class="w-full border rounded-lg px-3 py-2 bg-gray-50"
-              />
-            </div>
-          </div>
-        </section>
-
-        <section id="organization-details">
-          <div class="flex items-center justify-between mb-4">
-            <h2 class="text-lg font-medium text-gray-700">Details</h2>
-          </div>
-
-          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-            <div>
-              <label class="block text-sm text-gray-500 mb-1"
-                >Organization</label
-              >
-              <input
-                type="text"
-                name="organization"
-                class="w-full border rounded-lg px-3 py-2 bg-gray-50"
-              />
-            </div>
-            <div>
-              <label class="block text-sm text-gray-500 mb-1">Job Title</label>
-              <input
-                type="text"
-                name="job-title"
-                class="w-full border rounded-lg px-3 py-2 bg-gray-50"
-              />
-            </div>
-            <div>
-              <label class="block text-sm text-gray-500 mb-1">Website</label>
-              <input
-                type="text"
-                name="website-url"
-                class="w-full border rounded-lg px-3 py-2 bg-gray-50"
-              />
-            </div>
-            <div>
-              <label class="block text-sm text-gray-500 mb-1">Industry</label>
-
-              <select
-                name="industry"
-                class="w-full border rounded-lg px-3 py-2 bg-gray-50 appearance-none text-gray-500"
-              >
-                <option selected>${lead.industry}</option>
-                <option value="Technology">Technology</option>
-                <option value="Healthcare">Healthcare</option>
-                <option value="Finance">Finance</option>
-                <option value="Education">Education</option>
-                <option value="Service">Service</option>
-                <option value="Retail">Retail</option>
-                <option value="Manufacture">Manufacture</option>
-              </select>
-            </div>
-            <div>
-              <label class="block text-sm text-gray-500 mb-1"
-                >Annual Revenue</label
-              >
-              <input
-                type="text"
-                name="arr"
-                class="w-full border rounded-lg px-3 py-2 bg-gray-50"
-              />
-            </div>
-            <div>
-              <label class="block text-sm text-gray-500 mb-1"
-                >No. of Employees</label
-              >
-
-              <select
-                name="employees-count-range"
-                class="w-full border rounded-lg px-3 py-2 bg-gray-50 appearance-none text-gray-500"
-              >
-                <option selected>${lead.employeesCountRange}</option>
-
-                <option value="1-10">1-10</option>
-                <option value="11-50">11-50</option>
-                <option value="51-200">51-200</option>
-                <option value="201-500">201-500</option>
-                <option value="501-1000">501-1000</option>
-                <option value="1000+">1000+</option>
-              </select>
-            </div>
-          </div>
-        </section>
-      </div>
-      <div id="submit-button" class="flex mt-6">
-        <button
-          type="submit"
-          class="bg-indigo-600 text-white px-6 py-2 rounded-lg hover:bg-indigo-700 transition"
-        >
-          Save
-        </button>
-      </div>
-    </section>
+            Save
+          </button>
+        </div>
+      </section>
+    </form>
   `;
 }
 
@@ -314,4 +325,17 @@ function changeStatus(leads, id, newStatus) {
 }
 
 const editLeadFormElement = document.getElementById("edit-form");
-console.log(editLeadFormElement);
+
+editLeadFormElement.addEventListener("submit", (event) => {
+  event.preventDefault();
+
+  const formData = new FormData(editLeadFormElement);
+
+  const newLeadData = {
+    status: formData.get("status"),
+
+    assignedTo: formData.get("assigned-to"),
+  };
+
+  console.log(newLeadData);
+});
