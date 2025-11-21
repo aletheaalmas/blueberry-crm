@@ -24,96 +24,167 @@ function renderLeadDetails(leads) {
     ? "N/A"
     : formatNumberInUSD(lead.annualRevenueInUSD.toString());
 
-  leadDetailsElement.innerHTML = `
-   <section
-          id="right-content"
-          class="w-[340px] bg-white border rounded-2xl shadow-sm p-5"
+  leadDetailsElement.innerHTML =`
+    <section
+      class="flex-1 bg-white rounded-2xl shadow-sm border p-6"
+    >
+      <h1 class="text-xl font-semibold text-gray-800 mb-6">
+        Leads /
+        <span id="lead-name" class="text-indigo-600"
+          >${lead.salutation} ${fullName}</span
         >
-          <div
-            id="right-content-header"
-            class="flex items-center justify-between mb-5"
-          ></div>
+      </h1>
 
-          <div id="lead-name-profpic" class="flex items-center space-x-3 mb-4">
-            <div
-              class="w-10 h-10 rounded-full bg-gray-200 flex items-center justify-center text-gray-600 font-medium"
-            >
-              M
+      <div id="left-content-data" class="space-y-8">
+        <section id="person-detail">
+          <div
+            id="left-content-person-header"
+            class="flex items-center justify-between mb-4"
+          >
+            <h2 class="text-lg font-medium text-gray-700">Person</h2>
+          </div>
+
+          <div
+            id="left-content-person-form"
+            class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"
+          >
+            <div id="left-salutation">
+              <label class="block text-sm text-gray-500 mb-1">Salutation</label>
+
+              <select
+                class="w-full border rounded-lg px-3 py-2 bg-gray-50 appearance-none text-gray-500"
+              >
+                <option selected>${lead.salutation}</option>
+                 <option value="Mr">Mr.</option>
+                    <option value="Ms.">Ms.</option>
+                    <option value="Mrs.">Mrs.</option>
+                    <option Value="Dr.">Dr.</option>
+              </select>
+            </div>
+            <div id="left-first-name">
+              <label class="block text-sm text-gray-500 mb-1"
+                >First Name<span class="text-red-500">*</span></label
+              >
+              <input
+                type="text"
+                placeholder="${lead.firstName}"
+                class="w-full border rounded-lg px-3 py-2 bg-gray-50"
+              />
             </div>
             <div>
-              <h2
-                id="lead-full-name"
-                class="text-lg font-semibold text-gray-800"
-              >
-                Ms Zhao Lusi
-              </h2>
+              <label class="block text-sm text-gray-500 mb-1">Last Name</label>
+              <input
+                type="text"
+                placeholder="${lead.lastName}"
+                class="w-full border rounded-lg px-3 py-2 bg-gray-50"
+              />
             </div>
-          </div>
-          <span id="lead-code" class="text-sm text-gray-500"
-            >CRM-LEAD-2025-00004</span
-          >
-          <span
-            id="lead-status"
-            class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-sm font-medium bg-gray-100 text-gray-800"
-          >
-            Contacted
-          </span>
-
-          <div id="lead-details" class="space-y-6 text-sm text-gray-700">
-            <div id="personal-detals">
-              <h3 class="font-semibold text-gray-800 mb-2">Person</h3>
-              <div class="space-y-1">
-                <p id="lead-salutation">
-                  <span class="text-gray-500">Salutation:</span> Ms
-                </p>
-                <p id="lead-first-name">
-                  <span class="text-gray-500">First Name:</span> Zhao
-                </p>
-                <p id="lead-last-name">
-                  <span class="text-gray-500">Last Name:</span> Lusi
-                </p>
-                <p id="lead-gender">
-                  <span class="text-gray-500">Gender:</span> Female
-                </p>
-                <p id="lead-email">
-                  <span class="text-gray-500">Email:</span> zhaolusi@gmail.com
-                </p>
-                <p id="lead-phone">
-                  <span class="text-gray-500">Phone:</span> 67890-345678
-                </p>
-              </div>
+            <div>
+              <label class="block text-sm text-gray-500 mb-1">Email</label>
+              <input
+                type="text"
+                placeholder="${lead.gender}"
+                class="w-full border rounded-lg px-3 py-2 bg-gray-50"
+              />
             </div>
-            <div id="company-details">
-              <h3 class="font-semibold text-gray-800 mb-2">Company</h3>
-              <div class="space-y-1">
-                <p id="lead-organization">
-                  <span class="text-gray-500">Organization:</span> Jinda
-                </p>
-                <p>
-                  <span class="text-gray-500">Job Title:</span> Add Job Title...
-                </p>
-                <p id="lead-website">
-                  <span class="text-gray-500">Website:</span>
-                  <a
-                    href="https://weblusi.com"
-                    class="text-indigo-600 hover:underline"
-                    >weblusi.com</a
-                  >
-                </p>
-                <p id="lead-industry">
-                  <span class="text-gray-500">Industry:</span> Service
-                </p>
-
-                <p id="lead-arr">
-                  <span class="text-gray-500">Annual Revenue:</span> ....
-                </p>
-                <p>
-                  <span class="text-gray-500">Lead Owner:</span> Administrator
-                </p>
-              </div>
+            <div>
+              <label class="block text-sm text-gray-500 mb-1">Email</label>
+              <input
+                type="email"
+                placeholder="${lead.email}"
+                class="w-full border rounded-lg px-3 py-2 bg-gray-50"
+              />
+            </div>
+            <div>
+              <label class="block text-sm text-gray-500 mb-1">Phone</label>
+              <input
+                type="text"
+                placeholder="${lead.phone}"
+                class="w-full border rounded-lg px-3 py-2 bg-gray-50"
+              />
             </div>
           </div>
         </section>
+
+        <section id="organization-details">
+          <div class="flex items-center justify-between mb-4">
+            <h2 class="text-lg font-medium text-gray-700">Details</h2>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            <div>
+              <label class="block text-sm text-gray-500 mb-1"
+                >Organization</label
+              >
+              <input
+                type="text"
+                placeholder="${lead.organization}"
+                class="w-full border rounded-lg px-3 py-2 bg-gray-50"
+              />
+            </div>
+            <div>
+              <label class="block text-sm text-gray-500 mb-1"
+                >Job Title</label
+              >
+              <input
+                type="text"
+                placeholder="${lead.jobTitle}"
+                class="w-full border rounded-lg px-3 py-2 bg-gray-50"
+              />
+            </div>
+            <div>
+              <label class="block text-sm text-gray-500 mb-1">Website</label>
+              <input
+                type="text"
+                placeholder="${lead.websiteUrl}"
+                class="w-full border rounded-lg px-3 py-2 bg-gray-50"
+              />
+            </div>
+            <div >
+              <label class="block text-sm text-gray-500 mb-1">Industry</label>
+
+              <select
+                class="w-full border rounded-lg px-3 py-2 bg-gray-50 appearance-none text-gray-500"
+              >
+                <option selected>${lead.industry}</option>
+               <option value="Technology">Technology</option>
+                    <option value="Healthcare">Healthcare</option>
+                    <option value="Finance">Finance</option>
+                    <option value="Education">Education</option>
+                    <option value="Service">Service</option>
+                    <option value="Retail">Retail</option>
+                    <option value="Manufacture">Manufacture</option>
+              </select>
+            </div>
+            <div>
+              <label class="block text-sm text-gray-500 mb-1">Annual Revenue</label>
+              <input
+                type="text"
+                placeholder="${amountARR}"
+                class="w-full border rounded-lg px-3 py-2 bg-gray-50"
+              />
+            </div>
+            <div >
+              <label class="block text-sm text-gray-500 mb-1">No. of Employeesy</label>
+
+              <select
+                class="w-full border rounded-lg px-3 py-2 bg-gray-50 appearance-none text-gray-500"
+              >
+                <option selected>${lead.noOfEmployees}</option>
+      
+                    <option value="1-10">1-10</option>
+                    <option value="11-50">11-50</option>
+                    <option value="51-200">51-200</option>
+                    <option value="201-500">201-500</option>
+                    <option value="501-1000">501-1000</option>
+                    <option value="1000+">1000+</option>
+              </select>
+            </div>
+           
+          </div>
+        </section>
+      </div>
+    </section>
   `;
 }
 
