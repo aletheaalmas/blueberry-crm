@@ -50,15 +50,15 @@
         </div>
       </aside>
 
-      <main id="create-lead-content" class="flex-1 p-8 overflow-auto">
-        <header
+      <main id="create-lead-content" class="flex-1 bg-gray-50 p-8 overflow-auto">
+        <section class="flex-1 bg-white rounded-2xl shadow-sm border p-6">
+          <header
           id="create-lead-title"
           class="flex justify-between items-center max-w-6xl mt-2"
         >
           <h2 class="text-2xl font-semibold">Create Lead</h2>
         </header>
 
-        <section class="flex-1 bg-white rounded-2xl shadow-sm border p-6">
           <form id="create-form" method="post" class="space-y-8">
             <section id="personal-details">
               <div class="flex items-center justify-between mb-4">
@@ -227,6 +227,14 @@
                   </select>
                 </div>
               </div>
+              <div id="submit-button" class="flex mt-6">
+              <button
+                type="submit"
+                class="bg-indigo-600 text-white px-6 py-2 rounded-lg hover:bg-indigo-700 transition"
+              >
+                Create Lead
+              </button>
+            </div>
             </section>
 
             <!-- status will be 'new' & lead owner will be 'null' <section id="other-details">
@@ -265,14 +273,7 @@
               </div> -->
             </section>
 
-            <div id="submit-button" class="flex">
-              <button
-                type="submit"
-                class="bg-indigo-600 text-white px-6 py-2 rounded-lg hover:bg-indigo-700 transition"
-              >
-                Create Lead
-              </button>
-            </div>
+            
           </form>
         </section>
       </main>
