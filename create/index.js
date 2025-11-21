@@ -19,18 +19,6 @@ function generateCode(items) {
   return newCode;
 }
 
-function fixWebsiteUrl(text) {
-  if (!text) {
-    return null;
-  }
-
-  if (!text.includes("http")) {
-    return `https://${text}`;
-  }
-
-  return text;
-}
-
 function createLead(leads, leadBody) {
   const {
     salutation,
