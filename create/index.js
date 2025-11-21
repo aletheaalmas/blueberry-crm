@@ -19,6 +19,18 @@ function generateCode(items) {
   return newCode;
 }
 
+function fixWebsiteUrl(text) {
+  if (!text) {
+    return null;
+  }
+
+  if (!text.includes("http")) {
+    return `https://${text}`;
+  }
+
+  return text;
+}
+
 function createLead(leads, leadBody) {
   const {
     salutation,
@@ -30,7 +42,7 @@ function createLead(leads, leadBody) {
     organization,
     jobTitle,
     websiteUrl,
-    noOfEmployees,
+    employeesCountRange,
     annualRevenueInUSD,
     industry,
   } = leadBody;
@@ -52,12 +64,14 @@ function createLead(leads, leadBody) {
     gender,
     organization,
     jobTitle,
-    websiteUrl,
-    noOfEmployees,
+    websiteUrl: fixWebsiteUrl(websiteUrl),
+    employeesCountRange,
     annualRevenueInUSD,
     industry,
     assignedTo,
   };
+
+  debugger;
 
   const updatedLeads = [...leads, newLead];
   dataLeads = updatedLeads;
@@ -74,19 +88,20 @@ createLeadFormElement.addEventListener("submit", (event) => {
   const formData = new FormData(createLeadFormElement);
 
   const newLeadData = {
-    salutation: formData.get("salutation-option"),
-    firstName: formData.get("first-name-input"),
-    lastName: formData.get("last-name-input"),
-    email: formData.get("email-input"),
-    phone: formData.get("phone-input"),
-    organization: formData.get("organization-input"),
-    jobTitle: formData.get("job-title-input"),
-    websiteUrl: formData.get("website-input"),
-    industry: formData.get("industry-option"),
-    annualRevenueInUSD: formData.get("arr-input"),
-    noOfEmployees: formData.get("employees-option"),
-    status: formData.get("status-option"),
-    assignedTo: formData.get("lead-owner-option"),
+    salutation: formData.get("salutation"),
+    firstName: formData.get("first-name"),
+    lastName: formData.get("last-name"),
+    gender: formData.get("gender"),
+    email: formData.get("email"),
+    phone: formData.get("phone"),
+    organization: formData.get("organization"),
+    jobTitle: formData.get("job-title"),
+    websiteUrl: formData.get("website-url"),
+    industry: formData.get("industry"),
+    annualRevenueInUSD: Number(formData.get("arr")),
+    employeesCountRange: formData.get("employees-count-range"),
+    status: formData.get("status"),
+    assignedTo: formData.get("lead-owner"),
   };
 
   createLead(dataLeads, newLeadData);
