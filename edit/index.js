@@ -40,7 +40,7 @@ function renderLeadDetails(leads) {
             ${lead.code}
           </span>
         </div>
-        <div>
+        <div class="flex gap-2">
           <span
             id="lead-owner"
             class="bg-indigo-200 text-white inline-flex items-center gap-2 px-3 py-1 rounded-lg text-sm font-medium mt-2 sm:mt-0"
