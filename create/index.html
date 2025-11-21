@@ -17,7 +17,7 @@
         <div>
           <div
             id="sidebar-header"
-            class="px-4 py-4 border-b border-gray-200 flex items-center space-x-2"
+            class="px-4 py-4 border-b flex items-center space-x-2"
           >
             <a href="/" id="logo">
               <img
@@ -50,22 +50,23 @@
         </div>
       </aside>
 
-      <main id="create-lead-content" class="flex-1 bg-gray-50 p-8 overflow-auto">
+      <main
+        id="create-lead-content"
+        class="flex-1 bg-gray-50 p-8 overflow-auto"
+      >
         <section class="flex-1 bg-white rounded-2xl shadow-sm border p-6">
           <header
-          id="create-lead-title"
-          class="flex justify-between items-center max-w-6xl mt-2"
-        >
-          <h2 class="text-2xl font-semibold">Create Lead</h2>
-        </header>
+            id="create-lead-title"
+            class="flex justify-between items-center max-w-6xl mt-2"
+          >
+            <h2 class="text-2xl font-semibold">Create Lead</h2>
+          </header>
 
           <form id="create-form" method="post" class="space-y-8">
             <section id="personal-details">
               <div class="flex items-center justify-between mb-4">
                 <h2 class="text-lg font-medium text-gray-700">Person</h2>
-                <!-- <button class="text-sm text-gray-400 hover:text-indigo-600">
-                  ▼
-                </button> -->
+                
               </div>
 
               <div id="personal-details-form" class="grid grid-cols-3 gap-6">
@@ -74,14 +75,14 @@
                     >Salutation</label
                   >
                   <select
-                    name="salutation-option"
+                    name="salutation"
                     class="w-full border rounded-lg px-3 py-2 focus:ring-2 focus:ring-indigo-500"
                   >
                     <option value="">Select Salutation</option>
                     <option value="Mr">Mr.</option>
                     <option value="Ms.">Ms.</option>
                     <option value="Mrs.">Mrs.</option>
-                    <option Value="Dr.">Dr.</option>
+                    <option value="Dr.">Dr.</option>
                   </select>
                 </div>
 
@@ -89,44 +90,43 @@
                   <label class="block text-sm text-gray-500 mb-1"
                     >First Name*</label
                   >
-                  <input
-                    name="first-name-input"
-                    type="text"
-                    placeholder="First Name"
-                    class="w-full border rounded-lg px-3 py-2 focus:ring-2 focus:ring-indigo-500"
-                  />
+                  <input name="first-name" type="text" placeholder="First Name"
+                  class="w-full border rounded-lg px-3 py-2 focus:ring-2
+                  focus:ring-indigo-500" />
                 </div>
 
                 <div id="last-name-info">
                   <label class="block text-sm text-gray-500 mb-1"
                     >Last Name</label
                   >
-                  <input
-                    name="last-name-input"
-                    type="text"
-                    placeholder="Last Name"
+                  <input name="last-name" type="text" placeholder="Last Name"
+                  class="w-full border rounded-lg px-3 py-2 focus:ring-2
+                  focus:ring-indigo-500" />
+                </div>
+                <div>
+                  <label class="block text-sm text-gray-500 mb-1">Gender</label>
+                  <select
+                    name="gender"
                     class="w-full border rounded-lg px-3 py-2 focus:ring-2 focus:ring-indigo-500"
-                  />
+                  >
+                    <option value=">Select Gender</option>
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                  </select>
                 </div>
 
                 <div id="email-info">
                   <label class="block text-sm text-gray-500 mb-1">Email</label>
-                  <input
-                    name="email-input"
-                    type="email"
-                    placeholder="Email"
-                    class="w-full border rounded-lg px-3 py-2 focus:ring-2 focus:ring-indigo-500"
-                  />
+                  <input name="email" type="email" placeholder="Email"
+                  class="w-full border rounded-lg px-3 py-2 focus:ring-2
+                  focus:ring-indigo-500" />
                 </div>
 
                 <div id="phone-info">
                   <label class="block text-sm text-gray-500 mb-1">Phone</label>
-                  <input
-                    name="phone-input"
-                    type="text"
-                    placeholder="Phone No"
-                    class="w-full border rounded-lg px-3 py-2 focus:ring-2 focus:ring-indigo-500"
-                  />
+                  <input name="phone" type="text" placeholder="Phone No"
+                  class="w-full border rounded-lg px-3 py-2 focus:ring-2
+                  focus:ring-indigo-500" />
                 </div>
               </div>
             </section>
@@ -134,9 +134,7 @@
             <section id="lead-organization-details">
               <div class="flex items-center justify-between mb-4">
                 <h2 class="text-lg font-medium text-gray-700">Details</h2>
-                <!-- <button class="text-sm text-gray-400 hover:text-indigo-600">
-                  ▼
-                </button> -->
+            
               </div>
 
               <div
@@ -147,36 +145,27 @@
                   <label class="block text-sm text-gray-500 mb-1"
                     >Organization</label
                   >
-                  <input
-                    name="organization-input"
-                    type="text"
-                    placeholder="Organization"
-                    class="w-full border rounded-lg px-3 py-2 focus:ring-2 focus:ring-indigo-500"
-                  />
+                  <input name="organization" type="text"
+                  placeholder="Organization" class="w-full border rounded-lg
+                  px-3 py-2 focus:ring-2 focus:ring-indigo-500" />
                 </div>
 
                 <div id="job-title-info">
                   <label class="block text-sm text-gray-500 mb-1"
                     >Job Title</label
                   >
-                  <input
-                    name="job-title-input"
-                    type="text"
-                    placeholder="Job Title"
-                    class="w-full border rounded-lg px-3 py-2 focus:ring-2 focus:ring-indigo-500"
-                  />
+                  <input name="job-title" type="text" placeholder="Job Title"
+                  class="w-full border rounded-lg px-3 py-2 focus:ring-2
+                  focus:ring-indigo-500" />
                 </div>
 
                 <div id="website-info">
                   <label class="block text-sm text-gray-500 mb-1"
                     >Website</label
                   >
-                  <input
-                    name="website-input"
-                    type="text"
-                    placeholder="Website"
-                    class="w-full border rounded-lg px-3 py-2 focus:ring-2 focus:ring-indigo-500"
-                  />
+                  <input name="website-url" type="text" placeholder="Website"
+                  class="w-full border rounded-lg px-3 py-2 focus:ring-2
+                  focus:ring-indigo-500" />
                 </div>
 
                 <div id="industry-info">
@@ -184,7 +173,7 @@
                     >Industry</label
                   >
                   <select
-                    name="industry-option"
+                    name="industry"
                     class="w-full border rounded-lg px-3 py-2 focus:ring-2 focus:ring-indigo-500"
                   >
                     <option value="">Select Industry</option>
@@ -202,12 +191,9 @@
                   <label class="block text-sm text-gray-500 mb-1"
                     >Annual Revenue</label
                   >
-                  <input
-                    name="arr-input"
-                    type="text"
-                    placeholder="Annual Revenue (USD)"
-                    class="w-full border rounded-lg px-3 py-2 focus:ring-2 focus:ring-indigo-500"
-                  />
+                  <input name="arr" type="text" placeholder="Annual Revenue
+                  (USD)" class="w-full border rounded-lg px-3 py-2 focus:ring-2
+                  focus:ring-indigo-500" />
                 </div>
 
                 <div id="number-of-employee-info">
@@ -215,7 +201,7 @@
                     >Number of Employee</label
                   >
                   <select
-                    name="employees-option"
+                    name="employees-count-range"
                     class="w-full border rounded-lg px-3 py-2 focus:ring-2 focus:ring-indigo-500"
                   >
                     <option value="1-10">1-10</option>
@@ -228,25 +214,20 @@
                 </div>
               </div>
               <div id="submit-button" class="flex mt-6">
-              <button
-                type="submit"
-                class="bg-indigo-600 text-white px-6 py-2 rounded-lg hover:bg-indigo-700 transition"
-              >
-                Create Lead
-              </button>
-            </div>
+                <button
+                  type="submit"
+                  class="bg-indigo-600 text-white px-6 py-2 rounded-lg hover:bg-indigo-700 transition"
+                >
+                  Create Lead
+                </button>
+              </div>
             </section>
 
-            <!-- status will be 'new' & lead owner will be 'null' <section id="other-details">
-              <div class="flex items-center justify-between mb-4">
-                <h2 class="text-lg font-medium text-gray-700">Other</h2>
-              </div> -->
-
-              <!-- 
+    
                 <div id="status-info">
                   <label class="block text-sm text-gray-500 mb-1">Status</label>
                   <select
-                    name="status-option"
+                    name="status"
                     class="w-full border rounded-lg px-3 py-2 focus:ring-2 focus:ring-indigo-500"
                   >
                     <option value="New">New</option>
@@ -262,7 +243,7 @@
                     >Lead Owner</label
                   >
                   <select
-                    name="lead-owner-option"
+                    name="lead-owner"
                     class="w-full border rounded-lg px-3 py-2 focus:ring-2 focus:ring-indigo-500"
                   >
                     <option>Administrator</option>
@@ -271,9 +252,6 @@
                   </select>
                 </div>
               </div> -->
-            </section>
-
-            
           </form>
         </section>
       </main>

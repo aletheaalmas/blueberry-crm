@@ -213,7 +213,7 @@ function renderLeadDetails(leads) {
               <select
                 class="w-full border rounded-lg px-3 py-2 bg-gray-50 appearance-none text-gray-500"
               >
-                <option selected>${lead.noOfEmployees}</option>
+                <option selected>${lead.employeesCountRange}</option>
 
                 <option value="1-10">1-10</option>
                 <option value="11-50">11-50</option>
@@ -252,7 +252,7 @@ function updateLead(leads, id, leadBody) {
     organization,
     jobTitle,
     websiteUrl,
-    noOfEmployees,
+    employeesCountRange,
     annualRevenueInUSD,
     industry,
     assignedTo,
@@ -273,7 +273,7 @@ function updateLead(leads, id, leadBody) {
       organization,
       jobTitle,
       websiteUrl,
-      noOfEmployees,
+      employeesCountRange,
       annualRevenueInUSD,
       industry,
       assignedTo,
@@ -298,30 +298,30 @@ function changeStatus(leads, id, newStatus) {
   saveToStorage(dataLeads);
 }
 
-// const createLeadFormElement = document.getElementById("create-form");
+const createLeadFormElement = document.getElementById("create-form");
 
-// createLeadFormElement.addEventListener("submit", (event) => {
-//   event.preventDefault();
-//   const formData = new FormData(createLeadFormElement);
+createLeadFormElement.addEventListener("submit", (event) => {
+  event.preventDefault();
+  const formData = new FormData(createLeadFormElement);
 
-//   const newLeadData = {
-//     salutation: formData.get("salutation-option"),
-//     firstName: formData.get("first-name-input"),
-//     lastName: formData.get("last-name-input"),
-//     email: formData.get("email-input"),
-//     phone: formData.get("phone-input"),
-//     organization: formData.get("organization-input"),
-//     jobTitle: formData.get("job-title-input"),
-//     websiteUrl: formData.get("website-input"),
-//     industry: formData.get("industry-option"),
-//     annualRevenueInUSD: formData.get("arr-input"),
-//     noOfEmployees: formData.get("employees-option"),
-//     status: formData.get("status-option"),
-//     assignedTo: formData.get("lead-owner-option"),
-//   };
+  const newLeadData = {
+    salutation: formData.get("salutation"),
+    firstName: formData.get("first-name"),
+    lastName: formData.get("last-name"),
+    email: formData.get("email"),
+    phone: formData.get("phone"),
+    organization: formData.get("organization"),
+    jobTitle: formData.get("job-title"),
+    websiteUrl: formData.get("website"),
+    industry: formData.get("industry"),
+    annualRevenueInUSD: formData.get("arr"),
+    employeesCountRange: formData.get("employees"),
+    status: formData.get("status"),
+    assignedTo: formData.get("lead-owner"),
+  };
 
-//   createLead(dataLeads, newLeadData);
-// });
+  createLead(dataLeads, newLeadData);
+});
 
 const editLeadFormElement = document.getElementById("edit-form");
-console.log (editLeadFormElement);
+console.log(editLeadFormElement);

@@ -71,27 +71,27 @@ function renderLeadDetails(leads) {
           <div class="grid grid-cols-1 gap-y-2 max-w-xs">
             <div class="grid grid-cols-2 items-center">
               <span class="text-gray-500">Salutation</span>
-              <span id="lead-salutation">${lead.salutation ?? "N/A"}</span>
+              <span>${lead.salutation ?? "N/A"}</span>
             </div>
             <div class="grid grid-cols-2 items-center">
               <span class="text-gray-500">First Name</span>
-              <span id="lead-first-name">${lead.firstName ?? "N/A"}</span>
+              <span>${lead.firstName ?? "N/A"}</span>
             </div>
             <div class="grid grid-cols-2 items-center">
               <span class="text-gray-500">Last Name</span>
-              <span id="lead-last-name">${lead.lastName ?? "N/A"}</span>
+              <span>${lead.lastName ?? "N/A"}</span>
             </div>
             <div class="grid grid-cols-2 items-center">
               <span class="text-gray-500">Gender</span>
-              <span id="lead-gender">${lead.gender ?? "N/A"}</span>
+              <span>${lead.gender ?? "N/A"}</span>
             </div>
             <div class="grid grid-cols-2 items-center">
               <span class="text-gray-500">Email</span>
-              <span id="lead-email">${lead.email ?? "N/A"}</span>
+              <span>${lead.email ?? "N/A"}</span>
             </div>
             <div class="grid grid-cols-2 items-center">
               <span class="text-gray-500">Phone</span>
-              <span id="lead-phone">${lead.phone ?? "N/A"}</span>
+              <span>${lead.phone ?? "N/A"}</span>
             </div>
           </div>
         </div>
@@ -103,23 +103,21 @@ function renderLeadDetails(leads) {
           </h3>
           <div class="grid grid-cols-2 gap-y-2 max-w-xs">
             <span class="text-gray-500">Organization</span>
-            <span id="lead-organization">${lead.organization ?? "N/A"}</span>
+            <span>${lead.organization ?? "N/A"}</span>
             <span class="text-gray-500">Job Title</span>
-            <span id="lead-job-title">${lead.jobTitle ?? "N/A"}</span>
+            <span>${lead.jobTitle ?? "N/A"}</span>
             <span class="text-gray-500">Website</span>
-            <span id="lead-website"
-              >${
-                lead.websiteUrl
-                  ? `<a href="${lead.websiteUrl}" class="text-indigo-600 hover:underline" target="_blank" rel="noopener">${lead.websiteUrl}</a>`
-                  : "N/A"
-              }</span
+            <span
+              >${lead.websiteUrl
+                ? `<a href="${lead.websiteUrl}" class="text-indigo-600 hover:underline" target="_blank" rel="noopener">${lead.websiteUrl}</a>`
+                : "N/A"}</span
             >
             <span class="text-gray-500">Industry</span>
-            <span id="lead-industry">${lead.industry ?? "N/A"}</span>
+            <span>${lead.industry ?? "N/A"}</span>
             <span class="text-gray-500">Annual Revenue</span>
-            <span id="lead-arr">${amountARR}</span>
+            <span>${amountARR}</span>
             <span class="text-gray-500">No. of Employees</span>
-            <span id="lead-employee">${lead.noOfEmployees}</span>
+            <span>${lead.employeesCountRange}</span>
           </div>
         </div>
       </div>
@@ -141,7 +139,7 @@ function updateLead(leads, id, leadBody) {
     organization,
     jobTitle,
     websiteUrl,
-    noOfEmployees,
+    employeesCountRange,
     annualRevenueInUSD,
     industry,
     assignedTo,
@@ -162,7 +160,7 @@ function updateLead(leads, id, leadBody) {
       organization,
       jobTitle,
       websiteUrl,
-      noOfEmployees,
+      employeesCountRange,
       annualRevenueInUSD,
       industry,
       assignedTo,
