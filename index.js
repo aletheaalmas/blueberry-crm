@@ -2,7 +2,7 @@ function renderLead(lead) {
   const fullName = getFullName(lead);
   const statusColor = getStatusColor(lead.status);
 
-  return `<tr class="border-b hover:bg-gray-50">
+  return `<tr class="hover:bg-gray-50">
     <td class="flex content-between gap-2 px-3 py-3 text-gray-500">
       <a
         href="lead/?id=${lead.id}"
@@ -46,7 +46,9 @@ function renderLead(lead) {
       <div class="w-6 h-6 rounded-full bg-gray-300">
       <img
           class="size-6 rounded-full"
-          src="https://api.dicebear.com/9.x/lorelei/svg?seed=${lead.assignedTo}&radius=50&size=32&backgroundColor=b6e3f4,ffd5dc,c0aede,d1d4f9,ffdfbf"
+          src="https://api.dicebear.com/9.x/lorelei/svg?seed=${
+            lead.assignedTo
+          }&radius=50&size=32&backgroundColor=b6e3f4,ffd5dc,c0aede,d1d4f9,ffdfbf"
           alt="${lead.assigned}"
         /></div>
       <span>${lead.assignedTo ?? "Administrator"}</span>
