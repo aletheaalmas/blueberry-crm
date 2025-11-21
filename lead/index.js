@@ -49,13 +49,13 @@ function renderLeadDetails(leads) {
         <div>
           <span
             id="lead-owner"
-            class="bg-gray-300 text-white inline-flex items-center gap-2 px-3 py-1 rounded-lg text-sm font-medium mt-2 sm:mt-0"
+            class="bg-gray-300 text-gray-400 inline-flex items-center gap-2 px-3 py-1 rounded-lg text-sm font-medium mt-2 sm:mt-0"
           >
             ${lead.assignedTo ?? "Administrator"}
           </span>
           <span
             id="lead-status"
-            class="${statusColor} text-white inline-flex items-center gap-2 px-3 py-1 rounded-lg text-sm font-medium mt-2 sm:mt-0"
+            class="${statusColor} text-gray-400 inline-flex items-center gap-2 px-3 py-1 rounded-lg text-sm font-medium mt-2 sm:mt-0"
           >
             ${lead.status ?? "N/A"}
           </span>
