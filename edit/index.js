@@ -47,7 +47,9 @@ function renderLeadDetails(leads) {
             ><div class="w-6 h-6 rounded-full bg-indigo-200">
               <img
                 class="size-6 rounded-full"
-                src="https://api.dicebear.com/9.x/lorelei/svg?seed=${lead.assignedTo}&radius=50&size=32&backgroundColor=b6e3f4,ffd5dc,c0aede,d1d4f9,ffdfbf"
+                src="https://api.dicebear.com/9.x/lorelei/svg?seed=${
+                  lead.assignedTo
+                }&radius=50&size=32&backgroundColor=b6e3f4,ffd5dc,c0aede,d1d4f9,ffdfbf"
                 alt="${lead.assigned}"
               />
             </div>
@@ -106,7 +108,7 @@ function renderLeadDetails(leads) {
               >
               <input
                 type="text"
-                placeholder="${lead.firstName}"
+                placeholder="${lead.firstName ?? ""}"
                 class="w-full border rounded-lg px-3 py-2 bg-gray-50"
               />
             </div>
@@ -114,7 +116,7 @@ function renderLeadDetails(leads) {
               <label class="block text-sm text-gray-500 mb-1">Last Name</label>
               <input
                 type="text"
-                placeholder="${lead.lastName}"
+                placeholder="${lead.lastName ?? ""}"
                 class="w-full border rounded-lg px-3 py-2 bg-gray-50"
               />
             </div>
@@ -122,7 +124,7 @@ function renderLeadDetails(leads) {
               <label class="block text-sm text-gray-500 mb-1">Email</label>
               <input
                 type="text"
-                placeholder="${lead.gender}"
+                placeholder="${lead.gender ?? ""}"
                 class="w-full border rounded-lg px-3 py-2 bg-gray-50"
               />
             </div>
@@ -130,7 +132,7 @@ function renderLeadDetails(leads) {
               <label class="block text-sm text-gray-500 mb-1">Email</label>
               <input
                 type="email"
-                placeholder="${lead.email}"
+                placeholder="${lead.email ?? ""}"
                 class="w-full border rounded-lg px-3 py-2 bg-gray-50"
               />
             </div>
@@ -138,7 +140,7 @@ function renderLeadDetails(leads) {
               <label class="block text-sm text-gray-500 mb-1">Phone</label>
               <input
                 type="text"
-                placeholder="${lead.phone}"
+                placeholder="${lead.phone ?? ""}"
                 class="w-full border rounded-lg px-3 py-2 bg-gray-50"
               />
             </div>
@@ -157,7 +159,7 @@ function renderLeadDetails(leads) {
               >
               <input
                 type="text"
-                placeholder="${lead.organization}"
+                placeholder="${lead.organization ?? ""}"
                 class="w-full border rounded-lg px-3 py-2 bg-gray-50"
               />
             </div>
@@ -165,7 +167,7 @@ function renderLeadDetails(leads) {
               <label class="block text-sm text-gray-500 mb-1">Job Title</label>
               <input
                 type="text"
-                placeholder="${lead.jobTitle}"
+                placeholder="${lead.jobTitle ?? ""}"
                 class="w-full border rounded-lg px-3 py-2 bg-gray-50"
               />
             </div>
@@ -173,7 +175,7 @@ function renderLeadDetails(leads) {
               <label class="block text-sm text-gray-500 mb-1">Website</label>
               <input
                 type="text"
-                placeholder="${lead.websiteUrl}"
+                placeholder="${lead.websiteUrl ?? ""}"
                 class="w-full border rounded-lg px-3 py-2 bg-gray-50"
               />
             </div>
@@ -199,7 +201,7 @@ function renderLeadDetails(leads) {
               >
               <input
                 type="text"
-                placeholder="${amountARR}"
+                placeholder="${amountARR ?? ""}"
                 class="w-full border rounded-lg px-3 py-2 bg-gray-50"
               />
             </div>
