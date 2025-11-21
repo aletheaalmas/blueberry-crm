@@ -24,17 +24,37 @@ function renderLeadDetails(leads) {
     ? "N/A"
     : formatNumberInUSD(lead.annualRevenueInUSD.toString());
 
-  leadDetailsElement.innerHTML =`
-    <section
-      class="flex-1 bg-white rounded-2xl shadow-sm border p-6"
-    >
-      <h1 class="text-xl font-semibold text-gray-800 mb-6">
-        Leads /
-        <span id="lead-name" class="text-indigo-600"
-          >${lead.salutation} ${fullName}</span
-        >
-      </h1>
-
+  leadDetailsElement.innerHTML = `
+    <section class="flex-1 bg-white rounded-2xl shadow-sm border p-6">
+      <div
+        class="flex flex-col sm:flex-row items-center sm:justify-between mb-6 gap-4"
+      >
+        <div>
+          <h1 class="text-xl font-semibold text-gray-800">
+            Leads /
+            <span id="lead-name" class="text-indigo-600"
+              >${lead.salutation} ${fullName}</span
+            >
+          </h1>
+          <span id="lead-code" class="block text-xs text-gray-400 mt-1 mb-6">
+            ${lead.code}
+          </span>
+        </div>
+        <div>
+          <span
+            id="lead-owner"
+            class="bg-gray-300 text-white inline-flex items-center gap-2 px-3 py-1 rounded-lg text-sm font-medium mt-2 sm:mt-0"
+          >
+            ${lead.assignedTo ?? "Administrator"}
+          </span>
+          <span
+            id="lead-status"
+            class="${statusColor} text-white inline-flex items-center gap-2 px-3 py-1 rounded-lg text-sm font-medium mt-2 sm:mt-0"
+          >
+            ${lead.status ?? "N/A"}
+          </span>
+        </div>
+      </div>
       <div id="left-content-data" class="space-y-8">
         <section id="person-detail">
           <div
@@ -55,10 +75,10 @@ function renderLeadDetails(leads) {
                 class="w-full border rounded-lg px-3 py-2 bg-gray-50 appearance-none text-gray-500"
               >
                 <option selected>${lead.salutation}</option>
-                 <option value="Mr">Mr.</option>
-                    <option value="Ms.">Ms.</option>
-                    <option value="Mrs.">Mrs.</option>
-                    <option Value="Dr.">Dr.</option>
+                <option value="Mr">Mr.</option>
+                <option value="Ms.">Ms.</option>
+                <option value="Mrs.">Mrs.</option>
+                <option value="Dr.">Dr.</option>
               </select>
             </div>
             <div id="left-first-name">
@@ -123,9 +143,7 @@ function renderLeadDetails(leads) {
               />
             </div>
             <div>
-              <label class="block text-sm text-gray-500 mb-1"
-                >Job Title</label
-              >
+              <label class="block text-sm text-gray-500 mb-1">Job Title</label>
               <input
                 type="text"
                 placeholder="${lead.jobTitle}"
@@ -140,47 +158,50 @@ function renderLeadDetails(leads) {
                 class="w-full border rounded-lg px-3 py-2 bg-gray-50"
               />
             </div>
-            <div >
+            <div>
               <label class="block text-sm text-gray-500 mb-1">Industry</label>
 
               <select
                 class="w-full border rounded-lg px-3 py-2 bg-gray-50 appearance-none text-gray-500"
               >
                 <option selected>${lead.industry}</option>
-               <option value="Technology">Technology</option>
-                    <option value="Healthcare">Healthcare</option>
-                    <option value="Finance">Finance</option>
-                    <option value="Education">Education</option>
-                    <option value="Service">Service</option>
-                    <option value="Retail">Retail</option>
-                    <option value="Manufacture">Manufacture</option>
+                <option value="Technology">Technology</option>
+                <option value="Healthcare">Healthcare</option>
+                <option value="Finance">Finance</option>
+                <option value="Education">Education</option>
+                <option value="Service">Service</option>
+                <option value="Retail">Retail</option>
+                <option value="Manufacture">Manufacture</option>
               </select>
             </div>
             <div>
-              <label class="block text-sm text-gray-500 mb-1">Annual Revenue</label>
+              <label class="block text-sm text-gray-500 mb-1"
+                >Annual Revenue</label
+              >
               <input
                 type="text"
                 placeholder="${amountARR}"
                 class="w-full border rounded-lg px-3 py-2 bg-gray-50"
               />
             </div>
-            <div >
-              <label class="block text-sm text-gray-500 mb-1">No. of Employeesy</label>
+            <div>
+              <label class="block text-sm text-gray-500 mb-1"
+                >No. of Employeesy</label
+              >
 
               <select
                 class="w-full border rounded-lg px-3 py-2 bg-gray-50 appearance-none text-gray-500"
               >
                 <option selected>${lead.noOfEmployees}</option>
-      
-                    <option value="1-10">1-10</option>
-                    <option value="11-50">11-50</option>
-                    <option value="51-200">51-200</option>
-                    <option value="201-500">201-500</option>
-                    <option value="501-1000">501-1000</option>
-                    <option value="1000+">1000+</option>
+
+                <option value="1-10">1-10</option>
+                <option value="11-50">11-50</option>
+                <option value="51-200">51-200</option>
+                <option value="201-500">201-500</option>
+                <option value="501-1000">501-1000</option>
+                <option value="1000+">1000+</option>
               </select>
             </div>
-           
           </div>
         </section>
       </div>
