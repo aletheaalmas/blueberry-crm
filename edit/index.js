@@ -43,15 +43,33 @@ function renderLeadDetails(leads) {
         <div>
           <span
             id="lead-owner"
-            class="bg-gray-300 text-white inline-flex items-center gap-2 px-3 py-1 rounded-lg text-sm font-medium mt-2 sm:mt-0"
-          >
-            ${lead.assignedTo ?? "Administrator"}
+            class="bg-indigo-200 text-white inline-flex items-center gap-2 px-3 py-1 rounded-lg text-sm font-medium mt-2 sm:mt-0"
+            ><div class="w-6 h-6 rounded-full bg-indigo-200">
+              <img
+                class="size-6 rounded-full"
+                src="https://api.dicebear.com/9.x/lorelei/svg?seed=${lead.assignedTo}&radius=50&size=32&backgroundColor=b6e3f4,ffd5dc,c0aede,d1d4f9,ffdfbf"
+                alt="${lead.assigned}"
+              />
+            </div>
+            <select class="bg-indigo-200 text-white">
+              <option selected>${lead.assignedTo ?? "Administrator"}</option>
+              <option value="Administrator">Administrator</option>
+              <option value="User 1">User 1</option>
+              <option value="User 2">User 2</option>
+            </select>
           </span>
           <span
             id="lead-status"
             class="${statusColor} text-white inline-flex items-center gap-2 px-3 py-1 rounded-lg text-sm font-medium mt-2 sm:mt-0"
           >
-            ${lead.status ?? "N/A"}
+            <select class="${statusColor} text-white">
+              <option selected>${lead.status}</option>
+              <option value="New">New</option>
+              <option value="Contacted">Contacted</option>
+              <option value="Nurtured">Nurtured</option>
+              <option value="Qualified">Qualified</option>
+              <option value="Junk">Junk</option>
+            </select>
           </span>
         </div>
       </div>
