@@ -224,6 +224,14 @@ function renderLeadDetails(leads) {
           </div>
         </section>
       </div>
+      <div id="submit-button" class="flex mt-6">
+              <button
+                type="submit"
+                class="bg-indigo-600 text-white px-6 py-2 rounded-lg hover:bg-indigo-700 transition"
+              >
+                Edit Lead
+              </button>
+            </div>
     </section>
   `;
 }
