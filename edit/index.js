@@ -1,3 +1,6 @@
+const assignees = ["Administrator", "User 1", "User 2"];
+const statuses = ["New", "Contacted", "Qualified", "Nurtured", "Junk"];
+
 function getLead(leads) {
   const searchValue = window.location.search;
   const searchParam = new URLSearchParams(searchValue);
@@ -50,29 +53,37 @@ function renderLeadDetails(leads) {
                 src="https://api.dicebear.com/9.x/lorelei/svg?seed=${
                   lead.assignedTo
                 }&radius=50&size=32&backgroundColor=b6e3f4,ffd5dc,c0aede,d1d4f9,ffdfbf"
-                alt="${lead.assigned}"
+                alt="${lead.assignedTo}"
               />
             </div>
-            <select class="bg-indigo-200 text-gray-500">
-              <option selected>${lead.assignedTo ?? "Administrator"}</option>
-              <option value="Administrator">Administrator</option>
-              <option value="User 1">User 1</option>
-              <option value="User 2">User 2</option>
+             <select name="assigned-to" class="bg-indigo-200 text-gray-500">
+              ${assignees.map((assignee) => {
+                return `<option value="${assignee}"
+                 ${assignee === lead.assignedTo ? "selected" : ""}
+                >
+                  ${assignee}
+                </option>`;
+              })}
             </select>
           </span>
           <span
             id="lead-status"
             class="${statusColor} text-white inline-flex items-center gap-2 px-3 py-1 rounded-lg text-sm font-medium mt-2 sm:mt-0"
           >
-            <select class="${statusColor} text-gray-500">
-              <option selected>${lead.status}</option>
-              <option value="New" class="bg-stone-200 ">New</option>
-              <option value="Contacted" class="bg-yellow-200">Contacted</option>
-             <option value="Qualified" class="bg-indigo-200">Qualified</option>
-              <option value="Nurtured" class="bg-green-200">Nurtured</option>
-              
-              <option value="Junk" class="bg-red-200">Junk</option>
-            </select>
+           <select name="status" class="${statusColor} text-gray-500">
+              ${statuses
+                .map((status) => {
+                  return `
+                  <option
+                    value="${status}"
+                    class="${statusColor}"
+                    ${status === lead.status ? "selected" : ""}
+                  >
+                    ${status}
+                  </option>
+                `;
+                })
+                .join("")} </select>
           </span>
         </div>
       </div>
@@ -227,13 +238,13 @@ function renderLeadDetails(leads) {
         </section>
       </div>
       <div id="submit-button" class="flex mt-6">
-              <button
-                type="submit"
-                class="bg-indigo-600 text-white px-6 py-2 rounded-lg hover:bg-indigo-700 transition"
-              >
-                Edit Lead
-              </button>
-            </div>
+               <button
+          type="submit"
+          class="bg-indigo-600 text-white px-6 py-2 rounded-lg hover:bg-indigo-700 transition"
+        >
+          Save
+        </button>
+      </div>
     </section>
   `;
 }
