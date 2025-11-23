@@ -26,7 +26,7 @@ function renderLeadDetails(leads) {
 
   leadDetailsElement.innerHTML = `
     <div
-      class="w-full max-w-xl mx-auto bg-white rounded-xl border shadow px-8 py-6"
+      class="w-full max-w-xl mx-auto bg-white rounded-xl shadow px-8 py-6"
     >
       <div
         class="flex flex-col sm:flex-row items-center sm:justify-between mb-6 gap-4"

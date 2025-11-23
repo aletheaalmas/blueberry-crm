@@ -1,7 +1,14 @@
 const assignees = ["Administrator", "User 1", "User 2"];
 const statuses = ["New", "Contacted", "Qualified", "Nurtured", "Junk"];
 const salutation = ["Mr", "Ms", "Mrs.", "Dr"];
-const indusries = ["Healthcare", "Finance", "Education", "Service", "Retail", "Manufacture"];
+const indusries = [
+  "Healthcare",
+  "Finance",
+  "Education",
+  "Service",
+  "Retail",
+  "Manufacture",
+];
 
 function getLead(leads) {
   const searchValue = window.location.search;
@@ -30,7 +37,7 @@ function renderLeadDetails(leads) {
     : formatNumberInUSD(lead.annualRevenueInUSD.toString());
 
   leadDetailsElement.innerHTML = `
-    <section class="flex-1 bg-white rounded-2xl shadow-sm border p-6">
+    <section class="flex-1 bg-white rounded-2xl shadow-sm p-6">
       <div
         class="flex flex-col sm:flex-row items-center sm:justify-between mb-6 gap-4"
       >
@@ -52,7 +59,9 @@ function renderLeadDetails(leads) {
             ><div class="w-6 h-6 rounded-full bg-indigo-200">
               <img
                 class="size-6 rounded-full"
-                src="https://api.dicebear.com/9.x/lorelei/svg?seed=${lead.assignedTo}&radius=50&size=32&backgroundColor=b6e3f4,ffd5dc,c0aede,d1d4f9,ffdfbf"
+                src="https://api.dicebear.com/9.x/lorelei/svg?seed=${
+                  lead.assignedTo
+                }&radius=50&size=32&backgroundColor=b6e3f4,ffd5dc,c0aede,d1d4f9,ffdfbf"
                 alt="${lead.assignedTo}"
               />
             </div>
@@ -106,7 +115,7 @@ function renderLeadDetails(leads) {
 
               <select
                 name="salutation"
-                class="w-full border rounded-lg px-3 py-2 bg-gray-50 appearance-none text-gray-500"
+                class="w-full border border-gray-200 rounded-lg px-3 py-2 bg-gray-50 appearance-none text-gray-500"
               >
                 <option selected>${lead.salutation}</option>
                 <option value="Mr">Mr.</option>
@@ -123,7 +132,7 @@ function renderLeadDetails(leads) {
                 type="text"
                 name="first-name"
                 placeholder="${lead.firstName ?? ""}"
-                class="w-full border rounded-lg px-3 py-2 bg-gray-50"
+                class="w-full border border-gray-200 rounded-lg px-3 py-2 bg-gray-50"
               />
             </div>
             <div>
@@ -132,7 +141,7 @@ function renderLeadDetails(leads) {
                 type="text"
                 name="last-name"
                 placeholder="${lead.lastName ?? ""}"
-                class="w-full border rounded-lg px-3 py-2 bg-gray-50"
+                class="w-full border border-gray-200 rounded-lg px-3 py-2 bg-gray-50"
               />
             </div>
             <div>
@@ -141,7 +150,7 @@ function renderLeadDetails(leads) {
                 type="text"
                 name="gender"
                 placeholder="${lead.gender ?? ""}"
-                class="w-full border rounded-lg px-3 py-2 bg-gray-50"
+                class="w-full border border-gray-200 rounded-lg px-3 py-2 bg-gray-50"
               />
             </div>
             <div>
@@ -150,7 +159,7 @@ function renderLeadDetails(leads) {
                 type="email"
                 name="email"
                 placeholder="${lead.email ?? ""}"
-                class="w-full border rounded-lg px-3 py-2 bg-gray-50"
+                class="w-full border border-gray-200 rounded-lg px-3 py-2 bg-gray-50"
               />
             </div>
             <div>
@@ -159,7 +168,7 @@ function renderLeadDetails(leads) {
                 type="text"
                 name="phone"
                 placeholder="${lead.phone ?? ""}"
-                class="w-full border rounded-lg px-3 py-2 bg-gray-50"
+                class="w-full border border-gray-200 rounded-lg px-3 py-2 bg-gray-50"
               />
             </div>
           </div>
@@ -179,7 +188,7 @@ function renderLeadDetails(leads) {
                 type="text"
                 name="organization"
                 placeholder="${lead.organization ?? ""}"
-                class="w-full border rounded-lg px-3 py-2 bg-gray-50"
+                class="w-full border border-gray-200 rounded-lg px-3 py-2 bg-gray-50"
               />
             </div>
             <div>
@@ -188,7 +197,7 @@ function renderLeadDetails(leads) {
                 type="text"
                 name="job-title"
                 placeholder="${lead.jobTitle ?? ""}"
-                class="w-full border rounded-lg px-3 py-2 bg-gray-50"
+                class="w-full border border-gray-200 rounded-lg px-3 py-2 bg-gray-50"
               />
             </div>
             <div>
@@ -197,14 +206,14 @@ function renderLeadDetails(leads) {
                 type="text"
                 name="website-url"
                 placeholder="${lead.websiteUrl ?? ""}"
-                class="w-full border rounded-lg px-3 py-2 bg-gray-50"
+                class="w-full border border-gray-200 rounded-lg px-3 py-2 bg-gray-50"
               />
             </div>
             <div>
               <label class="block text-sm text-gray-500 mb-1">Industry</label>
 
               <select
-                class="w-full border rounded-lg px-3 py-2 bg-gray-50 appearance-none text-gray-500"
+                class="w-full border border-gray-200 rounded-lg px-3 py-2 bg-gray-50 appearance-none text-gray-500"
               >
                 <option selected>${lead.industry}</option>
                 <option value="Technology">Technology</option>
@@ -224,20 +233,19 @@ function renderLeadDetails(leads) {
                 type="text"
                 name="arr"
                 placeholder="${amountARR ?? ""}"
-                class="w-full border rounded-lg px-3 py-2 bg-gray-50"
+                class="w-full border border-gray-200 rounded-lg px-3 py-2 bg-gray-50"
               />
             </div>
             <div>
               <label class="block text-sm text-gray-500 mb-1"
-                >No. of Employeesy</label
+                >No. of Employees</label
               >
 
               <select
                 name="employees-count-range"
-                class="w-full border rounded-lg px-3 py-2 bg-gray-50 appearance-none text-gray-500"
+                class="w-full border border-gray-200 rounded-lg px-3 py-2 bg-gray-50 appearance-none text-gray-500"
               >
                 <option selected>${lead.employeesCountRange}</option>
-
                 <option value="1-10">1-10</option>
                 <option value="11-50">11-50</option>
                 <option value="51-200">51-200</option>
