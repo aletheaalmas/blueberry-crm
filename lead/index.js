@@ -25,9 +25,7 @@ function renderLeadDetails(leads) {
     : formatNumberInUSD(lead.annualRevenueInUSD.toString());
 
   leadDetailsElement.innerHTML = `
-    <div
-      class="w-full max-w-xl mx-auto bg-white rounded-xl shadow px-8 py-6"
-    >
+    <div class="w-full max-w-xl mx-auto bg-white rounded-xl shadow px-8 py-6">
       <div
         class="flex flex-col sm:flex-row items-center sm:justify-between mb-6 gap-4"
       >
@@ -38,12 +36,39 @@ function renderLeadDetails(leads) {
             alt="${fullName}"
           />
           <div>
-            <h2 id="lead-full-name" class="text-xl font-semibold text-gray-800">
-              ${lead.firstName ?? ""} ${lead.lastName ?? ""}
-            </h2>
             <span id="lead-code" class="block text-xs text-gray-400 mt-1">
               ${lead.code}
             </span>
+            <h2
+              id="lead-full-name"
+              class="text-2xl font-semibold text-gray-800"
+            >
+              ${lead.firstName ?? ""} ${lead.lastName ?? ""}
+            </h2>
+            <div class="flex item-centre gap-2">
+              <a
+                class="mt-2 border border-gray-200 bg-gray-50 p-1 rounded"
+                href="edit/?id=${lead.id}"
+              >
+                <img
+                  src="/assets/icons/edit.svg"
+                  alt="View"
+                  width="15"
+                  height="15"
+                />
+              </a>
+              <button
+                class="mt-2 border border-gray-200 bg-gray-50 p-1 rounded"
+                onclick="deleteLead(dataLeads, ${lead.id})"
+              >
+                <img
+                  src="/assets/icons/bin.svg"
+                  alt="View"
+                  width="15"
+                  height="15"
+                />
+              </button>
+            </div>
           </div>
         </div>
         <div>
