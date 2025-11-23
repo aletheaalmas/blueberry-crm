@@ -131,7 +131,7 @@ function loadFromStorage() {
   return leads;
 }
 
-function getAmmountARR(annualRevenueInUSD) {
+function getAmountARR(annualRevenueInUSD) {
   const amountARR =
     lead.annualRevenueInUSD != null
       ? formatNumberInUSD(lead.annualRevenueInUSD.toString())
@@ -183,5 +183,17 @@ function getStatusColor(status) {
     default:
       return "";
       break;
+  }
+}
+
+function fixWebsiteURL(text) {
+  if (!text) {
+    return null;
+  }
+
+  if (!text.includes("http")) {
+    return `https://${text}`;
+
+    return text;
   }
 }
