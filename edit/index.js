@@ -27,7 +27,7 @@ function renderLeadDetails(leads) {
     ? "N/A"
     : formatNumberInUSD(lead.annualRevenueInUSD.toString());
 
-  leadDetailsElement.innerHTML = `
+  leadDetailsElement.innerHTML = html`
     <section class="flex-1 bg-white rounded-2xl shadow-sm border p-6">
       <div
         class="flex flex-col sm:flex-row items-center sm:justify-between mb-6 gap-4"
@@ -104,6 +104,7 @@ function renderLeadDetails(leads) {
               <label class="block text-sm text-gray-500 mb-1">Salutation</label>
 
               <select
+              name="salutation"
                 class="w-full border rounded-lg px-3 py-2 bg-gray-50 appearance-none text-gray-500"
               >
                 <option selected>${lead.salutation}</option>
@@ -119,6 +120,7 @@ function renderLeadDetails(leads) {
               >
               <input
                 type="text"
+                 name="first-name"
                 placeholder="${lead.firstName ?? ""}"
                 class="w-full border rounded-lg px-3 py-2 bg-gray-50"
               />
@@ -127,14 +129,16 @@ function renderLeadDetails(leads) {
               <label class="block text-sm text-gray-500 mb-1">Last Name</label>
               <input
                 type="text"
+                name="last-name"
                 placeholder="${lead.lastName ?? ""}"
                 class="w-full border rounded-lg px-3 py-2 bg-gray-50"
               />
             </div>
             <div>
-              <label class="block text-sm text-gray-500 mb-1">Email</label>
+              <label class="block text-sm text-gray-500 mb-1">Gender</label>
               <input
                 type="text"
+                name="gender"
                 placeholder="${lead.gender ?? ""}"
                 class="w-full border rounded-lg px-3 py-2 bg-gray-50"
               />
@@ -143,6 +147,7 @@ function renderLeadDetails(leads) {
               <label class="block text-sm text-gray-500 mb-1">Email</label>
               <input
                 type="email"
+                name="email"
                 placeholder="${lead.email ?? ""}"
                 class="w-full border rounded-lg px-3 py-2 bg-gray-50"
               />
@@ -151,6 +156,7 @@ function renderLeadDetails(leads) {
               <label class="block text-sm text-gray-500 mb-1">Phone</label>
               <input
                 type="text"
+                name="phone"
                 placeholder="${lead.phone ?? ""}"
                 class="w-full border rounded-lg px-3 py-2 bg-gray-50"
               />
@@ -170,6 +176,7 @@ function renderLeadDetails(leads) {
               >
               <input
                 type="text"
+                name="organization"
                 placeholder="${lead.organization ?? ""}"
                 class="w-full border rounded-lg px-3 py-2 bg-gray-50"
               />
@@ -178,6 +185,7 @@ function renderLeadDetails(leads) {
               <label class="block text-sm text-gray-500 mb-1">Job Title</label>
               <input
                 type="text"
+                name="job-title"
                 placeholder="${lead.jobTitle ?? ""}"
                 class="w-full border rounded-lg px-3 py-2 bg-gray-50"
               />
@@ -186,6 +194,7 @@ function renderLeadDetails(leads) {
               <label class="block text-sm text-gray-500 mb-1">Website</label>
               <input
                 type="text"
+                name="website-url"
                 placeholder="${lead.websiteUrl ?? ""}"
                 class="w-full border rounded-lg px-3 py-2 bg-gray-50"
               />
@@ -212,6 +221,7 @@ function renderLeadDetails(leads) {
               >
               <input
                 type="text"
+                name="arr"
                 placeholder="${amountARR ?? ""}"
                 class="w-full border rounded-lg px-3 py-2 bg-gray-50"
               />
@@ -222,6 +232,7 @@ function renderLeadDetails(leads) {
               >
 
               <select
+                name="employees-count-range"
                 class="w-full border rounded-lg px-3 py-2 bg-gray-50 appearance-none text-gray-500"
               >
                 <option selected>${lead.employeesCountRange}</option>
@@ -323,12 +334,12 @@ createLeadFormElement.addEventListener("submit", (event) => {
     phone: formData.get("phone"),
     organization: formData.get("organization"),
     jobTitle: formData.get("job-title"),
-    websiteUrl: formData.get("website"),
+    websiteUrl: formData.get("website-url"),
     industry: formData.get("industry"),
     annualRevenueInUSD: formData.get("arr"),
-    employeesCountRange: formData.get("employees"),
+    employeesCountRange: formData.get("employees-count-range"),
     status: formData.get("status"),
-    assignedTo: formData.get("lead-owner"),
+    assignedTo: formData.get("assigned-to"),
   };
 
   createLead(dataLeads, newLeadData);
