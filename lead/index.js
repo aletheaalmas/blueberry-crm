@@ -48,7 +48,7 @@ function renderLeadDetails(leads) {
         </div>
         <div>
           <span
-            id="lead-owner"
+            id="assigned-to"
             class="bg-gray-300 text-gray-400 inline-flex items-center gap-2 px-3 py-1 rounded-lg text-sm font-medium mt-2 sm:mt-0"
           >
             ${lead.assignedTo ?? "Administrator"}
@@ -108,9 +108,11 @@ function renderLeadDetails(leads) {
             <span>${lead.jobTitle ?? "N/A"}</span>
             <span class="text-gray-500">Website</span>
             <span
-              >${lead.websiteUrl
-                ? `<a href="${lead.websiteUrl}" class="text-indigo-600 hover:underline" target="_blank" rel="noopener">${lead.websiteUrl}</a>`
-                : "N/A"}</span
+              >${
+                lead.websiteUrl
+                  ? `<a href="${lead.websiteUrl}" class="text-indigo-600 hover:underline" target="_blank" rel="noopener">${lead.websiteUrl}</a>`
+                  : "N/A"
+              }</span
             >
             <span class="text-gray-500">Industry</span>
             <span>${lead.industry ?? "N/A"}</span>

@@ -1,5 +1,7 @@
 const assignees = ["Administrator", "User 1", "User 2"];
 const statuses = ["New", "Contacted", "Qualified", "Nurtured", "Junk"];
+const salutation = ["Mr", "Ms", "Mrs.", "Dr"];
+const indusries = ["Healthcare", "Finance", "Education", "Service", "Retail", "Manufacture"];
 
 function getLead(leads) {
   const searchValue = window.location.search;
@@ -27,7 +29,7 @@ function renderLeadDetails(leads) {
     ? "N/A"
     : formatNumberInUSD(lead.annualRevenueInUSD.toString());
 
-  leadDetailsElement.innerHTML = html`
+  leadDetailsElement.innerHTML = `
     <section class="flex-1 bg-white rounded-2xl shadow-sm border p-6">
       <div
         class="flex flex-col sm:flex-row items-center sm:justify-between mb-6 gap-4"
@@ -45,18 +47,16 @@ function renderLeadDetails(leads) {
         </div>
         <div class="flex gap-2">
           <span
-            id="lead-owner"
+            id="assigned-to"
             class="bg-indigo-200 text-white inline-flex items-center gap-2 px-3 py-1 rounded-lg text-sm font-medium mt-2 sm:mt-0"
             ><div class="w-6 h-6 rounded-full bg-indigo-200">
               <img
                 class="size-6 rounded-full"
-                src="https://api.dicebear.com/9.x/lorelei/svg?seed=${
-                  lead.assignedTo
-                }&radius=50&size=32&backgroundColor=b6e3f4,ffd5dc,c0aede,d1d4f9,ffdfbf"
+                src="https://api.dicebear.com/9.x/lorelei/svg?seed=${lead.assignedTo}&radius=50&size=32&backgroundColor=b6e3f4,ffd5dc,c0aede,d1d4f9,ffdfbf"
                 alt="${lead.assignedTo}"
               />
             </div>
-             <select name="assigned-to" class="bg-indigo-200 text-gray-500">
+            <select name="assigned-to" class="bg-indigo-200 text-gray-500">
               ${assignees.map((assignee) => {
                 return `<option value="${assignee}"
                  ${assignee === lead.assignedTo ? "selected" : ""}
@@ -70,7 +70,7 @@ function renderLeadDetails(leads) {
             id="lead-status"
             class="${statusColor} text-white inline-flex items-center gap-2 px-3 py-1 rounded-lg text-sm font-medium mt-2 sm:mt-0"
           >
-           <select name="status" class="${statusColor} text-gray-500">
+            <select name="status" class="${statusColor} text-gray-500">
               ${statuses
                 .map((status) => {
                   return `
@@ -83,7 +83,8 @@ function renderLeadDetails(leads) {
                   </option>
                 `;
                 })
-                .join("")} </select>
+                .join("")}
+            </select>
           </span>
         </div>
       </div>
@@ -104,7 +105,7 @@ function renderLeadDetails(leads) {
               <label class="block text-sm text-gray-500 mb-1">Salutation</label>
 
               <select
-              name="salutation"
+                name="salutation"
                 class="w-full border rounded-lg px-3 py-2 bg-gray-50 appearance-none text-gray-500"
               >
                 <option selected>${lead.salutation}</option>
@@ -120,7 +121,7 @@ function renderLeadDetails(leads) {
               >
               <input
                 type="text"
-                 name="first-name"
+                name="first-name"
                 placeholder="${lead.firstName ?? ""}"
                 class="w-full border rounded-lg px-3 py-2 bg-gray-50"
               />
@@ -249,7 +250,7 @@ function renderLeadDetails(leads) {
         </section>
       </div>
       <div id="submit-button" class="flex mt-6">
-               <button
+        <button
           type="submit"
           class="bg-indigo-600 text-white px-6 py-2 rounded-lg hover:bg-indigo-700 transition"
         >
