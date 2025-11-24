@@ -38,12 +38,12 @@ function renderLeadDetails(leads) {
     : formatNumberInUSD(lead.annualRevenueInUSD.toString());
 
   editFormElement.innerHTML = `
-    <section class="flex-1 bg-white rounded-2xl shadow-sm p-6">
-      <div class="flex flex-col sm:flex-row items-center sm:justify-between mb-6 gap-4">
+    <section class="bg-white rounded-2xl shadow-sm p-6">
+      <div class="flex flex-col lg:flex-row lg:items-start justify-between mb-6 gap-4">
         <div>
-          <h1 class="text-xl font-semibold text-gray-800">
+          <h1 class="text-xl font-semibold text-gray-800 whitespace-nowrap">
             <a href="/">Leads /</a>
-            <span id="lead-name" class="text-indigo-600">
+            <span id="lead-name" class="text-indigo-600 ">
               ${lead.salutation} ${fullName}
             </span>
           </h1>
@@ -120,7 +120,7 @@ function renderLeadDetails(leads) {
                 type="text"
                 name="first-name"
                 value="${lead.firstName ?? ""}"
-                class="w-full border border-gray-200 rounded-lg px-3 py-2 bg-gray-50"
+                class="whitespace-nowrap w-full border border-gray-200 rounded-lg px-3 py-2 bg-gray-50"
                 required
               />
             </div>
@@ -130,7 +130,7 @@ function renderLeadDetails(leads) {
                 type="text"
                 name="last-name"
                 value="${lead.lastName ?? ""}"
-                class="w-full border border-gray-200 rounded-lg px-3 py-2 bg-gray-50"
+                class="whitespace-nowrap w-full border border-gray-200 rounded-lg px-3 py-2 bg-gray-50"
               />
             </div>
             <div>
@@ -152,7 +152,7 @@ function renderLeadDetails(leads) {
                 type="email"
                 name="email"
                 value="${lead.email ?? ""}"
-                class="w-full border border-gray-200 rounded-lg px-3 py-2 bg-gray-50"
+                class="whitespace-nowrap w-full border border-gray-200 rounded-lg px-3 py-2 bg-gray-50"
               />
             </div>
             <div>
@@ -161,7 +161,7 @@ function renderLeadDetails(leads) {
                 type="text"
                 name="phone"
                 value="${lead.phone ?? ""}"
-                class="w-full border border-gray-200 rounded-lg px-3 py-2 bg-gray-50"
+                class="whitespace-nowrap w-full border border-gray-200 rounded-lg px-3 py-2 bg-gray-50"
               />
             </div>
           </div>
@@ -179,7 +179,7 @@ function renderLeadDetails(leads) {
                 type="text"
                 name="organization"
                 value="${lead.organization ?? ""}"
-                class="w-full border border-gray-200 rounded-lg px-3 py-2 bg-gray-50"
+                class="whitespace-nowrap w-full border border-gray-200 rounded-lg px-3 py-2 bg-gray-50"
               />
             </div>
             <div>
@@ -188,7 +188,7 @@ function renderLeadDetails(leads) {
                 type="text"
                 name="job-title"
                 value="${lead.jobTitle ?? ""}"
-                class="w-full border border-gray-200 rounded-lg px-3 py-2 bg-gray-50"
+                class="whitespace-nowrap w-full border border-gray-200 rounded-lg px-3 py-2 bg-gray-50"
               />
             </div>
             <div>
@@ -197,7 +197,7 @@ function renderLeadDetails(leads) {
                 type="text"
                 name="website-url"
                 value="${lead.websiteUrl ?? ""}"
-                class="w-full border border-gray-200 rounded-lg px-3 py-2 bg-gray-50"
+                class="whitespace-nowrap w-full border border-gray-200 rounded-lg px-3 py-2 bg-gray-50"
               />
             </div>
             <div>
@@ -220,7 +220,7 @@ function renderLeadDetails(leads) {
                 type="text"
                 name="arr"
                 value="${lead.annualRevenueInUSD ?? ""}"
-                class="w-full border border-gray-200 rounded-lg px-3 py-2 bg-gray-50"
+                class="whitespace-nowrap w-full border border-gray-200 rounded-lg px-3 py-2 bg-gray-50"
               />
             </div>
             <div>
