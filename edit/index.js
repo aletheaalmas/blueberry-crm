@@ -132,7 +132,7 @@ function renderLeadDetails(leads) {
                 type="text"
                 name="first-name"
                 placeholder="${lead.firstName ?? ""}"
-                class="w-full border border-gray-200 rounded-lg px-3 py-2 bg-gray-50"
+                class="w-full border border-gray-200 rounded-lg px-3 py-2 bg-gray-50 required:border-pink-500"
               />
             </div>
             <div>
@@ -146,12 +146,14 @@ function renderLeadDetails(leads) {
             </div>
             <div>
               <label class="block text-sm text-gray-500 mb-1">Gender</label>
-              <input
-                type="text"
+              <select
                 name="gender"
-                placeholder="${lead.gender ?? ""}"
                 class="w-full border border-gray-200 rounded-lg px-3 py-2 bg-gray-50"
-              />
+              >
+                <option selected>${lead.gender ?? ""}</option>
+                <option value="Female">Female</option>
+                <option value="Male">Male</option>
+              </select>
             </div>
             <div>
               <label class="block text-sm text-gray-500 mb-1">Email</label>
@@ -159,8 +161,11 @@ function renderLeadDetails(leads) {
                 type="email"
                 name="email"
                 placeholder="${lead.email ?? ""}"
-                class="w-full border border-gray-200 rounded-lg px-3 py-2 bg-gray-50"
+                class="w-full border border-gray-200 rounded-lg px-3 py-2 bg-gray-50 peer invalid:bg-pink-500"
               />
+              <p class="invisible peer-invalid:visible">
+                Pleade provide a valid email address
+              </p>
             </div>
             <div>
               <label class="block text-sm text-gray-500 mb-1">Phone</label>
