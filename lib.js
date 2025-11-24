@@ -131,6 +131,19 @@ function loadFromStorage() {
   return leads;
 }
 
+function getLeadId() {
+  const searchValue = window.location.search;
+  const searchParam = new URLSearchParams(searchValue);
+  const id = Number(searchParam.get("id"));
+  return id;
+}
+
+function getLead(leads) {
+  const id = getLeadId();
+  const lead = leads.find((lead) => lead.id === id);
+  return lead;
+}
+
 function getAmountARR(annualRevenueInUSD) {
   const amountARR =
     lead.annualRevenueInUSD != null

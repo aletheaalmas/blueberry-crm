@@ -1,7 +1,8 @@
 const assignees = ["Administrator", "User 1", "User 2"];
 const statuses = ["New", "Contacted", "Qualified", "Nurtured", "Junk"];
-const salutation = ["Mr", "Ms", "Mrs.", "Dr"];
-const indusries = [
+const salutations = ["Mr", "Ms", "Mrs.", "Dr"];
+const industries = [
+  "Technology",
   "Healthcare",
   "Finance",
   "Education",
@@ -9,19 +10,19 @@ const indusries = [
   "Retail",
   "Manufacture",
 ];
-
-function getLead(leads) {
-  const searchValue = window.location.search;
-  const searchParam = new URLSearchParams(searchValue);
-  const id = Number(searchParam.get("id"));
-
-  const lead = leads.find((lead) => lead.id === id);
-
-  return lead;
-}
+const employeeRanges = [
+  "1-10",
+  "11-50",
+  "51-200",
+  "201-500",
+  "501-1000",
+  "1000+",
+];
+const genders = ["Male", "Female"];
 
 function renderLeadDetails(leads) {
   const leadDetailsElement = document.getElementById("lead-details");
+  const editFormElement = document.getElementById("edit-form");
 
   const lead = getLead(leads);
 
@@ -36,103 +37,91 @@ function renderLeadDetails(leads) {
     ? "N/A"
     : formatNumberInUSD(lead.annualRevenueInUSD.toString());
 
-  leadDetailsElement.innerHTML = `
+  editFormElement.innerHTML = `
     <section class="flex-1 bg-white rounded-2xl shadow-sm p-6">
-      <div
-        class="flex flex-col sm:flex-row items-center sm:justify-between mb-6 gap-4"
-      >
+      <div class="flex flex-col sm:flex-row items-center sm:justify-between mb-6 gap-4">
         <div>
           <h1 class="text-xl font-semibold text-gray-800">
-            Leads /
-            <span id="lead-name" class="text-indigo-600"
-              >${lead.salutation} ${fullName}</span
-            >
+            <a href="/">Leads /</a>
+            <span id="lead-name" class="text-indigo-600">
+              ${lead.salutation} ${fullName}
+            </span>
           </h1>
           <span id="lead-code" class="block text-xs text-gray-400 mt-1 mb-6">
             ${lead.code}
           </span>
         </div>
         <div class="flex gap-2">
-          <span
-            id="assigned-to"
-            class="bg-indigo-200 text-white inline-flex items-center gap-2 px-3 py-1 rounded-lg text-sm font-medium mt-2 sm:mt-0"
-            ><div class="w-6 h-6 rounded-full bg-indigo-200">
+          <span class="bg-indigo-200 text-white inline-flex items-center gap-2 px-3 py-1 rounded-lg text-sm font-medium">
+            <div class="w-6 h-6 rounded-full bg-indigo-200">
               <img
                 class="size-6 rounded-full"
                 src="https://api.dicebear.com/9.x/lorelei/svg?seed=${
-                  lead.assignedTo
+                  lead.assignedTo ?? "Administrator"
                 }&radius=50&size=32&backgroundColor=b6e3f4,ffd5dc,c0aede,d1d4f9,ffdfbf"
-                alt="${lead.assignedTo}"
+                alt="${lead.assignedTo ?? "Administrator"}"
               />
             </div>
-            <select name="assigned-to" class="bg-indigo-200 text-gray-500">
-              ${assignees.map((assignee) => {
-                return `<option value="${assignee}"
-                 ${assignee === lead.assignedTo ? "selected" : ""}
-                >
+            <select name="assigned-to" class="bg-indigo-200 text-gray-500 border-none focus:outline-none">
+              ${assignees
+                .map((assignee) => {
+                  return `<option value="${assignee}" ${
+                    assignee === (lead.assignedTo ?? "Administrator")
+                      ? "selected"
+                      : ""
+                  }>
                   ${assignee}
                 </option>`;
-              })}
+                })
+                .join("")}
             </select>
           </span>
-          <span
-            id="lead-status"
-            class="${statusColor} text-white inline-flex items-center gap-2 px-3 py-1 rounded-lg text-sm font-medium mt-2 sm:mt-0"
-          >
-            <select name="status" class="${statusColor} text-gray-500">
+          <span class="${statusColor} text-white inline-flex items-center gap-2 px-3 py-1 rounded-lg text-sm font-medium">
+            <select name="status" class="${statusColor} text-gray-500 border-none focus:outline-none">
               ${statuses
                 .map((status) => {
-                  return `
-                  <option
-                    value="${status}"
-                    class="${statusColor}"
-                    ${status === lead.status ? "selected" : ""}
-                  >
-                    ${status}
-                  </option>
-                `;
+                  return `<option value="${status}" ${
+                    status === lead.status ? "selected" : ""
+                  }>
+                  ${status}
+                </option>`;
                 })
                 .join("")}
             </select>
           </span>
         </div>
       </div>
+      
       <div id="left-content-data" class="space-y-8">
         <section id="person-detail">
-          <div
-            id="left-content-person-header"
-            class="flex items-center justify-between mb-4"
-          >
+          <div class="flex items-center justify-between mb-4">
             <h2 class="text-lg font-medium text-gray-700">Person</h2>
           </div>
 
-          <div
-            id="left-content-person-form"
-            class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"
-          >
-            <div id="left-salutation">
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            <div>
               <label class="block text-sm text-gray-500 mb-1">Salutation</label>
-
-              <select
-                name="salutation"
-                class="w-full border border-gray-200 rounded-lg px-3 py-2 bg-gray-50 appearance-none text-gray-500"
-              >
-                <option selected>${lead.salutation}</option>
-                <option value="Mr">Mr.</option>
-                <option value="Ms.">Ms.</option>
-                <option value="Mrs.">Mrs.</option>
-                <option value="Dr.">Dr.</option>
+              <select name="salutation" class="w-full border border-gray-200 rounded-lg px-3 py-2 bg-gray-50">
+                ${salutations
+                  .map(
+                    (sal) =>
+                      `<option value="${sal}" ${
+                        sal === lead.salutation ? "selected" : ""
+                      }>${sal}</option>`
+                  )
+                  .join("")}
               </select>
             </div>
-            <div id="left-first-name">
-              <label class="block text-sm text-gray-500 mb-1"
-                >First Name<span class="text-red-500">*</span></label
-              >
+            <div>
+              <label class="block text-sm text-gray-500 mb-1">
+                First Name<span class="text-red-500">*</span>
+              </label>
               <input
                 type="text"
                 name="first-name"
-                placeholder="${lead.firstName ?? ""}"
-                class="w-full border border-gray-200 rounded-lg px-3 py-2 bg-gray-50 required:border-pink-500"
+                value="${lead.firstName ?? ""}"
+                class="w-full border border-gray-200 rounded-lg px-3 py-2 bg-gray-50"
+                required
               />
             </div>
             <div>
@@ -140,19 +129,21 @@ function renderLeadDetails(leads) {
               <input
                 type="text"
                 name="last-name"
-                placeholder="${lead.lastName ?? ""}"
+                value="${lead.lastName ?? ""}"
                 class="w-full border border-gray-200 rounded-lg px-3 py-2 bg-gray-50"
               />
             </div>
             <div>
               <label class="block text-sm text-gray-500 mb-1">Gender</label>
-              <select
-                name="gender"
-                class="w-full border border-gray-200 rounded-lg px-3 py-2 bg-gray-50"
-              >
-                <option selected>${lead.gender ?? ""}</option>
-                <option value="Female">Female</option>
-                <option value="Male">Male</option>
+              <select name="gender" class="w-full border border-gray-200 rounded-lg px-3 py-2 bg-gray-50">
+                ${genders
+                  .map(
+                    (gender) =>
+                      `<option value="${gender}" ${
+                        lead.gender === gender ? "selected" : ""
+                      }>${gender}</option>`
+                  )
+                  .join("")}
               </select>
             </div>
             <div>
@@ -160,19 +151,16 @@ function renderLeadDetails(leads) {
               <input
                 type="email"
                 name="email"
-                placeholder="${lead.email ?? ""}"
-                class="w-full border border-gray-200 rounded-lg px-3 py-2 bg-gray-50 peer invalid:bg-pink-500"
+                value="${lead.email ?? ""}"
+                class="w-full border border-gray-200 rounded-lg px-3 py-2 bg-gray-50"
               />
-              <p class="invisible peer-invalid:visible">
-                Pleade provide a valid email address
-              </p>
             </div>
             <div>
               <label class="block text-sm text-gray-500 mb-1">Phone</label>
               <input
                 type="text"
                 name="phone"
-                placeholder="${lead.phone ?? ""}"
+                value="${lead.phone ?? ""}"
                 class="w-full border border-gray-200 rounded-lg px-3 py-2 bg-gray-50"
               />
             </div>
@@ -186,13 +174,11 @@ function renderLeadDetails(leads) {
 
           <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
             <div>
-              <label class="block text-sm text-gray-500 mb-1"
-                >Organization</label
-              >
+              <label class="block text-sm text-gray-500 mb-1">Organization</label>
               <input
                 type="text"
                 name="organization"
-                placeholder="${lead.organization ?? ""}"
+                value="${lead.organization ?? ""}"
                 class="w-full border border-gray-200 rounded-lg px-3 py-2 bg-gray-50"
               />
             </div>
@@ -201,7 +187,7 @@ function renderLeadDetails(leads) {
               <input
                 type="text"
                 name="job-title"
-                placeholder="${lead.jobTitle ?? ""}"
+                value="${lead.jobTitle ?? ""}"
                 class="w-full border border-gray-200 rounded-lg px-3 py-2 bg-gray-50"
               />
             </div>
@@ -210,154 +196,124 @@ function renderLeadDetails(leads) {
               <input
                 type="text"
                 name="website-url"
-                placeholder="${lead.websiteUrl ?? ""}"
+                value="${lead.websiteUrl ?? ""}"
                 class="w-full border border-gray-200 rounded-lg px-3 py-2 bg-gray-50"
               />
             </div>
             <div>
               <label class="block text-sm text-gray-500 mb-1">Industry</label>
-
-              <select
-                class="w-full border border-gray-200 rounded-lg px-3 py-2 bg-gray-50 appearance-none text-gray-500"
-              >
-                <option selected>${lead.industry}</option>
-                <option value="Technology">Technology</option>
-                <option value="Healthcare">Healthcare</option>
-                <option value="Finance">Finance</option>
-                <option value="Education">Education</option>
-                <option value="Service">Service</option>
-                <option value="Retail">Retail</option>
-                <option value="Manufacture">Manufacture</option>
+              <select name="industry" class="w-full border border-gray-200 rounded-lg px-3 py-2 bg-gray-50">
+                <option value="">Select Industry</option>
+                ${industries
+                  .map(
+                    (ind) =>
+                      `<option value="${ind}" ${
+                        ind === lead.industry ? "selected" : ""
+                      }>${ind}</option>`
+                  )
+                  .join("")}
               </select>
             </div>
             <div>
-              <label class="block text-sm text-gray-500 mb-1"
-                >Annual Revenue</label
-              >
+              <label class="block text-sm text-gray-500 mb-1">Annual Revenue</label>
               <input
                 type="text"
                 name="arr"
-                placeholder="${amountARR ?? ""}"
+                value="${lead.annualRevenueInUSD ?? ""}"
                 class="w-full border border-gray-200 rounded-lg px-3 py-2 bg-gray-50"
               />
             </div>
             <div>
-              <label class="block text-sm text-gray-500 mb-1"
-                >No. of Employees</label
-              >
-
-              <select
-                name="employees-count-range"
-                class="w-full border border-gray-200 rounded-lg px-3 py-2 bg-gray-50 appearance-none text-gray-500"
-              >
-                <option selected>${lead.employeesCountRange}</option>
-                <option value="1-10">1-10</option>
-                <option value="11-50">11-50</option>
-                <option value="51-200">51-200</option>
-                <option value="201-500">201-500</option>
-                <option value="501-1000">501-1000</option>
-                <option value="1000+">1000+</option>
+              <label class="block text-sm text-gray-500 mb-1">No. of Employees</label>
+              <select name="employees-count-range" class="w-full border border-gray-200 rounded-lg px-3 py-2 bg-gray-50">
+                ${employeeRanges
+                  .map(
+                    (range) =>
+                      `<option value="${range}" ${
+                        lead.employeesCountRange === range ? "selected" : ""
+                      }>${range}</option>`
+                  )
+                  .join("")}
               </select>
             </div>
           </div>
         </section>
       </div>
-      <div id="submit-button" class="flex mt-6">
+      
+      <div class="flex mt-6 gap-2">
         <button
           type="submit"
           class="bg-indigo-600 text-white px-6 py-2 rounded-lg hover:bg-indigo-700 transition cursor-pointer"
         >
-          Save
+          Save Changes
         </button>
       </div>
     </section>
   `;
+
+  setupFormEventListener();
 }
 
-renderLeadDetails(dataLeads);
+function setupFormEventListener() {
+  const editFormElement = document.getElementById("edit-form");
+
+  if (editFormElement) {
+    editFormElement.addEventListener("submit", (event) => {
+      event.preventDefault();
+      const formData = new FormData(editFormElement);
+      const leadId = getLeadId();
+
+      const updatedLeadData = {
+        salutation: formData.get("salutation"),
+        firstName: formData.get("first-name"),
+        lastName: formData.get("last-name"),
+        email: formData.get("email"),
+        phone: formData.get("phone"),
+        gender: formData.get("gender"),
+        organization: formData.get("organization"),
+        jobTitle: formData.get("job-title"),
+        websiteUrl: formData.get("website-url"),
+        industry: formData.get("industry"),
+        annualRevenueInUSD: formData.get("arr"),
+        employeesCountRange: formData.get("employees-count-range"),
+        status: formData.get("status"),
+        assignedTo: formData.get("assigned-to"),
+      };
+
+      updateLead(dataLeads, leadId, updatedLeadData);
+      window.location.href = "/";
+    });
+  }
+}
 
 function updateLead(leads, id, leadBody) {
-  const {
-    status,
-    salutation,
-    firstName,
-    lastName,
-    email,
-    phone,
-    gender,
-    organization,
-    jobTitle,
-    websiteUrl,
-    employeesCountRange,
-    annualRevenueInUSD,
-    industry,
-    assignedTo,
-  } = leadBody;
-
-  const updatedLead = leads.map((lead) => {
+  const updatedLeads = leads.map((lead) => {
     if (lead.id !== id) return lead;
 
     return {
       ...lead,
-      status,
-      salutation,
-      firstName,
-      lastName,
-      email,
-      phone,
-      gender,
-      organization,
-      jobTitle,
-      websiteUrl,
-      employeesCountRange,
-      annualRevenueInUSD,
-      industry,
-      assignedTo,
+      status: leadBody.status ?? lead.status,
+      salutation: leadBody.salutation ?? lead.salutation,
+      firstName: leadBody.firstName ?? lead.firstName,
+      lastName: leadBody.lastName ?? lead.lastName,
+      email: leadBody.email ?? lead.email,
+      phone: leadBody.phone ?? lead.phone,
+      gender: leadBody.gender ?? lead.gender,
+      organization: leadBody.organization ?? lead.organization,
+      jobTitle: leadBody.jobTitle ?? lead.jobTitle,
+      websiteUrl: fixWebsiteURL(leadBody.websiteUrl) ?? lead.websiteUrl,
+      employeesCountRange:
+        leadBody.employeesCountRange ?? lead.employeesCountRange,
+      annualRevenueInUSD: leadBody.annualRevenueInUSD
+        ? parseFloat(leadBody.annualRevenueInUSD)
+        : lead.annualRevenueInUSD,
+      industry: leadBody.industry ?? lead.industry,
+      assignedTo: leadBody.assignedTo ?? lead.assignedTo,
     };
   });
-  dataLeads = updatedLead;
+
+  dataLeads = updatedLeads;
   saveToStorage(dataLeads);
 }
 
-function changeStatus(leads, id, newStatus) {
-  const updatedStatus = leads.map((lead) => {
-    if (lead.id === id) {
-      return {
-        ...lead,
-        status: newStatus,
-      };
-    }
-    return lead;
-  });
-
-  dataLeads = updatedStatus;
-  saveToStorage(dataLeads);
-}
-
-const createLeadFormElement = document.getElementById("create-form");
-
-createLeadFormElement.addEventListener("submit", (event) => {
-  event.preventDefault();
-  const formData = new FormData(createLeadFormElement);
-
-  const newLeadData = {
-    salutation: formData.get("salutation"),
-    firstName: formData.get("first-name"),
-    lastName: formData.get("last-name"),
-    email: formData.get("email"),
-    phone: formData.get("phone"),
-    organization: formData.get("organization"),
-    jobTitle: formData.get("job-title"),
-    websiteUrl: formData.get("website-url"),
-    industry: formData.get("industry"),
-    annualRevenueInUSD: formData.get("arr"),
-    employeesCountRange: formData.get("employees-count-range"),
-    status: formData.get("status"),
-    assignedTo: formData.get("assigned-to"),
-  };
-
-  createLead(dataLeads, newLeadData);
-});
-
-const editLeadFormElement = document.getElementById("edit-form");
-console.log(editLeadFormElement);
+renderLeadDetails(dataLeads);
