@@ -197,3 +197,17 @@ function fixWebsiteURL(text) {
     return text;
   }
 }
+
+function deleteLead(leads, id) {
+  const updatedLeads = leads.filter((lead) => lead.id !== id);
+
+  dataLeads = updatedLeads;
+  saveToStorage(dataLeads);
+  renderAllLeads(dataLeads);
+}
+
+function deleteLeads(leads, ids) {
+  const updatedLeads = leads.filter((lead) => ids.includes(lead.id));
+  dataLeads = updatedLeads;
+  saveToStorage(dataLeads);
+}

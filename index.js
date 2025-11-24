@@ -4,23 +4,18 @@ function renderLead(lead) {
 
   return `<tr class="border-b border-gray-200 hover:bg-gray-50">
     <td class="flex content-between gap-2 px-3 py-3 text-gray-500">
-      <a
-        href="lead/?id=${lead.id}"
-      >
-        <img
-          src="/assets/icons/eye.svg"
-          alt="View"
-          width="15"
-          height="15"
-        />
+      <a href="lead/?id=${lead.id}">
+        <img src="/assets/icons/eye.svg" alt="View" width="15" height="15" />
       </a>
       <a href="edit/?id=${lead.id}">
         <img src="/assets/icons/edit.svg" alt="View" width="15" height="15" />
       </a>
-      <button onclick="deleteLead(dataLeads, ${lead.id})">
+      <button
+        class="cursor-pointer"
+        onclick="deleteLead(dataLeads, ${lead.id})"
+      >
         <img src="/assets/icons/bin.svg" alt="View" width="15" height="15" />
       </button>
-      
     </td>
     <td class="whitespace-nowrap px-6 py-3 font-medium">
       <div class="flex items-center gap-2">
@@ -44,13 +39,12 @@ function renderLead(lead) {
     <td class="px-6 py-3 whitespace-nowrap ">${lead.phone ?? "N/A"}</td>
     <td class="px-6 py-3 flex items-center space-x-2">
       <div class="w-6 h-6 rounded-full bg-gray-300">
-      <img
+        <img
           class="size-6 rounded-full"
-          src="https://api.dicebear.com/9.x/lorelei/svg?seed=${
-            lead.assignedTo
-          }&radius=50&size=32&backgroundColor=b6e3f4,ffd5dc,c0aede,d1d4f9,ffdfbf"
+          src="https://api.dicebear.com/9.x/lorelei/svg?seed=${lead.assignedTo}&radius=50&size=32&backgroundColor=b6e3f4,ffd5dc,c0aede,d1d4f9,ffdfbf"
           alt="${lead.assigned}"
-        /></div>
+        />
+      </div>
       <span>${lead.assignedTo ?? "Administrator"}</span>
     </td>
   </tr> `;
@@ -84,20 +78,6 @@ function searchLeads(leads) {
   });
 
   return foundLeads;
-}
-
-function deleteLead(leads, id) {
-  const updatedLeads = leads.filter((lead) => lead.id !== id);
-
-  dataLeads = updatedLeads;
-  saveToStorage(dataLeads);
-  renderAllLeads(dataLeads);
-}
-
-function deleteLeads(leads, ids) {
-  const updatedLeads = leads.filter((lead) => ids.includes(lead.id));
-  dataLeads = updatedLeads;
-  saveToStorage(dataLeads);
 }
 
 // ------------------------------------------------------

@@ -48,7 +48,7 @@ function renderLeadDetails(leads) {
             <div class="flex item-centre gap-2">
               <a
                 class="mt-2 border border-gray-200 bg-gray-50 p-1 rounded"
-                href="edit/?id=${lead.id}"
+                href="../edit/?id=${lead.id}"
               >
                 <img
                   src="/assets/icons/edit.svg"
@@ -58,7 +58,7 @@ function renderLeadDetails(leads) {
                 />
               </a>
               <button
-                class="mt-2 border border-gray-200 bg-gray-50 p-1 rounded"
+                class="mt-2 border border-gray-200 bg-gray-50 p-1 rounded cursor-pointer"
                 onclick="deleteLead(dataLeads, ${lead.id})"
               >
                 <img
@@ -211,3 +211,6 @@ function changeStatus(leads, id, newStatus) {
   dataLeads = updatedStatus;
   saveToStorage(dataLeads);
 }
+
+window.deleteLead = deleteLead;
+window.dataLeads = dataLeads;
