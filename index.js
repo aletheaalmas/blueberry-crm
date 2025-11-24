@@ -13,8 +13,8 @@ function renderLead(lead) {
         <span> ${lead.salutation ?? ""} ${fullName} </span>
       </div>
     </td>
-    <td class="whitespace-nowrap px-5 py-2">${lead.organization ?? "N/A"}</td>
-    <td class="whitespace-nowrap px-5 py-2">${lead.jobTitle ?? "N/A"}</td>
+    <td class="whitespace-nowrap px-5 py-2">${lead.organization ?? "-"}</td>
+    <td class="whitespace-nowrap px-5 py-2">${lead.jobTitle ?? "-"}</td>
     <td class="px-5 py-2">
       <span class="flex items-center text-gray-600">
         <span class="w-2 h-2 rounded-full mr-2 ${statusColor}"></span>
@@ -22,19 +22,27 @@ function renderLead(lead) {
       </span>
     </td>
     <td class="px-5 py-2 whitespace-nowrap ">
-      <div>${lead.phone ?? "N/A"}</div>
-      <div>${lead.email ?? "N/A"}</div>
+      <div class="flex items-center space-x-2 gap-1"><img src="/assets/icons/phone.svg" alt="View" width="15" height="15"/>${
+        lead.phone ?? "-"
+      }</div>
+      <div class="flex items-center space-x-2 gap-1"><img src="/assets/icons/mail.svg" alt="View" width="15" height="15"/>${
+        lead.email ?? "-"
+      }</div>
     </td>
-    <td class="px-5 py-2 flex items-center space-x-2">
-      <div class="w-6 h-6 rounded-full bg-gray-300">
-        <img
-          class="size-6 rounded-full"
-          src="https://api.dicebear.com/9.x/lorelei/svg?seed=${lead.assignedTo}&radius=50&size=32&backgroundColor=b6e3f4,ffd5dc,c0aede,d1d4f9,ffdfbf"
-          alt="${lead.assigned}"
-        />
-      </div>
-      <span>${lead.assignedTo ?? "Administrator"}</span>
-    </td>
+    <td class="px-5 py-2 whitespace-nowrap">
+  <div class="flex items-center space-x-2">
+    <div class="w-6 h-6 rounded-full bg-gray-300">
+      <img
+        class="size-6 rounded-full"
+        src="https://api.dicebear.com/9.x/lorelei/svg?seed=${
+          lead.assignedTo
+        }&radius=50&size=32&backgroundColor=b6e3f4,ffd5dc,c0aede,d1d4f9,ffdfbf"
+        alt="${lead.assignedTo || "Administrator"}"
+      />
+    </div>
+    <span>${lead.assignedTo ?? "Administrator"}</span>
+  </div>
+</td>
     <td class="px-5 py-2 whitespace-nowrap">
       <div class="flex items-center gap-2">
         <a href="lead/?id=${lead.id}" class="text-gray-500 hover:text-gray-700">
