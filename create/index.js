@@ -19,8 +19,6 @@ function generateCode(items) {
   return newCode;
 }
 
-
-
 function createLead(leads, leadBody) {
   const {
     salutation,
@@ -54,7 +52,7 @@ function createLead(leads, leadBody) {
     gender,
     organization,
     jobTitle,
-    websiteUrl: fixWebsiteUrl(websiteUrl),
+    websiteUrl: fixWebsiteURL(websiteUrl),
     employeesCountRange,
     annualRevenueInUSD,
     industry,
@@ -65,6 +63,8 @@ function createLead(leads, leadBody) {
   dataLeads = updatedLeads;
 
   saveToStorage(dataLeads);
+
+  window.location.href = "/";
 }
 
 const createLeadFormElement = document.getElementById("create-form");
@@ -81,7 +81,7 @@ createLeadFormElement.addEventListener("submit", (event) => {
     phone: formData.get("phone"),
     organization: formData.get("organization"),
     jobTitle: formData.get("job-title"),
-    websiteUrl: formData.get("website"),
+    websiteUrl: formData.get("website-url"),
     industry: formData.get("industry"),
     annualRevenueInUSD: formData.get("arr"),
     employeesCountRange: formData.get("employees-count-range"),
