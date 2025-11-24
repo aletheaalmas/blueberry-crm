@@ -212,11 +212,15 @@ function fixWebsiteURL(text) {
 }
 
 function deleteLead(leads, id) {
-  const updatedLeads = leads.filter((lead) => lead.id !== id);
+  if (confirm("Are you sure you want to delete this lead?")) {
+    const updatedLeads = leads.filter((lead) => lead.id !== id);
 
-  dataLeads = updatedLeads;
-  saveToStorage(dataLeads);
-  renderAllLeads(dataLeads);
+    dataLeads = updatedLeads;
+    saveToStorage(dataLeads);
+
+    // HANYA redirect, tidak perlu renderAllLeads karena akan pindah halaman
+    window.location.href = "/";
+  }
 }
 
 function deleteLeads(leads, ids) {
