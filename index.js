@@ -3,21 +3,7 @@ function renderLead(lead) {
   const statusColor = getStatusColor(lead.status);
 
   return `<tr class="border-b border-gray-200 hover:bg-gray-50">
-    <td class="flex content-between gap-2 px-3 py-3 text-gray-500">
-      <a href="lead/?id=${lead.id}">
-        <img src="/assets/icons/eye.svg" alt="View" width="15" height="15" />
-      </a>
-      <a href="edit/?id=${lead.id}">
-        <img src="/assets/icons/edit.svg" alt="View" width="15" height="15" />
-      </a>
-      <button
-        class="cursor-pointer"
-        onclick="deleteLead(dataLeads, ${lead.id})"
-      >
-        <img src="/assets/icons/bin.svg" alt="View" width="15" height="15" />
-      </button>
-    </td>
-    <td class="whitespace-nowrap px-6 py-3 font-medium">
+    <td class="whitespace-nowrap px-5 py-2 font-medium">
       <div class="flex items-center gap-2">
         <img
           class="size-6 rounded-full"
@@ -27,17 +13,19 @@ function renderLead(lead) {
         <span> ${lead.salutation ?? ""} ${fullName} </span>
       </div>
     </td>
-    <td class="whitespace-nowrap px-6 py-3">${lead.organization ?? "N/A"}</td>
-    <td class="whitespace-nowrap px-6 py-3">${lead.jobTitle ?? "N/A"}</td>
-    <td class="px-6 py-3">
+    <td class="whitespace-nowrap px-5 py-2">${lead.organization ?? "N/A"}</td>
+    <td class="whitespace-nowrap px-5 py-2">${lead.jobTitle ?? "N/A"}</td>
+    <td class="px-5 py-2">
       <span class="flex items-center text-gray-600">
         <span class="w-2 h-2 rounded-full mr-2 ${statusColor}"></span>
         <span>${lead.status}</span>
       </span>
     </td>
-    <td class="px-6 py-3">${lead.email ?? "N/A"}</td>
-    <td class="px-6 py-3 whitespace-nowrap ">${lead.phone ?? "N/A"}</td>
-    <td class="px-6 py-3 flex items-center space-x-2">
+    <td class="px-5 py-2 whitespace-nowrap ">
+      <div>${lead.phone ?? "N/A"}</div>
+      <div>${lead.email ?? "N/A"}</div>
+    </td>
+    <td class="px-5 py-2 flex items-center space-x-2">
       <div class="w-6 h-6 rounded-full bg-gray-300">
         <img
           class="size-6 rounded-full"
@@ -46,6 +34,27 @@ function renderLead(lead) {
         />
       </div>
       <span>${lead.assignedTo ?? "Administrator"}</span>
+    </td>
+    <td class="px-5 py-2 whitespace-nowrap">
+      <div class="flex items-center gap-2">
+        <a href="lead/?id=${lead.id}" class="text-gray-500 hover:text-gray-700">
+          <img src="/assets/icons/eye.svg" alt="View" width="15" height="15" />
+        </a>
+        <a href="edit/?id=${lead.id}" class="text-gray-500 hover:text-gray-700">
+          <img src="/assets/icons/edit.svg" alt="Edit" width="15" height="15" />
+        </a>
+        <button
+          class="cursor-pointer text-gray-500 hover:text-gray-700"
+          onclick="deleteLead(dataLeads, ${lead.id})"
+        >
+          <img
+            src="/assets/icons/bin.svg"
+            alt="Delete"
+            width="15"
+            height="15"
+          />
+        </button>
+      </div>
     </td>
   </tr> `;
 }
