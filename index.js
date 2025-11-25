@@ -83,6 +83,9 @@ function searchLeads(leads) {
 
   if (!q) return leads;
 
+  const searchInpurElement = document.getElementById("search-input");
+  searchInpurElement.value = q;
+
   const foundLeads = leads.filter((lead) => {
     if (
       (lead.firstName && lead.firstName.toLowerCase().includes(q)) ||
