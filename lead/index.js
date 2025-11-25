@@ -12,7 +12,7 @@ function renderLeadDetails(leads) {
   const fullName = getFullName(lead);
   const statusColor = getStatusColor(lead.status);
   const amountARR = !lead.annualRevenueInUSD
-    ? "N/A"
+    ? ""
     : formatNumberInUSD(lead.annualRevenueInUSD.toString());
 
   leadDetailsElement.innerHTML = `
@@ -79,7 +79,7 @@ function renderLeadDetails(leads) {
             id="lead-status"
             class="${statusColor} text-gray-400 inline-flex items-center gap-2 px-3 py-1 rounded-lg text-sm font-medium mt-2 sm:mt-0"
           >
-            ${lead.status ?? "N/A"}
+            ${lead.status ?? ""}
           </span>
         </div>
       </div>
@@ -93,27 +93,27 @@ function renderLeadDetails(leads) {
           <div class="grid grid-cols-1 gap-y-2 max-w-xs">
             <div class="grid grid-cols-2 items-center">
               <span class="text-gray-500">Salutation</span>
-              <span>${lead.salutation ?? "N/A"}</span>
+              <span>${lead.salutation ?? ""}</span>
             </div>
             <div class="grid grid-cols-2 items-center">
               <span class="text-gray-500">First Name</span>
-              <span>${lead.firstName ?? "N/A"}</span>
+              <span>${lead.firstName ?? ""}</span>
             </div>
             <div class="grid grid-cols-2 items-center">
               <span class="text-gray-500">Last Name</span>
-              <span>${lead.lastName ?? "N/A"}</span>
+              <span>${lead.lastName ?? ""}</span>
             </div>
             <div class="grid grid-cols-2 items-center">
               <span class="text-gray-500">Gender</span>
-              <span>${lead.gender ?? "N/A"}</span>
+              <span>${lead.gender ?? ""}</span>
             </div>
             <div class="grid grid-cols-2 items-center">
               <span class="text-gray-500">Email</span>
-              <span>${lead.email ?? "N/A"}</span>
+              <span>${lead.email ?? ""}</span>
             </div>
             <div class="grid grid-cols-2 items-center">
               <span class="text-gray-500">Phone</span>
-              <span>${lead.phone ?? "N/A"}</span>
+              <span>${lead.phone ?? ""}</span>
             </div>
           </div>
         </div>
@@ -125,19 +125,19 @@ function renderLeadDetails(leads) {
           </h3>
           <div class="grid grid-cols-2 gap-y-2 max-w-xs">
             <span class="text-gray-500">Organization</span>
-            <span>${lead.organization ?? "N/A"}</span>
+            <span>${lead.organization ?? ""}</span>
             <span class="text-gray-500">Job Title</span>
-            <span>${lead.jobTitle ?? "N/A"}</span>
+            <span>${lead.jobTitle ?? ""}</span>
             <span class="text-gray-500">Website</span>
             <span
               >${
                 lead.websiteUrl
                   ? `<a href="${lead.websiteUrl}" class="text-indigo-600 hover:underline" target="_blank" rel="noopener">${lead.websiteUrl}</a>`
-                  : "N/A"
+                  : ""
               }</span
             >
             <span class="text-gray-500">Industry</span>
-            <span>${lead.industry ?? "N/A"}</span>
+            <span>${lead.industry ?? ""}</span>
             <span class="text-gray-500">Annual Revenue</span>
             <span>${amountARR}</span>
             <span class="text-gray-500">No. of Employees</span>
