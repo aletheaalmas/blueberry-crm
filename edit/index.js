@@ -247,9 +247,8 @@ function renderLeadDetails(leads) {
               </select>
             </div>
           </div>
-           
       </div>
-      
+
       <div class="flex mt-6 gap-2">
         <button
           type="submit"
@@ -260,52 +259,6 @@ function renderLeadDetails(leads) {
       </div>
     </section>
   `;
-
-  setupFormEventListener();
-}
-
-function setupFormEventListener() {
-  const editFormElement = document.getElementById("edit-form");
-
-  if (editFormElement) {
-    editFormElement.addEventListener("submit", (event) => {
-      event.preventDefault();
-      const formData = new FormData(editFormElement);
-
-      const noPhoneNoEmailNotificationElement = document.getElementById(
-        "no-phone-no-email-notification"
-      );
-
-      const email = formData.get("email")?.trim();
-      const phone = formData.get("phone")?.trim();
-      if (!email && !phone) {
-        noPhoneNoEmailNotificationElement.innerHTML = `<p class="text-red-500">Must input phone or email</p>`;
-        return;
-      }
-
-      const leadId = getLeadId();
-
-      const updatedLeadData = {
-        salutation: formData.get("salutation"),
-        firstName: formData.get("first-name"),
-        lastName: formData.get("last-name"),
-        email: formData.get("email"),
-        phone: formData.get("phone"),
-        gender: formData.get("gender"),
-        organization: formData.get("organization"),
-        jobTitle: formData.get("job-title"),
-        websiteUrl: formData.get("website-url"),
-        industry: formData.get("industry"),
-        annualRevenueInUSD: formData.get("arr"),
-        employeesCountRange: formData.get("employees-count-range"),
-        status: formData.get("status"),
-        assignedTo: formData.get("assigned-to"),
-      };
-
-      updateLead(dataLeads, leadId, updatedLeadData);
-      window.location.href = "/";
-    });
-  }
 }
 
 function updateLead(leads, id, leadBody) {
@@ -339,3 +292,45 @@ function updateLead(leads, id, leadBody) {
 }
 
 renderLeadDetails(dataLeads);
+
+const editFormElement = document.getElementById("edit-form");
+
+editFormElement.addEventListener("submit", (event) => {
+  event.preventDefault();
+  const formData = new FormData(editFormElement);
+
+  const lead = getLead(dataLeads);
+
+  const noPhoneNoEmailNotificationElement = document.getElementById(
+    "no-phone-no-email-notification"
+  );
+
+  const email = formData.get("email")?.trim();
+  const phone = formData.get("phone")?.trim();
+  if (!email && !phone) {
+    noPhoneNoEmailNotificationElement.innerHTML = `<p class="text-red-500">Must input phone or email</p>`;
+    return;
+  }
+
+  const updatedLeadData = {
+    ...lead,
+    salutation: formData.get("salutation"),
+    firstName: formData.get("first-name"),
+    lastName: formData.get("last-name"),
+    email: formData.get("email"),
+    phone: formData.get("phone"),
+    gender: formData.get("gender"),
+    organization: formData.get("organization"),
+    jobTitle: formData.get("job-title"),
+    websiteUrl: formData.get("website-url"),
+    industry: formData.get("industry"),
+    annualRevenueInUSD: Number(formData.get("arr")),
+    employeesCountRange: formData.get("employees-count-range"),
+    status: formData.get("status"),
+    assignedTo: formData.get("assigned-to"),
+    updatedAt: new Date(),
+  };
+
+  updateLead(dataLeads, lead.id, updatedLeadData);
+  window.location.href = "/";
+});

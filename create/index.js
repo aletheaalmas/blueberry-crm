@@ -57,6 +57,8 @@ function createLead(leads, leadBody) {
     annualRevenueInUSD,
     industry,
     assignedTo,
+    createdAt: new Date(),
+    updatedAt: new Date(),
   };
 
   if (!email && !phone) {
