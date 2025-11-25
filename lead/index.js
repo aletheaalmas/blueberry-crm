@@ -26,15 +26,21 @@ function renderLeadDetails(leads) {
 
   leadDetailsElement.innerHTML = `
     <div class="w-full max-w-xl mx-auto bg-white rounded-xl shadow px-8 py-6">
+      <div>
+        <a href="/"
+          ><img src="/assets/icons/arrow-left.svg" alt="View" width="20" height="15"
+        /></a>
+      </div>
       <div
         class="flex flex-col sm:flex-row items-center sm:justify-between mb-6 gap-4"
       >
         <div class="flex items-center space-x-4">
-          <img
-            class="size-16 rounded-full"
-            src="https://api.dicebear.com/9.x/initials/svg?seed=${fullName}&radius=50&size=32&backgroundColor=b6e3f4,ffd5dc,c0aede,d1d4f9,ffdfbf"
-            alt="${fullName}"
-          />
+          <a href="/"
+            ><img
+              class="size-16 rounded-full"
+              src="https://api.dicebear.com/9.x/initials/svg?seed=${fullName}&radius=50&size=32&backgroundColor=b6e3f4,ffd5dc,c0aede,d1d4f9,ffdfbf"
+              alt="${fullName}"
+          /></a>
           <div>
             <span id="lead-code" class="block text-xs text-gray-400 mt-1">
               ${lead.code}

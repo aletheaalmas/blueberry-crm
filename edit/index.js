@@ -39,6 +39,11 @@ function renderLeadDetails(leads) {
 
   editFormElement.innerHTML = `
     <section class="bg-white rounded-2xl shadow-sm p-6">
+    <div>
+        <a href="/"
+          ><img src="/assets/icons/arrow-left.svg" alt="View" width="20" height="15"
+        /></a>
+      </div>
       <div class="flex flex-col lg:flex-row lg:items-start justify-between mb-6 gap-4">
         <div>
           <h1 class="text-xl font-semibold text-gray-800 whitespace-nowrap">
@@ -47,7 +52,7 @@ function renderLeadDetails(leads) {
               ${lead.salutation} ${fullName}
             </span>
           </h1>
-          <span id="lead-code" class="block text-xs text-gray-400 mt-1 mb-6">
+          <span id="lead-code" class="block text-xs text-gray-400 mt-1 4">
             ${lead.code}
           </span>
         </div>
