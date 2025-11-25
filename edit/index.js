@@ -170,6 +170,11 @@ function renderLeadDetails(leads) {
               />
             </div>
           </div>
+          <div
+                id="no-phone-no-email-notification"
+                class="text-red-500"
+              ></div>
+       
         </section>
 
         <section id="organization-details">
@@ -242,7 +247,7 @@ function renderLeadDetails(leads) {
               </select>
             </div>
           </div>
-        </section>
+           
       </div>
       
       <div class="flex mt-6 gap-2">
@@ -266,6 +271,18 @@ function setupFormEventListener() {
     editFormElement.addEventListener("submit", (event) => {
       event.preventDefault();
       const formData = new FormData(editFormElement);
+
+      const noPhoneNoEmailNotificationElement = document.getElementById(
+        "no-phone-no-email-notification"
+      );
+
+      const email = formData.get("email")?.trim();
+      const phone = formData.get("phone")?.trim();
+      if (!email && !phone) {
+        noPhoneNoEmailNotificationElement.innerHTML = `<p class="text-red-500">Must input phone or email</p>`;
+        return;
+      }
+
       const leadId = getLeadId();
 
       const updatedLeadData = {
