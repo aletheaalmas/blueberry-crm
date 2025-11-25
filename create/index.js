@@ -89,6 +89,7 @@ createLeadFormElement.addEventListener("submit", (event) => {
     lastName: formData.get("last-name"),
     email: formData.get("email"),
     phone: formData.get("phone"),
+    gender: formData.get("gender"),
     organization: formData.get("organization"),
     jobTitle: formData.get("job-title"),
     websiteUrl: formData.get("website-url"),
