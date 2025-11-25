@@ -59,6 +59,11 @@ function createLead(leads, leadBody) {
     assignedTo,
   };
 
+  if (!email && !phone) {
+    noPhoneNoEmailNotificationElement.innerHTML = `<p>Must input phone or email</p>`;
+    return null;
+  }
+
   const updatedLeads = [...leads, newLead];
   dataLeads = updatedLeads;
 
@@ -67,6 +72,9 @@ function createLead(leads, leadBody) {
   window.location.href = "/";
 }
 
+const noPhoneNoEmailNotificationElement = document.getElementById(
+  "no-phone-no-email-notification"
+);
 const createLeadFormElement = document.getElementById("create-form");
 
 createLeadFormElement.addEventListener("submit", (event) => {
