@@ -18,7 +18,7 @@ const employeeRanges = [
   "501-1000",
   "1000+",
 ];
-const genders = ["Male", "Female"];
+const genders = ["", "Male", "Female"];
 
 function renderLeadDetails(leads) {
   const leadDetailsElement = document.getElementById("lead-details");

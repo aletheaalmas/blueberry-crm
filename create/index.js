@@ -85,6 +85,7 @@ createLeadFormElement.addEventListener("submit", (event) => {
     salutation: formData.get("salutation"),
     firstName: formData.get("first-name"),
     lastName: formData.get("last-name"),
+    gender: formData.get("gender"),
     email: formData.get("email"),
     phone: formData.get("phone"),
     organization: formData.get("organization"),
