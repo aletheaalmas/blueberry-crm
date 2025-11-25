@@ -98,6 +98,9 @@ function searchLeads(leads) {
 
   if (!q) return leads;
 
+  const searchInputElement = document.getElementById("search-input");
+  searchInputElement.value = q;
+
   const foundLeads = leads.filter((lead) => {
     if (
       (lead.firstName && lead.firstName.toLowerCase().includes(q)) ||
@@ -108,6 +111,8 @@ function searchLeads(leads) {
       return lead;
     }
   });
+
+  debugger;
 
   return foundLeads;
 }
