@@ -25,7 +25,7 @@ function renderLead(lead) {
       <div class="flex items-center space-x-2 gap-1"><img src="/assets/icons/phone.svg" alt="View" width="15" height="15"/>${
         lead.phone ?? "-"
       }</div>
-      <div class="flex items-center space-x-2 gap-1"><img src="/assets/icons/mail.svg" alt="View" width="15" height="15"/>${
+      <div class="mt-1 flex items-center space-x-2 gap-1"><img src="/assets/icons/mail.svg" alt="View" width="15" height="15"/>${
         lead.email ?? "-"
       }</div>
     </td>
