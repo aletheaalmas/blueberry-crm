@@ -284,6 +284,7 @@ function updateLead(leads, id, leadBody) {
         : lead.annualRevenueInUSD,
       industry: leadBody.industry ?? lead.industry,
       assignedTo: leadBody.assignedTo ?? lead.assignedTo,
+      updatedAt: new Date(),
     };
   });
 
@@ -299,7 +300,7 @@ editFormElement.addEventListener("submit", (event) => {
   event.preventDefault();
   const formData = new FormData(editFormElement);
 
-  const lead = getLead(dataLeads);
+  const leadId = getLeadId();
 
   const noPhoneNoEmailNotificationElement = document.getElementById(
     "no-phone-no-email-notification"
@@ -312,8 +313,7 @@ editFormElement.addEventListener("submit", (event) => {
     return;
   }
 
-  const updatedLeadData = {
-    ...lead,
+  const leadBody = {
     salutation: formData.get("salutation"),
     firstName: formData.get("first-name"),
     lastName: formData.get("last-name"),
@@ -324,13 +324,13 @@ editFormElement.addEventListener("submit", (event) => {
     jobTitle: formData.get("job-title"),
     websiteUrl: formData.get("website-url"),
     industry: formData.get("industry"),
-    annualRevenueInUSD: Number(formData.get("arr")),
+    annualRevenueInUSD: formData.get("arr"),
     employeesCountRange: formData.get("employees-count-range"),
     status: formData.get("status"),
     assignedTo: formData.get("assigned-to"),
-    updatedAt: new Date(),
   };
 
-  updateLead(dataLeads, lead.id, updatedLeadData);
+  updateLead(dataLeads, leadId, leadBody);
+
   window.location.href = "/";
 });
