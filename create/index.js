@@ -69,7 +69,7 @@ function createLead(leads, leadBody) {
 
   saveToStorage(dataLeads);
 
-  window.location.href = "/";
+  window.location.href = `/lead/?id=${newLead.id}`;
 }
 
 const noPhoneNoEmailNotificationElement = document.getElementById(
