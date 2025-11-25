@@ -17,6 +17,8 @@ const initialDataLeads = [
     status: "New",
     assignedTo: null,
     contactedAt: null,
+    createdAt: new Date("2022-05-10"),
+    updatedAt: new Date("2023-11-20"),
   },
   {
     id: 245,
@@ -36,6 +38,8 @@ const initialDataLeads = [
     status: "Contacted",
     assignedTo: "User 1",
     contactedAt: new Date("2025-02-02"),
+    createdAt: new Date("2023-02-12"),
+    updatedAt: new Date("2024-07-25"),
   },
   {
     id: 367,
@@ -55,6 +59,8 @@ const initialDataLeads = [
     status: "Qualified",
     assignedTo: "User 2",
     contactedAt: new Date("2025-03-03"),
+    createdAt: new Date("2023-02-12"),
+    updatedAt: new Date("2024-07-25"),
   },
   {
     id: 412,
@@ -74,6 +80,8 @@ const initialDataLeads = [
     status: "Nurtured",
     assignedTo: null,
     contactedAt: new Date("2025-04-04"),
+    createdAt: new Date("2023-02-12"),
+    updatedAt: new Date("2024-07-25"),
   },
   {
     id: 534,
@@ -93,6 +101,8 @@ const initialDataLeads = [
     status: "Contacted",
     assignedTo: "User 2",
     contactedAt: new Date("2025-05-05"),
+    createdAt: new Date("2023-02-12"),
+    updatedAt: new Date("2024-07-25"),
   },
   {
     id: 486,
@@ -112,6 +122,8 @@ const initialDataLeads = [
     status: "Junk",
     assignedTo: null,
     contactedAt: null,
+    createdAt: new Date("2023-02-12"),
+    updatedAt: new Date("2024-07-25"),
   },
 ];
 
@@ -122,12 +134,21 @@ function saveToStorage(leads) {
 }
 
 function loadFromStorage() {
-  const leads = JSON.parse(localStorage.getItem("leads"));
+  const leadsFromStorage = JSON.parse(localStorage.getItem("leads"));
 
-  if (!leads || leads.length <= 0) {
+  if (!leadsFromStorage || leadsFromStorage.length <= 0) {
     saveToStorage(initialDataLeads);
     return initialDataLeads;
   }
+
+  const leads = leadsFromStorage.map((lead) => {
+    return {
+      ...lead,
+      createdAt: new Date(lead.createdAt),
+      updatedAt: new Date(lead.updatedAt),
+    };
+  });
+
   return leads;
 }
 
@@ -144,17 +165,15 @@ function getLead(leads) {
   return lead;
 }
 
-function getAmountARR(annualRevenueInUSD) {
-  const amountARR =
-    lead.annualRevenueInUSD != null
-      ? formatNumberInUSD(lead.annualRevenueInUSD.toString())
-      : "N/A";
-  return amountARR;
-}
-
 function renderLeadsByStatus(leads, status) {
   const filteredLeads = leads.filter((lead) => lead.status === status);
   renderAllLeads(filteredLeads);
+}
+
+function formatTimestamp(date) {
+  return new Intl.DateTimeFormat("en-US", {
+    dateStyle: "full",
+  }).format(date);
 }
 
 function formatNumberInUSD(number) {
@@ -164,6 +183,14 @@ function formatNumberInUSD(number) {
   }).format(number);
 
   return formattedNumber;
+}
+
+function getAmountARR(annualRevenueInUSD) {
+  const amountARR =
+    lead.annualRevenueInUSD != null
+      ? formatNumberInUSD(lead.annualRevenueInUSD.toString())
+      : "N/A";
+  return amountARR;
 }
 
 function getInitial(firstName, lastName) {

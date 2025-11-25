@@ -59,21 +59,21 @@
             <h2 class="text-2xl font-semibold">
               <a href="/"> Leads </a>
             </h2>
-            <form id="search-bar" class="flex gap-2">
-              <label for="search" class="hidden">Search</label>
+            <form id="search-form" class="flex gap-2">
+              <label for="search-input" class="hidden">Search</label>
 
               <div class="relative w-full">
                 <span class="absolute left-3 top-1/2 -translate-y-1/2">
                   <img
                     src="/assets/icons/search.svg"
-                    alt="Search"
+                    alt="Search Icon"
                     width="15"
                     height="15"
                   />
                 </span>
 
                 <input
-                  id="search"
+                  id="search-input"
                   type="search"
                   name="q"
                   placeholder="Search leads..."
@@ -98,6 +98,9 @@
           <table id="leads-table-header">
             <thead class="bg-gray-50 border-b border-gray-200">
               <tr>
+                <th class="pl-6 py-3 text-left font-medium text-gray-500">
+                  <div class="w-20"></div>
+                </th>
                 <th
                   class="whitespace-nowrap px-6 py-3 text-left font-medium text-gray-500"
                 >
@@ -119,13 +122,18 @@
                 <th
                   class="whitespace-nowrap px-6 py-3 text-left font-medium text-gray-500"
                 >
-                  Contact
+                  Email
+                </th>
+                <th
+                  class="whitespace-nowrap px-6 py-3 text-left font-medium text-gray-500"
+                >
+                  Phone
                 </th>
                 <th class="px-6 py-3 text-left font-medium text-gray-500">
                   Assigned To
                 </th>
-                <th class="px-6 py-3 text-left font-medium text-gray-500">
-                  Action
+                <th class="pl-6 py-3 text-left font-medium text-gray-500">
+                  Last Modified
                 </th>
               </tr>
             </thead>

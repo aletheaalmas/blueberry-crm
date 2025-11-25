@@ -3,46 +3,6 @@ function renderLead(lead) {
   const statusColor = getStatusColor(lead.status);
 
   return `<tr class="border-b border-gray-200 hover:bg-gray-50">
-    <td class="whitespace-nowrap px-5 py-2 font-medium">
-      <div class="flex items-center gap-2">
-        <img
-          class="size-6 rounded-full"
-          src="https://api.dicebear.com/9.x/initials/svg?seed=${fullName}&radius=50&size=32&backgroundColor=b6e3f4,ffd5dc,c0aede,d1d4f9,ffdfbf"
-          alt="${fullName}"
-        />
-        <span> ${lead.salutation ?? ""} ${fullName} </span>
-      </div>
-    </td>
-    <td class="whitespace-nowrap px-5 py-2">${lead.organization ?? "-"}</td>
-    <td class="whitespace-nowrap px-5 py-2">${lead.jobTitle ?? "-"}</td>
-    <td class="px-5 py-2">
-      <span class="flex items-center text-gray-600">
-        <span class="w-2 h-2 rounded-full mr-2 ${statusColor}"></span>
-        <span>${lead.status}</span>
-      </span>
-    </td>
-    <td class="px-5 py-2 whitespace-nowrap ">
-      <div class="flex items-center space-x-2 gap-1"><img src="/assets/icons/phone.svg" alt="View" width="15" height="15"/>${
-        lead.phone ?? "-"
-      }</div>
-      <div class="mt-1 flex items-center space-x-2 gap-1"><img src="/assets/icons/mail.svg" alt="View" width="15" height="15"/>${
-        lead.email ?? "-"
-      }</div>
-    </td>
-    <td class="px-5 py-2 whitespace-nowrap">
-  <div class="flex items-center space-x-2">
-    <div class="w-6 h-6 rounded-full bg-gray-300">
-      <img
-        class="size-6 rounded-full"
-        src="https://api.dicebear.com/9.x/lorelei/svg?seed=${
-          lead.assignedTo
-        }&radius=50&size=32&backgroundColor=b6e3f4,ffd5dc,c0aede,d1d4f9,ffdfbf"
-        alt="${lead.assignedTo || "Administrator"}"
-      />
-    </div>
-    <span>${lead.assignedTo ?? "Administrator"}</span>
-  </div>
-</td>
     <td class="px-5 py-2 whitespace-nowrap">
       <div class="flex items-center gap-2">
         <a href="lead/?id=${lead.id}" class="text-gray-500 hover:text-gray-700">
@@ -64,6 +24,61 @@ function renderLead(lead) {
         </button>
       </div>
     </td>
+    <td class="whitespace-nowrap px-5 py-2 font-medium">
+      <div class="flex items-center gap-2">
+        <img
+          class="size-6 rounded-full"
+          src="https://api.dicebear.com/9.x/initials/svg?seed=${fullName}&radius=50&size=32&backgroundColor=b6e3f4,ffd5dc,c0aede,d1d4f9,ffdfbf"
+          alt="${fullName}"
+        />
+        <span> ${lead.salutation ?? ""} ${fullName} </span>
+      </div>
+    </td>
+    <td class="whitespace-nowrap px-5 py-2">${lead.organization ?? "-"}</td>
+    <td class="whitespace-nowrap px-5 py-2">${lead.jobTitle ?? "-"}</td>
+    <td class="px-5 py-2">
+      <span class="flex items-center text-gray-600">
+        <span class="w-2 h-2 rounded-full mr-2 ${statusColor}"></span>
+        <span>${lead.status}</span>
+      </span>
+    </td>
+    <td class="px-5 py-2 whitespace-nowrap">
+      <div class="flex items-center space-x-2 gap-1">
+        <img
+          src="/assets/icons/phone.svg"
+          alt="View"
+          width="15"
+          height="15"
+        />${lead.phone ?? "-"}
+      </div>
+    </td>
+    <td class="px-5 py-2 whitespace-nowrap">
+      <div class="flex items-center space-x-2 gap-1">
+        <img
+          src="/assets/icons/mail.svg"
+          alt="View"
+          width="15"
+          height="15"
+        />${lead.email ?? "-"}
+      </div>
+    </td>
+    <td class="px-5 py-2 whitespace-nowrap">
+      <div class="flex items-center space-x-2">
+        <div class="w-6 h-6 rounded-full bg-gray-300">
+          <img
+            class="size-6 rounded-full"
+            src="https://api.dicebear.com/9.x/lorelei/svg?seed=${
+              lead.assignedTo
+            }&radius=50&size=32&backgroundColor=b6e3f4,ffd5dc,c0aede,d1d4f9,ffdfbf"
+            alt="${lead.assignedTo || "Administrator"}"
+          />
+        </div>
+        <span>${lead.assignedTo ?? "Administrator"}</span>
+      </div>
+    </td>
+    <td class="px-5 py-2 whitespace-nowrap">
+      <p>${formatTimestamp(lead.updatedAt)}</p>
+    </td>
   </tr> `;
 }
 
@@ -83,6 +98,9 @@ function searchLeads(leads) {
 
   if (!q) return leads;
 
+  const searchInputElement = document.getElementById("search-input");
+  searchInputElement.value = q;
+
   const foundLeads = leads.filter((lead) => {
     if (
       (lead.firstName && lead.firstName.toLowerCase().includes(q)) ||
@@ -93,6 +111,8 @@ function searchLeads(leads) {
       return lead;
     }
   });
+
+  debugger;
 
   return foundLeads;
 }
