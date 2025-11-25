@@ -1,12 +1,3 @@
-function getLead(leads) {
-  const searchValue = window.location.search;
-  const searchParam = new URLSearchParams(searchValue);
-  const id = Number(searchParam.get("id"));
-
-  const lead = leads.find((lead) => lead.id === id);
-
-  return lead;
-}
 
 function renderLeadDetails(leads) {
   const leadDetailsElement = document.getElementById("lead-details");
