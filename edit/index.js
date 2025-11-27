@@ -329,7 +329,6 @@ editFormElement.addEventListener("submit", (event) => {
     employeesCountRange: formData.get("employees-count-range"),
     status: formData.get("status"),
     assignedTo: formData.get("assigned-to"),
-    updatedAt: new Date(),
   };
 
   updateLead(dataLeads, leadId, leadBody);

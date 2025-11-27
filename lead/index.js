@@ -1,4 +1,3 @@
-
 function renderLeadDetails(leads) {
   const leadDetailsElement = document.getElementById("lead-details");
 
