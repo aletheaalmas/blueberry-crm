@@ -295,7 +295,6 @@ function updateLead(leads, id, leadBody) {
 
 renderLeadDetails(dataLeads);
 
-// function setupFormEventListener() {
 const editFormElement = document.getElementById("edit-form");
 
 editFormElement.addEventListener("submit", (event) => {
